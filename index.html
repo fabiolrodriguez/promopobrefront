@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promopobre</title>
+  <style>
+    :root {
+      --accent: #e63946;
+      --accent-dark: #c1121f;
+      --bg: #f4f4f5;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--accent) 0%, #ff6b6b 100%);
+      color: #fff;
+      padding: 2.5rem 1rem 2rem;
+      text-align: center;
+    }
+    header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; }
+    header p  { margin-top: 0.4rem; font-size: 0.9rem; opacity: 0.88; }
+
+    /* ── Status bar ── */
+    #status {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      min-height: 2.5rem;
+    }
+
+    /* ── Grid ── */
+    main { max-width: 1200px; margin: 0 auto; padding: 0 1rem 3rem; }
+
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: var(--border);
+    }
+    .card-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .card-body {
+      padding: 0.875rem 1rem 0.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .card-source {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .card-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-footer {
+      padding: 0.75rem 1rem 1rem;
+    }
+
+    .btn {
+      display: block;
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: var(--accent-dark); }
+
+    /* ── Skeleton shimmer ── */
+    .skeleton .card-img,
+    .skeleton .skel {
+      background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 6px;
+    }
+    .skel { height: 0.85rem; margin-bottom: 0.5rem; }
+    .skel.w60 { width: 60%; }
+    .skel.w80 { width: 80%; }
+    .skel.btn-skel { height: 2.2rem; border-radius: 8px; margin: 0; }
+
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Promos do Dia</h1>
+  <p>As melhores ofertas selecionadas para voce</p>
+</header>
+
+<p id="status">Carregando ofertas...</p>
+
+<main>
+  <div id="grid"></div>
+</main>
+
+<script>
+  const CACHE_TTL = 24 * 60 * 60 * 1000; // 24h
+
+  function getCached(url) {
+    try {
+      const raw = localStorage.getItem('prev:' + url);
+      if (!raw) return null;
+      const { data, ts } = JSON.parse(raw);
+      return Date.now() - ts < CACHE_TTL ? data : null;
+    } catch { return null; }
+  }
+
+  function setCache(url, data) {
+    try {
+      localStorage.setItem('prev:' + url, JSON.stringify({ data, ts: Date.now() }));
+    } catch {}
+  }
+
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function hostname(url) {
+    try { return new URL(url).hostname.replace('www.', ''); }
+    catch { return url; }
+  }
+
+  function skeletonHTML() {
+    return `
+      <div class="card skeleton">
+        <div class="card-img"></div>
+        <div class="card-body">
+          <div class="skel w60"></div>
+          <div class="skel w80"></div>
+          <div class="skel w60"></div>
+        </div>
+        <div class="card-footer"><div class="skel btn-skel"></div></div>
+      </div>`;
+  }
+
+  function cardHTML(url, data) {
+    const img   = data?.image?.url  || '';
+    const title = data?.title       || hostname(url);
+    const desc  = data?.description || '';
+
+    return `
+      <div class="card">
+        ${img
+          ? `<img class="card-img" src="${esc(img)}" alt="${esc(title)}" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'card-img-placeholder',textContent:'🛒'}))">`
+          : `<div class="card-img-placeholder">🛒</div>`
+        }
+        <div class="card-body">
+          <span class="card-source">${esc(hostname(url))}</span>
+          <p class="card-title">${esc(title)}</p>
+          ${desc ? `<p class="card-desc">${esc(desc)}</p>` : ''}
+        </div>
+        <div class="card-footer">
+          <a class="btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Ver oferta &rarr;</a>
+        </div>
+      </div>`;
+  }
+
+  async function fetchPreview(url) {
+    const cached = getCached(url);
+    if (cached) return cached;
+
+    const res  = await fetch('https://api.microlink.io/?url=' + encodeURIComponent(url));
+    const json = await res.json();
+    if (json.status === 'success') {
+      setCache(url, json.data);
+      return json.data;
+    }
+    return null;
+  }
+
+  async function init() {
+    const grid   = document.getElementById('grid');
+    const status = document.getElementById('status');
+
+    let urls;
+    try {
+      const res = await fetch('links.json');
+      urls = await res.json();
+    } catch {
+      status.textContent = 'Erro ao carregar links.json.';
+      return;
+    }
+
+    if (!urls.length) {
+      status.textContent = 'Nenhum link encontrado em links.json.';
+      return;
+    }
+
+    // Render skeletons com IDs
+    grid.innerHTML = urls.map((_, i) => `<div id="c${i}">${skeletonHTML()}</div>`).join('');
+    status.textContent = `Carregando ${urls.length} oferta${urls.length !== 1 ? 's' : ''}...`;
+
+    let done = 0;
+
+    await Promise.all(urls.map(async (url, i) => {
+      let data = null;
+      try { data = await fetchPreview(url); } catch {}
+
+      document.getElementById(`c${i}`).innerHTML = cardHTML(url, data);
+
+      done++;
+      status.textContent = done < urls.length
+        ? `Carregando... ${done}/${urls.length}`
+        : `${urls.length} oferta${urls.length !== 1 ? 's' : ''} encontrada${urls.length !== 1 ? 's' : ''}`;
+    }));
+  }
+
+  init();
+</script>
+
+</body>
+</html>
