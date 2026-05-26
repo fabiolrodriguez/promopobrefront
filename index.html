@@ -198,6 +198,17 @@
     catch { return url; }
   }
 
+  // Extrai titulo do slug da URL para casos onde a API nao retorna nada.
+  // Shopee: /Nome-Do-Produto-i.SELLER.PRODUCT -> "Nome Do Produto"
+  function titleFromSlug(url) {
+    try {
+      const path = new URL(url).pathname;
+      const slug = path.split('/').filter(Boolean).pop() || '';
+      const name = slug.replace(/-i\.\d+\.\d+$/, '').replace(/-/g, ' ').trim();
+      return name.length > 3 ? name : null;
+    } catch { return null; }
+  }
+
   function skeletonHTML() {
     return `
       <div class="card skeleton">
@@ -213,7 +224,7 @@
 
   function cardHTML(url, data) {
     const img   = data?.image?.url  || '';
-    const title = data?.title       || hostname(url);
+    const title = data?.title || titleFromSlug(url) || hostname(url);
     const desc  = data?.description || '';
 
     return `
@@ -246,40 +257,49 @@
     return null;
   }
 
+  // Normaliza entrada: aceita string ou objeto { url, image?, title?, description? }
+  function normalize(entry) {
+    return typeof entry === 'string' ? { url: entry } : entry;
+  }
+
   async function init() {
     const grid   = document.getElementById('grid');
     const status = document.getElementById('status');
 
-    let urls;
+    let entries;
     try {
       const res = await fetch('links.json');
-      urls = await res.json();
+      entries = (await res.json()).map(normalize);
     } catch {
       status.textContent = 'Erro ao carregar links.json.';
       return;
     }
 
-    if (!urls.length) {
+    if (!entries.length) {
       status.textContent = 'Nenhum link encontrado em links.json.';
       return;
     }
 
-    // Render skeletons com IDs
-    grid.innerHTML = urls.map((_, i) => `<div id="c${i}">${skeletonHTML()}</div>`).join('');
-    status.textContent = `Carregando ${urls.length} oferta${urls.length !== 1 ? 's' : ''}...`;
+    grid.innerHTML = entries.map((_, i) => `<div id="c${i}">${skeletonHTML()}</div>`).join('');
+    status.textContent = `Carregando ${entries.length} oferta${entries.length !== 1 ? 's' : ''}...`;
 
     let done = 0;
 
-    await Promise.all(urls.map(async (url, i) => {
+    await Promise.all(entries.map(async ({ url, image, title, description }, i) => {
       let data = null;
       try { data = await fetchPreview(url); } catch {}
+
+      // Overrides manuais do JSON tem prioridade sobre o que a API retornou
+      if (image)       data = { ...data, image: { url: image } };
+      if (title)       data = { ...data, title };
+      if (description) data = { ...data, description };
 
       document.getElementById(`c${i}`).innerHTML = cardHTML(url, data);
 
       done++;
-      status.textContent = done < urls.length
-        ? `Carregando... ${done}/${urls.length}`
-        : `${urls.length} oferta${urls.length !== 1 ? 's' : ''} encontrada${urls.length !== 1 ? 's' : ''}`;
+      status.textContent = done < entries.length
+        ? `Carregando... ${done}/${entries.length}`
+        : `${entries.length} oferta${entries.length !== 1 ? 's' : ''} encontrada${entries.length !== 1 ? 's' : ''}`;
     }));
   }
 
