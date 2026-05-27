@@ -24,7 +24,6 @@
       min-height: 100vh;
     }
 
-    /* ── Header ── */
     header {
       background: linear-gradient(135deg, var(--accent) 0%, #ff6b6b 100%);
       color: #fff;
@@ -34,7 +33,6 @@
     header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; }
     header p  { margin-top: 0.4rem; font-size: 0.9rem; opacity: 0.88; }
 
-    /* ── Status bar ── */
     #status {
       text-align: center;
       padding: 1rem;
@@ -43,7 +41,6 @@
       min-height: 2.5rem;
     }
 
-    /* ── Grid ── */
     main { max-width: 1200px; margin: 0 auto; padding: 0 1rem 3rem; }
 
     #grid {
@@ -52,7 +49,6 @@
       gap: 1.25rem;
     }
 
-    /* ── Card ── */
     .card {
       background: var(--card);
       border-radius: 14px;
@@ -67,20 +63,35 @@
       box-shadow: 0 8px 28px rgba(0,0,0,0.13);
     }
 
-    .card-img {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
+    .card-img-wrap {
+      position: relative;
+      aspect-ratio: 1 / 1;
       background: var(--border);
+      overflow: hidden;
     }
-    .card-img-placeholder {
+    .card-img-wrap img {
       width: 100%;
-      aspect-ratio: 16 / 9;
-      background: var(--border);
+      height: 100%;
+      object-fit: cover;
+    }
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2.5rem;
+    }
+    .badge-desconto {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.45rem;
+      border-radius: 5px;
     }
 
     .card-body {
@@ -90,7 +101,6 @@
       flex-direction: column;
       gap: 0.35rem;
     }
-
     .card-source {
       font-size: 0.7rem;
       font-weight: 600;
@@ -98,17 +108,15 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
-
     .card-title {
       font-size: 0.88rem;
       font-weight: 600;
       line-height: 1.4;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-
     .card-desc {
       font-size: 0.78rem;
       color: var(--muted);
@@ -118,10 +126,22 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-
-    .card-footer {
-      padding: 0.75rem 1rem 1rem;
+    .card-precos {
+      margin-top: auto;
+      padding-top: 0.4rem;
     }
+    .preco-original {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+    .preco-atual {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .card-footer { padding: 0.75rem 1rem 1rem; }
 
     .btn {
       display: block;
@@ -137,8 +157,8 @@
     }
     .btn:hover { background: var(--accent-dark); }
 
-    /* ── Skeleton shimmer ── */
-    .skeleton .card-img,
+    /* Skeleton */
+    .skeleton .card-img-wrap,
     .skeleton .skel {
       background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
       background-size: 200% 100%;
@@ -170,7 +190,34 @@
 </main>
 
 <script>
-  const CACHE_TTL = 24 * 60 * 60 * 1000; // 24h
+  const CACHE_TTL = 24 * 60 * 60 * 1000;
+
+  // ── Utilitários ──────────────────────────────────────────────
+
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function brl(v) {
+    return Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function hostname(url) {
+    try { return new URL(url).hostname.replace('www.', ''); }
+    catch { return url; }
+  }
+
+  function titleFromSlug(url) {
+    try {
+      const slug = new URL(url).pathname.split('/').filter(Boolean).pop() || '';
+      const name = slug.replace(/-i\.\d+\.\d+$/, '').replace(/-/g, ' ').trim();
+      return name.length > 3 ? name : null;
+    } catch { return null; }
+  }
+
+  // ── Cache microlink ──────────────────────────────────────────
 
   function getCached(url) {
     try {
@@ -187,32 +234,49 @@
     } catch {}
   }
 
-  function esc(s) {
-    return String(s || '')
-      .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
-      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  async function fetchPreview(url) {
+    const cached = getCached(url);
+    if (cached) return cached;
+    const res  = await fetch('https://api.microlink.io/?url=' + encodeURIComponent(url));
+    const json = await res.json();
+    if (json.status === 'success') { setCache(url, json.data); return json.data; }
+    return null;
   }
 
-  function hostname(url) {
-    try { return new URL(url).hostname.replace('www.', ''); }
-    catch { return url; }
-  }
+  // ── Card unificado ───────────────────────────────────────────
+  // Aceita campos opcionais: desc, preco, preco_original, desconto_pct
 
-  // Extrai titulo do slug da URL para casos onde a API nao retorna nada.
-  // Shopee: /Nome-Do-Produto-i.SELLER.PRODUCT -> "Nome Do Produto"
-  function titleFromSlug(url) {
-    try {
-      const path = new URL(url).pathname;
-      const slug = path.split('/').filter(Boolean).pop() || '';
-      const name = slug.replace(/-i\.\d+\.\d+$/, '').replace(/-/g, ' ').trim();
-      return name.length > 3 ? name : null;
-    } catch { return null; }
+  function renderCard({ titulo, link, imagem, loja, desc, preco, preco_original, desconto_pct }) {
+    return `
+      <div class="card">
+        <div class="card-img-wrap">
+          ${imagem
+            ? `<img src="${esc(imagem)}" alt="${esc(titulo)}" loading="lazy"
+                    onerror="this.parentElement.style.display='none'">`
+            : `<div class="img-placeholder">🛒</div>`
+          }
+          ${desconto_pct ? `<span class="badge-desconto">-${desconto_pct}%</span>` : ''}
+        </div>
+        <div class="card-body">
+          <span class="card-source">${esc(loja)}</span>
+          <p class="card-title">${esc(titulo)}</p>
+          ${desc ? `<p class="card-desc">${esc(desc)}</p>` : ''}
+          ${preco != null ? `
+            <div class="card-precos">
+              ${preco_original ? `<p class="preco-original">${brl(preco_original)}</p>` : ''}
+              <p class="preco-atual">${brl(preco)}</p>
+            </div>` : ''}
+        </div>
+        <div class="card-footer">
+          <a class="btn" href="${esc(link)}" target="_blank" rel="noopener noreferrer">Ver oferta &rarr;</a>
+        </div>
+      </div>`;
   }
 
   function skeletonHTML() {
     return `
       <div class="card skeleton">
-        <div class="card-img"></div>
+        <div class="card-img-wrap"></div>
         <div class="card-body">
           <div class="skel w60"></div>
           <div class="skel w80"></div>
@@ -222,85 +286,66 @@
       </div>`;
   }
 
-  function cardHTML(url, data) {
-    const img   = data?.image?.url  || '';
-    const title = data?.title || titleFromSlug(url) || hostname(url);
-    const desc  = data?.description || '';
-
-    return `
-      <div class="card">
-        ${img
-          ? `<img class="card-img" src="${esc(img)}" alt="${esc(title)}" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'card-img-placeholder',textContent:'🛒'}))">`
-          : `<div class="card-img-placeholder">🛒</div>`
-        }
-        <div class="card-body">
-          <span class="card-source">${esc(hostname(url))}</span>
-          <p class="card-title">${esc(title)}</p>
-          ${desc ? `<p class="card-desc">${esc(desc)}</p>` : ''}
-        </div>
-        <div class="card-footer">
-          <a class="btn" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Ver oferta &rarr;</a>
-        </div>
-      </div>`;
-  }
-
-  async function fetchPreview(url) {
-    const cached = getCached(url);
-    if (cached) return cached;
-
-    const res  = await fetch('https://api.microlink.io/?url=' + encodeURIComponent(url));
-    const json = await res.json();
-    if (json.status === 'success') {
-      setCache(url, json.data);
-      return json.data;
-    }
-    return null;
-  }
-
-  // Normaliza entrada: aceita string ou objeto { url, image?, title?, description? }
+  // Normaliza entrada do links.json: aceita string ou {url, image?, title?, description?}
   function normalize(entry) {
     return typeof entry === 'string' ? { url: entry } : entry;
   }
+
+  // ── Init ─────────────────────────────────────────────────────
 
   async function init() {
     const grid   = document.getElementById('grid');
     const status = document.getElementById('status');
 
-    let entries;
-    try {
-      const res = await fetch('links.json');
-      entries = (await res.json()).map(normalize);
-    } catch {
-      status.textContent = 'Erro ao carregar links.json.';
+    // Carrega as duas fontes em paralelo; falha de uma nao afeta a outra
+    const [produtos, linksRaw] = await Promise.all([
+      fetch('produtos.json').then(r => r.json()).catch(() => []),
+      fetch('links.json').then(r => r.json()).catch(() => []),
+    ]);
+
+    const links = linksRaw.map(normalize);
+    const total = produtos.length + links.length;
+
+    if (!total) {
+      status.textContent = 'Nenhuma oferta disponivel no momento.';
       return;
     }
 
-    if (!entries.length) {
-      status.textContent = 'Nenhum link encontrado em links.json.';
-      return;
-    }
+    // Produtos do sync (dados completos): renderiza imediatamente
+    // Links manuais: renderiza skeleton enquanto busca microlink
+    grid.innerHTML =
+      produtos.map(p => renderCard(p)).join('') +
+      links.map((_, i) => `<div id="l${i}">${skeletonHTML()}</div>`).join('');
 
-    grid.innerHTML = entries.map((_, i) => `<div id="c${i}">${skeletonHTML()}</div>`).join('');
-    status.textContent = `Carregando ${entries.length} oferta${entries.length !== 1 ? 's' : ''}...`;
+    status.textContent = 'Carregando...';
 
-    let done = 0;
-
-    await Promise.all(entries.map(async ({ url, image, title, description }, i) => {
+    // Resolve previews dos links manuais
+    let resolvidos = 0;
+    await Promise.all(links.map(async ({ url, image, title, description }, i) => {
       let data = null;
       try { data = await fetchPreview(url); } catch {}
 
-      // Overrides manuais do JSON tem prioridade sobre o que a API retornou
       if (image)       data = { ...data, image: { url: image } };
       if (title)       data = { ...data, title };
       if (description) data = { ...data, description };
 
-      document.getElementById(`c${i}`).innerHTML = cardHTML(url, data);
+      document.getElementById(`l${i}`).innerHTML = renderCard({
+        titulo: data?.title || titleFromSlug(url) || hostname(url),
+        link:   url,
+        imagem: data?.image?.url || '',
+        loja:   hostname(url),
+        desc:   data?.description || '',
+      });
 
-      done++;
-      status.textContent = done < entries.length
-        ? `Carregando... ${done}/${entries.length}`
-        : `${entries.length} oferta${entries.length !== 1 ? 's' : ''} encontrada${entries.length !== 1 ? 's' : ''}`;
+      resolvidos++;
+      if (resolvidos === links.length) {
+        status.textContent = `${total} oferta${total !== 1 ? 's' : ''} encontrada${total !== 1 ? 's' : ''}`;
+      }
     }));
+
+    if (!links.length) {
+      status.textContent = `${total} oferta${total !== 1 ? 's' : ''} encontrada${total !== 1 ? 's' : ''}`;
+    }
   }
 
   init();
