@@ -1,9 +1,7 @@
 name: Sync Mercado Livre
 
 on:
-  schedule:
-    - cron: '0 */6 * * *'  # a cada 6 horas
-  workflow_dispatch:        # permite rodar manualmente pelo GitHub
+  workflow_dispatch: # ativacao manual apenas; schedule desativado ate solucao de links de afiliado
 
 jobs:
   sync:
