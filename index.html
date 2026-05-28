@@ -3,7 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Promopobre</title>
+  <title>Promopobre - Ofertas e Descontos do Dia</title>
+  <meta name="description" content="As melhores ofertas e descontos do dia em eletrônicos, smartphones, notebooks e muito mais. Atualizado diariamente.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://promopobre.com.br">
+
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://promopobre.com.br">
+  <meta property="og:title"       content="Promopobre - Ofertas e Descontos do Dia">
+  <meta property="og:description" content="As melhores ofertas e descontos do dia em eletrônicos, smartphones, notebooks e muito mais.">
+  <meta property="og:locale"      content="pt_BR">
+
+  <meta name="twitter:card"        content="summary">
+  <meta name="twitter:title"       content="Promopobre - Ofertas e Descontos do Dia">
+  <meta name="twitter:description" content="As melhores ofertas e descontos do dia em eletrônicos, smartphones, notebooks e muito mais.">
   <style>
     :root {
       --accent: #e63946;
@@ -346,6 +359,39 @@
     if (!links.length) {
       status.textContent = `${total} oferta${total !== 1 ? 's' : ''} encontrada${total !== 1 ? 's' : ''}`;
     }
+
+    injectStructuredData(produtos);
+  }
+
+  function injectStructuredData(produtos) {
+    if (!produtos.length) return;
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Ofertas do Dia - Promopobre",
+      "url": "https://promopobre.com.br",
+      "numberOfItems": produtos.length,
+      "itemListElement": produtos.map((p, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": "Product",
+          "name": p.titulo,
+          "image": p.imagem,
+          "url": p.link,
+          "offers": {
+            "@type": "Offer",
+            "price": p.preco,
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock",
+            "url": p.link
+          }
+        }
+      }))
+    });
+    document.head.appendChild(script);
   }
 
   init();

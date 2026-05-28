@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://promopobre.com.br/sitemap.xml
