@@ -11,13 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger n8n webhook
+        env:
+          WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
         run: |
-          curl -s -X POST "${{ secrets.N8N_WEBHOOK_URL }}" \
+          curl -s -f -X POST "$WEBHOOK_URL" \
             -H "Content-Type: application/json" \
-            -d '{
-              "event": "links_updated",
-              "repo": "${{ github.repository }}",
-              "commit": "${{ github.sha }}",
-              "author": "${{ github.actor }}",
-              "raw_url": "https://raw.githubusercontent.com/${{ github.repository }}/main/links.json"
-            }'
+            -d '{"event":"links_updated","author":"${{ github.actor }}","commit":"${{ github.sha }}","raw_url":"https://raw.githubusercontent.com/${{ github.repository }}/main/links.json"}'
