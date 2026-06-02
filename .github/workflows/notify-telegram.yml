@@ -1,0 +1,23 @@
+name: Notify Telegram on links.json update
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'links.json'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger n8n webhook
+        run: |
+          curl -s -X POST "${{ secrets.N8N_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "event": "links_updated",
+              "repo": "${{ github.repository }}",
+              "commit": "${{ github.sha }}",
+              "author": "${{ github.actor }}",
+              "raw_url": "https://raw.githubusercontent.com/${{ github.repository }}/main/links.json"
+            }'
