@@ -187,6 +187,35 @@
       0%   { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
+
+    /* Busca */
+    #busca-wrap {
+      background: #fff;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    }
+    #busca {
+      display: block;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0.6rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    #busca:focus { border-color: var(--accent); }
+
+    #sem-resultado {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
@@ -196,10 +225,15 @@
   <p>As melhores ofertas selecionadas para voce</p>
 </header>
 
+<div id="busca-wrap">
+  <input id="busca" type="search" placeholder="Buscar produto..." autocomplete="off">
+</div>
+
 <p id="status">Carregando ofertas...</p>
 
 <main>
   <div id="grid"></div>
+  <p id="sem-resultado">Nenhum produto encontrado.</p>
 </main>
 
 <script>
@@ -304,6 +338,26 @@
     return typeof entry === 'string' ? { url: entry } : entry;
   }
 
+  // ── Busca ────────────────────────────────────────────────────
+
+  let searchQuery = '';
+
+  function filtrar(q) {
+    searchQuery = q.toLowerCase().trim();
+    let visiveis = 0;
+    Array.from(document.getElementById('grid').children).forEach(el => {
+      const titulo = el.querySelector('.card-title')?.textContent?.toLowerCase() || '';
+      const loja   = el.querySelector('.card-source')?.textContent?.toLowerCase() || '';
+      const match  = !searchQuery || titulo.includes(searchQuery) || loja.includes(searchQuery);
+      el.style.display = match ? '' : 'none';
+      if (match) visiveis++;
+    });
+    document.getElementById('sem-resultado').style.display =
+      searchQuery && visiveis === 0 ? '' : 'none';
+  }
+
+  document.getElementById('busca').addEventListener('input', e => filtrar(e.target.value));
+
   // ── Init ─────────────────────────────────────────────────────
 
   async function init() {
@@ -350,6 +404,7 @@
         desc:   data?.description || '',
       });
 
+      if (searchQuery) filtrar(searchQuery);
       resolvidos++;
       if (resolvidos === links.length) {
         status.textContent = `${total} oferta${total !== 1 ? 's' : ''} encontrada${total !== 1 ? 's' : ''}`;
