@@ -14,6 +14,7 @@ jobs:
         env:
           WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
         run: |
-          curl -s -f -X POST "$WEBHOOK_URL" \
+          CLEAN_URL=$(echo "$WEBHOOK_URL" | tr -d '[:space:]')
+          curl -s -f -X POST "$CLEAN_URL" \
             -H "Content-Type: application/json" \
             -d '{"event":"links_updated","author":"${{ github.actor }}","commit":"${{ github.sha }}","raw_url":"https://raw.githubusercontent.com/${{ github.repository }}/main/links.json"}'
