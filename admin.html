@@ -187,6 +187,21 @@
     #empty { text-align: center; color: #a1a1aa; font-size: 0.875rem; padding: 24px; display: none; }
 
     .loading { text-align: center; color: #a1a1aa; font-size: 0.875rem; padding: 24px; }
+
+    .tab-nav { background: #18181b; display: flex; gap: 2px; padding: 0 24px; }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 10px 16px;
+      color: #a1a1aa;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color .15s, border-color .15s;
+    }
+    .tab-btn:hover { color: #fff; }
+    .tab-btn.active { color: #fff; border-bottom-color: #e63946; }
   </style>
 </head>
 <body>
@@ -214,7 +229,13 @@
     <button class="btn-ghost" id="btn-logout">Sair</button>
   </header>
 
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="produtos" onclick="setTab('produtos')">Produtos</button>
+    <button class="tab-btn" data-tab="artigos" onclick="setTab('artigos')">Artigos</button>
+  </nav>
+
   <main>
+  <div id="tab-produtos">
     <!-- Adicionar produto -->
     <div class="card">
       <h2>Adicionar Produto</h2>
@@ -257,6 +278,9 @@
       <div id="product-list"><div class="loading">Carregando...</div></div>
       <div id="empty">Nenhum produto encontrado.</div>
     </div>
+  </div><!-- /tab-produtos -->
+
+  <div id="tab-artigos" style="display:none">
     <!-- Artigos: lista -->
     <div class="card" id="articles-section">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
@@ -303,6 +327,7 @@
         <button id="btn-cancel-article" style="background:transparent;border:1px solid #d4d4d8;border-radius:6px;padding:9px 18px;font-size:0.875rem;font-weight:600;cursor:pointer;color:#52525b">Cancelar</button>
       </div>
     </div>
+  </div><!-- /tab-artigos -->
 
   </main>
 </div>
@@ -562,6 +587,8 @@
 
   $('btn-logout').addEventListener('click', () => {
     sessionStorage.removeItem('admin_token');
+    articlesLoaded = false;
+    setTab('produtos');
     $('admin-view').style.display = 'none';
     $('login-view').style.display = 'flex';
     $('username').value = $('password').value = '';
@@ -572,7 +599,21 @@
     $('login-view').style.display = 'none';
     $('admin-view').style.display = 'block';
     loadProducts();
-    loadArticles();
+  }
+
+  // --- Tabs ---
+
+  let articlesLoaded = false;
+
+  function setTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    $('tab-produtos').style.display = tab === 'produtos' ? '' : 'none';
+    $('tab-artigos').style.display  = tab === 'artigos'  ? '' : 'none';
+    if (tab === 'artigos' && !articlesLoaded) {
+      loadArticles();
+      articlesLoaded = true;
+    }
+    if (tab === 'produtos') closeEditor();
   }
 
   // --- Artigos ---
