@@ -248,6 +248,11 @@
     <div class="card">
       <h2>Produtos cadastrados</h2>
       <input type="text" id="search" placeholder="Buscar por titulo ou URL...">
+      <div id="bulk-bar" style="display:none;align-items:center;gap:10px;margin-bottom:10px;padding:8px 12px;background:#f4f4f5;border-radius:6px">
+        <input type="checkbox" id="check-all" onchange="toggleSelectAll(this)" title="Selecionar todos" style="width:16px;height:16px;cursor:pointer;flex-shrink:0">
+        <span id="sel-count" style="font-size:0.85rem;color:#52525b;flex:1"></span>
+        <button class="btn-danger" id="btn-bulk-delete" onclick="bulkDelete()">Remover selecionados</button>
+      </div>
       <div id="product-list"><div class="loading">Carregando...</div></div>
       <div id="empty">Nenhum produto encontrado.</div>
     </div>
@@ -262,6 +267,51 @@
 
   const $ = id => document.getElementById(id);
   let allProducts = [];
+  let selectedUrls = new Set();
+
+  function updateBulkBar() {
+    const count = selectedUrls.size;
+    const bar = $('bulk-bar');
+    bar.style.display = allProducts.length ? 'flex' : 'none';
+    $('sel-count').textContent = `${count} selecionado(s)`;
+    $('btn-bulk-delete').disabled = count === 0;
+    $('check-all').indeterminate = count > 0 && count < allProducts.length;
+    $('check-all').checked = count > 0 && count === allProducts.length;
+  }
+
+  function toggleSelect(checkbox) {
+    const url = decodeURIComponent(checkbox.value);
+    if (checkbox.checked) selectedUrls.add(url);
+    else selectedUrls.delete(url);
+    updateBulkBar();
+  }
+
+  function toggleSelectAll(checkbox) {
+    document.querySelectorAll('.product-check').forEach(cb => {
+      cb.checked = checkbox.checked;
+      const url = decodeURIComponent(cb.value);
+      if (checkbox.checked) selectedUrls.add(url);
+      else selectedUrls.delete(url);
+    });
+    updateBulkBar();
+  }
+
+  async function bulkDelete() {
+    const urls = [...selectedUrls];
+    if (!urls.length) return;
+    if (!confirm(`Remover ${urls.length} produto(s) selecionado(s)?`)) return;
+    $('btn-bulk-delete').disabled = true;
+    try {
+      const result = await api('/products/bulk', 'DELETE', { urls });
+      showMsg(`${result.removed} produto(s) removido(s)${result.skipped ? `, ${result.skipped} nao encontrado(s)` : ''}.`);
+      selectedUrls.clear();
+      allProducts = allProducts.filter(i => !new Set(urls).has(getUrl(i)));
+      renderList(filterBySearch(allProducts));
+    } catch (e) {
+      showMsg(e.message, 'error');
+      $('btn-bulk-delete').disabled = false;
+    }
+  }
 
   function getToken() { return sessionStorage.getItem('admin_token'); }
 
@@ -308,9 +358,11 @@
       const title = getTitle(item) || url;
       const image = getImage(item);
       const isRich = typeof item === 'object' && item.title && item.image;
+      const checked = selectedUrls.has(url) ? 'checked' : '';
 
       return `
         <div class="product-item" data-url="${encodeURIComponent(url)}">
+          <input type="checkbox" class="product-check" value="${encodeURIComponent(url)}" ${checked} onchange="toggleSelect(this)" style="width:16px;height:16px;cursor:pointer;flex-shrink:0">
           ${image
             ? `<img src="${image}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
             : ''
@@ -325,10 +377,13 @@
         </div>
       `;
     }).join('');
+
+    updateBulkBar();
   }
 
   async function loadProducts() {
     $('product-list').innerHTML = '<div class="loading">Carregando...</div>';
+    selectedUrls.clear();
     try {
       allProducts = await api('/products');
       renderList(allProducts);
