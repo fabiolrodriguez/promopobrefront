@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promopobre Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f4f4f5;
+      color: #18181b;
+      min-height: 100vh;
+    }
+
+    /* Login */
+    #login-view {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .login-box {
+      background: #fff;
+      border: 1px solid #e4e4e7;
+      border-radius: 12px;
+      padding: 40px;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .login-box h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #18181b;
+    }
+
+    /* Admin */
+    #admin-view { display: none; }
+
+    header {
+      background: #18181b;
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header span { font-weight: 700; font-size: 1rem; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
+
+    /* Cards de secao */
+    .card {
+      background: #fff;
+      border: 1px solid #e4e4e7;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 { font-size: 0.95rem; font-weight: 600; margin-bottom: 16px; color: #52525b; text-transform: uppercase; letter-spacing: .05em; }
+
+    /* Formularios */
+    .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 200px; }
+    .form-group label { font-size: 0.8rem; font-weight: 500; color: #52525b; }
+
+    input[type="text"], input[type="password"], input[type="url"] {
+      border: 1px solid #d4d4d8;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      width: 100%;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    input:focus { border-color: #18181b; }
+
+    /* Botoes */
+    button {
+      border: none;
+      border-radius: 6px;
+      padding: 9px 18px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+
+    button:hover { opacity: 0.85; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary { background: #18181b; color: #fff; }
+    .btn-danger  { background: #ef4444; color: #fff; padding: 5px 12px; font-size: 0.8rem; }
+    .btn-ghost   { background: transparent; color: #a1a1aa; font-weight: 400; padding: 0; }
+
+    .btn-add { margin-top: 12px; }
+
+    /* Lista de produtos */
+    #search { width: 100%; margin-bottom: 14px; }
+
+    #product-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .product-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid #e4e4e7;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .product-item img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+      background: #e4e4e7;
+    }
+
+    .product-item .no-img {
+      width: 56px;
+      height: 56px;
+      border-radius: 6px;
+      background: #e4e4e7;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .product-info { flex: 1; min-width: 0; }
+
+    .product-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .product-url {
+      font-size: 0.75rem;
+      color: #71717a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .product-type {
+      font-size: 0.7rem;
+      color: #a1a1aa;
+      border: 1px solid #e4e4e7;
+      border-radius: 4px;
+      padding: 1px 6px;
+      flex-shrink: 0;
+    }
+
+    /* Feedback */
+    #msg {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #18181b;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      display: none;
+      z-index: 100;
+    }
+
+    #msg.error { background: #ef4444; }
+    #msg.success { background: #22c55e; }
+
+    #empty { text-align: center; color: #a1a1aa; font-size: 0.875rem; padding: 24px; display: none; }
+
+    .loading { text-align: center; color: #a1a1aa; font-size: 0.875rem; padding: 24px; }
+  </style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="login-view">
+  <div class="login-box">
+    <h1>Promopobre Admin</h1>
+    <div class="form-group" style="margin-bottom:12px">
+      <label for="username">Usuario</label>
+      <input type="text" id="username" autocomplete="username">
+    </div>
+    <div class="form-group" style="margin-bottom:20px">
+      <label for="password">Senha</label>
+      <input type="password" id="password" autocomplete="current-password">
+    </div>
+    <button class="btn-primary" id="btn-login" style="width:100%">Entrar</button>
+  </div>
+</div>
+
+<!-- Admin -->
+<div id="admin-view">
+  <header>
+    <span>Promopobre Admin</span>
+    <button class="btn-ghost" id="btn-logout">Sair</button>
+  </header>
+
+  <main>
+    <!-- Adicionar produto -->
+    <div class="card">
+      <h2>Adicionar Produto</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-url">URL do produto *</label>
+          <input type="url" id="f-url" placeholder="https://amzn.to/...">
+        </div>
+        <div class="form-group">
+          <label for="f-title">Titulo *</label>
+          <input type="text" id="f-title" placeholder="Nome do produto">
+        </div>
+        <div class="form-group">
+          <label for="f-image">URL da imagem *</label>
+          <input type="url" id="f-image" placeholder="https://...jpg">
+        </div>
+      </div>
+      <button class="btn-primary btn-add" id="btn-add">Salvar produto</button>
+    </div>
+
+    <!-- Lista -->
+    <div class="card">
+      <h2>Produtos cadastrados</h2>
+      <input type="text" id="search" placeholder="Buscar por titulo ou URL...">
+      <div id="product-list"><div class="loading">Carregando...</div></div>
+      <div id="empty">Nenhum produto encontrado.</div>
+    </div>
+  </main>
+</div>
+
+<div id="msg"></div>
+
+<script>
+  // *** Coloque a URL do seu Cloudflare Worker aqui apos o deploy ***
+  const WORKER_URL = 'https://promopobre.fabio-rodriguez.workers.dev/';
+
+  const $ = id => document.getElementById(id);
+  let allProducts = [];
+
+  function getToken() { return sessionStorage.getItem('admin_token'); }
+
+  function showMsg(text, type = 'success') {
+    const el = $('msg');
+    el.textContent = text;
+    el.className = type;
+    el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 3000);
+  }
+
+  async function api(path, method = 'GET', body = null) {
+    const opts = {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getToken()}`
+      }
+    };
+    if (body) opts.body = JSON.stringify(body);
+    const res = await fetch(WORKER_URL + path, opts);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || `Erro ${res.status}`);
+    return data;
+  }
+
+  function getUrl(item) { return typeof item === 'string' ? item : item.url; }
+  function getTitle(item) { return typeof item === 'object' && item.title ? item.title : null; }
+  function getImage(item) { return typeof item === 'object' && item.image ? item.image : null; }
+
+  function renderList(items) {
+    const list = $('product-list');
+    const empty = $('empty');
+
+    if (items.length === 0) {
+      list.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+
+    empty.style.display = 'none';
+    list.innerHTML = items.map((item, idx) => {
+      const url = getUrl(item);
+      const title = getTitle(item) || url;
+      const image = getImage(item);
+      const isRich = typeof item === 'object' && item.title && item.image;
+
+      return `
+        <div class="product-item" data-url="${encodeURIComponent(url)}">
+          ${image
+            ? `<img src="${image}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+            : ''
+          }
+          <div class="no-img" style="display:${image ? 'none' : 'flex'}">🔗</div>
+          <div class="product-info">
+            <div class="product-title" title="${title}">${title}</div>
+            <div class="product-url">${url}</div>
+          </div>
+          <span class="product-type">${isRich ? 'rico' : 'link'}</span>
+          <button class="btn-danger" onclick="deleteProduct('${encodeURIComponent(url)}')">Remover</button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  async function loadProducts() {
+    $('product-list').innerHTML = '<div class="loading">Carregando...</div>';
+    try {
+      allProducts = await api('/products');
+      renderList(allProducts);
+    } catch (e) {
+      $('product-list').innerHTML = '';
+      showMsg(e.message, 'error');
+    }
+  }
+
+  async function deleteProduct(encodedUrl) {
+    const url = decodeURIComponent(encodedUrl);
+    if (!confirm(`Remover este produto?\n\n${url}`)) return;
+    try {
+      await api('/products', 'DELETE', { url });
+      allProducts = allProducts.filter(i => getUrl(i) !== url);
+      renderList(filterBySearch(allProducts));
+      showMsg('Produto removido.');
+    } catch (e) {
+      showMsg(e.message, 'error');
+    }
+  }
+
+  function filterBySearch(items) {
+    const q = $('search').value.toLowerCase().trim();
+    if (!q) return items;
+    return items.filter(item => {
+      const url = getUrl(item).toLowerCase();
+      const title = (getTitle(item) || '').toLowerCase();
+      return url.includes(q) || title.includes(q);
+    });
+  }
+
+  $('search').addEventListener('input', () => {
+    renderList(filterBySearch(allProducts));
+  });
+
+  $('btn-add').addEventListener('click', async () => {
+    const url   = $('f-url').value.trim();
+    const title = $('f-title').value.trim();
+    const image = $('f-image').value.trim();
+    if (!url || !title || !image) { showMsg('Preencha todos os campos.', 'error'); return; }
+
+    $('btn-add').disabled = true;
+    try {
+      await api('/products', 'POST', { url, title, image });
+      allProducts.unshift({ url, title, image });
+      renderList(filterBySearch(allProducts));
+      $('f-url').value = $('f-title').value = $('f-image').value = '';
+      showMsg('Produto adicionado!');
+    } catch (e) {
+      showMsg(e.message, 'error');
+    } finally {
+      $('btn-add').disabled = false;
+    }
+  });
+
+  $('btn-login').addEventListener('click', async () => {
+    const username = $('username').value.trim();
+    const password = $('password').value;
+    if (!username || !password) return;
+
+    $('btn-login').disabled = true;
+    try {
+      const res = await fetch(WORKER_URL + '/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      sessionStorage.setItem('admin_token', data.token);
+      $('login-view').style.display = 'none';
+      $('admin-view').style.display = 'block';
+      loadProducts();
+    } catch (e) {
+      showMsg(e.message || 'Erro ao fazer login', 'error');
+    } finally {
+      $('btn-login').disabled = false;
+    }
+  });
+
+  $('password').addEventListener('keydown', e => {
+    if (e.key === 'Enter') $('btn-login').click();
+  });
+
+  $('btn-logout').addEventListener('click', () => {
+    sessionStorage.removeItem('admin_token');
+    $('admin-view').style.display = 'none';
+    $('login-view').style.display = 'flex';
+    $('username').value = $('password').value = '';
+  });
+
+  // Se ja tem token valido, vai direto para o admin
+  if (getToken()) {
+    $('login-view').style.display = 'none';
+    $('admin-view').style.display = 'block';
+    loadProducts();
+  }
+</script>
+</body>
+</html>
