@@ -19,8 +19,7 @@ function formatDate(dateStr) {
 const files = fs.readdirSync(ARTIGOS_DIR).filter(f => f.endsWith('.md'));
 
 if (files.length === 0) {
-  console.log('Nenhum artigo .md encontrado.');
-  process.exit(0);
+  console.log('Nenhum artigo .md encontrado. Gerando sitemap apenas com URLs estaticas.');
 }
 
 // Remove HTML directories that no longer have a .md source
