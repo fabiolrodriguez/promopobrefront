@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artigos - Promopobre</title>
+  <meta name="description" content="Análises e reviews dos melhores produtos em oferta. Encontre o produto certo antes de comprar.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://promopobre.com.br/artigos/">
+
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://promopobre.com.br/artigos/">
+  <meta property="og:title"       content="Artigos - Promopobre">
+  <meta property="og:description" content="Análises e reviews dos melhores produtos em oferta.">
+  <meta property="og:locale"      content="pt_BR">
+
+  <style>
+    :root {
+      --accent: #e63946;
+      --bg: #f4f4f5;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--accent) 0%, #ff6b6b 100%);
+      color: #fff;
+      padding: 2rem 1rem 1.5rem;
+      text-align: center;
+    }
+
+    header a { color: #fff; text-decoration: none; }
+    header h1 { font-size: 1.8rem; font-weight: 800; }
+    header p  { margin-top: 0.3rem; font-size: 0.9rem; opacity: 0.88; }
+
+    main { max-width: 780px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .article-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .15s;
+    }
+
+    .article-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+
+    .article-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: var(--bg);
+    }
+
+    .article-card .no-img {
+      width: 100%;
+      height: 180px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .article-card .body {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-card h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 0.4rem;
+    }
+
+    .article-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .article-card .meta {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    #status {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/"><h1>Promopobre</h1></a>
+  <p>Análises e reviews para você comprar melhor</p>
+</header>
+
+<main>
+  <div id="grid"></div>
+  <div id="status">Carregando...</div>
+</main>
+
+<script>
+  async function load() {
+    try {
+      const res = await fetch('/artigos.json');
+      const articles = await res.json();
+
+      const status = document.getElementById('status');
+      const grid   = document.getElementById('grid');
+
+      if (!articles.length) {
+        status.textContent = 'Nenhum artigo publicado ainda.';
+        return;
+      }
+
+      status.style.display = 'none';
+      grid.innerHTML = articles.map(a => `
+        <a class="article-card" href="/artigos/${a.slug}/">
+          ${a.image
+            ? `<img src="${a.image}" alt="${a.title}" loading="lazy">`
+            : `<div class="no-img">📝</div>`
+          }
+          <div class="body">
+            <h2>${a.title}</h2>
+            <p>${a.description || ''}</p>
+            <div class="meta">${a.date ? new Date(a.date + 'T12:00:00').toLocaleDateString('pt-BR') : ''}</div>
+          </div>
+        </a>
+      `).join('');
+    } catch (e) {
+      document.getElementById('status').textContent = 'Erro ao carregar artigos.';
+    }
+  }
+
+  load();
+</script>
+</body>
+</html>
