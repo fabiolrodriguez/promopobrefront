@@ -162,6 +162,25 @@ async function handleDeleteProduct(request, env) {
   return json({ ok: true });
 }
 
+async function handleBulkAdd(request, env) {
+  const products = await request.json();
+  if (!Array.isArray(products) || products.length === 0) {
+    return json({ error: 'Envie um array de produtos' }, 400);
+  }
+  for (const p of products) {
+    if (!p.url || !p.title || !p.image) {
+      return json({ error: 'url, title e image sao obrigatorios em todos os produtos' }, 400);
+    }
+  }
+  const { links, sha } = await ghGet(env.GITHUB_PAT);
+  const existing = new Set(links.map(l => getUrl(l)));
+  const toAdd = products.filter(p => !existing.has(p.url));
+  if (toAdd.length === 0) return json({ error: 'Todas as URLs ja existem' }, 409);
+  const newLinks = [...toAdd.map(({ url, title, image }) => ({ url, title, image })), ...links];
+  await ghPut(env.GITHUB_PAT, newLinks, sha, `admin: adiciona ${toAdd.length} produto(s) em lote`);
+  return json({ ok: true, added: toAdd.length, skipped: products.length - toAdd.length });
+}
+
 // --- Main ---
 
 export default {
@@ -183,6 +202,9 @@ export default {
     if (!payload) return withCors(json({ error: 'Unauthorized' }, 401));
 
     try {
+      if (url.pathname === '/products/bulk' && request.method === 'POST') {
+        return withCors(await handleBulkAdd(request, env));
+      }
       if (url.pathname === '/products') {
         if (request.method === 'GET')    return withCors(await handleGetProducts(env));
         if (request.method === 'POST')   return withCors(await handleAddProduct(request, env));

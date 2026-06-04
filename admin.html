@@ -234,6 +234,16 @@
       <button class="btn-primary btn-add" id="btn-add">Salvar produto</button>
     </div>
 
+    <!-- Adicionar em lote -->
+    <div class="card">
+      <h2>Adicionar em Lote</h2>
+      <div id="bulk-rows"></div>
+      <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+        <button class="btn-ghost" id="btn-bulk-row" style="border:1px dashed #d4d4d8;border-radius:6px;padding:7px 14px;color:#71717a;font-size:0.8rem;font-weight:500">+ Linha</button>
+        <button class="btn-primary" id="btn-bulk-save">Salvar lote</button>
+      </div>
+    </div>
+
     <!-- Lista -->
     <div class="card">
       <h2>Produtos cadastrados</h2>
@@ -374,6 +384,49 @@
       $('btn-add').disabled = false;
     }
   });
+
+  // --- Bulk add ---
+
+  function addBulkRow() {
+    const row = document.createElement('div');
+    row.className = 'bulk-row';
+    row.style.cssText = 'display:flex;gap:8px;align-items:center;margin-bottom:8px';
+    row.innerHTML = `
+      <input type="url"  placeholder="URL do produto" style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <input type="text" placeholder="Titulo"         style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <input type="url"  placeholder="URL da imagem"  style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <button class="btn-danger" onclick="this.closest('.bulk-row').remove()" style="flex-shrink:0;padding:6px 10px">×</button>
+    `;
+    $('bulk-rows').appendChild(row);
+  }
+
+  for (let i = 0; i < 3; i++) addBulkRow();
+
+  $('btn-bulk-row').addEventListener('click', addBulkRow);
+
+  $('btn-bulk-save').addEventListener('click', async () => {
+    const products = [...document.querySelectorAll('.bulk-row')].map(row => {
+      const [url, title, image] = [...row.querySelectorAll('input')].map(i => i.value.trim());
+      return { url, title, image };
+    }).filter(p => p.url && p.title && p.image);
+
+    if (products.length === 0) { showMsg('Preencha pelo menos uma linha completa.', 'error'); return; }
+
+    $('btn-bulk-save').disabled = true;
+    try {
+      const result = await api('/products/bulk', 'POST', products);
+      const msg = `${result.added} adicionado(s)${result.skipped ? `, ${result.skipped} ignorado(s) (URL ja existe)` : ''}`;
+      showMsg(msg);
+      document.querySelectorAll('.bulk-row input').forEach(i => i.value = '');
+      loadProducts();
+    } catch (e) {
+      showMsg(e.message, 'error');
+    } finally {
+      $('btn-bulk-save').disabled = false;
+    }
+  });
+
+  // --- Login ---
 
   $('btn-login').addEventListener('click', async () => {
     const username = $('username').value.trim();
