@@ -22,10 +22,10 @@ jobs:
 
       - run: node scripts/build-articles.js
 
-      - name: Commit HTML gerado
+      - name: Commit HTML e sitemap gerados
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add artigos/
-          git diff --staged --quiet || git commit -m "build: gera artigos [skip ci]"
+          git add artigos/ sitemap.xml
+          git diff --staged --quiet || git commit -m "build: gera artigos e sitemap [skip ci]"
           git push
