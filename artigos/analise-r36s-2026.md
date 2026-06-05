@@ -287,5 +287,6 @@ Se você encontrou uma boa oferta, vale a pena conferir as promoções disponív
 
 👉 Confira o preço atualizado do R36S através do nosso link de afiliado e veja se há cupons ou descontos disponíveis no momento.
 
-[Compre o R36S AliExpress](https://s.click.aliexpress.com/e/_c3aTqihT)
-[Compre o R36S na Shopee](https://s.shopee.com.br/9KfRekyM5q)
+1. [Compre o R36S AliExpress](https://s.click.aliexpress.com/e/_c3aTqihT)
+2. [Compre o R36S na Shopee](https://s.shopee.com.br/9KfRekyM5q)
+3. [Compre no MercadoLivre](https://meli.la/1TYyDRm)
