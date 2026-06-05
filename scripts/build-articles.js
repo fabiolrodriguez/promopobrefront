@@ -10,6 +10,31 @@ const BASE_URL    = 'https://promopobre.com.br';
 
 marked.setOptions({ gfm: true, breaks: false });
 
+const AFFILIATE_DOMAINS = [
+  'amzn.to', 'amazon.com.br', 'amazon.com',
+  'mercadolivre.com', 'mercadolibre.com',
+  'shopee.com.br',
+  'aliexpress.com',
+  'magazineluiza.com.br', 'magalu.com',
+  'kabum.com.br',
+  'casasbahia.com.br', 'extra.com.br', 'pontofrio.com.br',
+  'americanas.com.br', 'americanas.com',
+  'submarino.com.br',
+];
+
+function processLinks(html) {
+  return html.replace(/<a\s+href="([^"]+)"/g, (match, href) => {
+    try {
+      const hostname = new URL(href).hostname.replace(/^www\./, '');
+      const affiliate = AFFILIATE_DOMAINS.some(d => hostname === d || hostname.endsWith('.' + d));
+      const rel = affiliate ? 'sponsored noopener' : 'noopener noreferrer';
+      return `<a href="${href}" rel="${rel}" target="_blank"`;
+    } catch {
+      return match; // link relativo, nao mexe
+    }
+  });
+}
+
 function formatDate(dateStr) {
   if (!dateStr) return '';
   const d = new Date(dateStr + 'T12:00:00');
@@ -39,7 +64,7 @@ for (const file of files) {
   const src  = fs.readFileSync(path.join(ARTIGOS_DIR, file), 'utf8');
   const { data, content } = matter(src);
 
-  const html = marked(content);
+  const html = processLinks(marked(content));
 
   const ogImage = data.image
     ? `<meta property="og:image" content="${data.image}">`
