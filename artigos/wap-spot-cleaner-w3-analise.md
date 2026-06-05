@@ -52,7 +52,7 @@ A alça superior facilita bastante o transporte pela casa e também para utiliza
 
 O acabamento segue o padrão tradicional da WAP, transmitindo boa sensação de robustez para uso frequente.
 
-![https://http2.mlstatic.com/D_NQ_NP_2X_659326-MLU77143781250_062024-F.webp](https://)
+![](https://http2.mlstatic.com/D_NQ_NP_2X_659326-MLU77143781250_062024-F.webp)
 
 ---
 
