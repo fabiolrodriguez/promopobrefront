@@ -115,7 +115,7 @@ funcionam de maneira muito próxima ao hardware original.
 
 ### Nintendo DS
 
-Grande parte do catálogo é jogável, embora alguns títulos dependam bastante do uso da segunda tela, o que pode impactar a experiência.
+Grande parte do catálogo é jogável, embora alguns títulos dependam bastante do uso da segunda tela, o que pode impactar a experiência. O emulador oferece uma opção de alternar entre as telas, o que permite a jogabilidade, apesar de maneira limitada.
 
 ### PSP
 
