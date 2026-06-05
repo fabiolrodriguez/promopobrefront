@@ -1,6 +1,6 @@
 ---
 title: "R36S: Vale a Pena Comprar o Console Portátil Retrô em 2026?"
-description: ""
+description: "Pensando em comprar o R36S? Confira nossa análise completa, veja os prós e contras e descubra se ele vale o investimento."
 date: "2026-06-05"
 image: "https://ae01.alicdn.com/kf/Af2b01bc4f3df4d8ca8f9459b94d9d298R.jpg"
 ---
