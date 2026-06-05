@@ -43,6 +43,29 @@ function formatDate(dateStr) {
 
 const files = fs.readdirSync(ARTIGOS_DIR).filter(f => f.endsWith('.md'));
 
+const today = new Date().toISOString().split('T')[0];
+
+// Promove artigos agendados que chegaram ao prazo
+const rascunhosPath = path.join(ROOT, 'artigos_rascunhos.json');
+const artigosPath   = path.join(ROOT, 'artigos.json');
+let rascunhos = [];
+try { rascunhos = JSON.parse(fs.readFileSync(rascunhosPath, 'utf8')); } catch {}
+
+const devemPublicar = rascunhos.filter(r => r.publish_date <= today);
+if (devemPublicar.length > 0) {
+  let artigos = [];
+  try { artigos = JSON.parse(fs.readFileSync(artigosPath, 'utf8')); } catch {}
+  for (const r of devemPublicar) {
+    if (!artigos.find(a => a.slug === r.slug)) {
+      artigos.unshift({ slug: r.slug, title: r.title, description: r.description, date: r.publish_date, image: r.image });
+    }
+  }
+  const restantes = rascunhos.filter(r => r.publish_date > today);
+  fs.writeFileSync(artigosPath,   JSON.stringify(artigos,   null, 2) + '\n');
+  fs.writeFileSync(rascunhosPath, JSON.stringify(restantes, null, 2) + '\n');
+  console.log(`Publicados automaticamente: ${devemPublicar.map(r => r.slug).join(', ')}`);
+}
+
 if (files.length === 0) {
   console.log('Nenhum artigo .md encontrado. Gerando sitemap apenas com URLs estaticas.');
 }
@@ -63,6 +86,12 @@ for (const file of files) {
   const slug = file.replace('.md', '');
   const src  = fs.readFileSync(path.join(ARTIGOS_DIR, file), 'utf8');
   const { data, content } = matter(src);
+
+  const publishDate = data.publish_date || data.date || null;
+  if (publishDate && publishDate > today) {
+    console.log(`Pulando (agendado para ${publishDate}): ${slug}`);
+    continue;
+  }
 
   const html = processLinks(marked(content));
 
@@ -94,7 +123,6 @@ for (const file of files) {
 }
 
 // Gera sitemap.xml
-const today = new Date().toISOString().split('T')[0];
 
 const staticUrls = [
   { loc: `${BASE_URL}/`,         priority: '1.0', changefreq: 'daily'   },

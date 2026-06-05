@@ -291,6 +291,13 @@
       <div id="article-empty" style="display:none;text-align:center;color:#a1a1aa;font-size:0.875rem;padding:24px">Nenhum artigo publicado.</div>
     </div>
 
+    <!-- Artigos: agendados -->
+    <div class="card" id="scheduled-section">
+      <h2 style="margin-bottom:16px">Agendados</h2>
+      <div id="scheduled-list"><div class="loading">Carregando...</div></div>
+      <div id="scheduled-empty" style="display:none;text-align:center;color:#a1a1aa;font-size:0.875rem;padding:16px">Nenhum artigo agendado.</div>
+    </div>
+
     <!-- Artigos: editor -->
     <div class="card" id="article-editor" style="display:none">
       <h2 id="editor-heading" style="margin-bottom:16px">Novo Artigo</h2>
@@ -310,8 +317,8 @@
           <input type="text" id="a-desc" placeholder="Resumo que aparece no Google...">
         </div>
         <div class="form-group" style="max-width:180px">
-          <label for="a-date">Data</label>
-          <input type="text" id="a-date" placeholder="2025-06-04">
+          <label for="a-date">Data de publicação</label>
+          <input type="text" id="a-date" placeholder="2026-06-05">
         </div>
       </div>
       <div class="form-group" style="margin-bottom:16px">
@@ -323,7 +330,8 @@
         <textarea id="a-content"></textarea>
       </div>
       <div style="display:flex;gap:10px">
-        <button class="btn-primary" id="btn-save-article">Publicar</button>
+        <button class="btn-primary" id="btn-save-article">Publicar agora</button>
+        <button class="btn-primary" id="btn-schedule-article" style="background:#6366f1">Agendar</button>
         <button id="btn-cancel-article" style="background:transparent;border:1px solid #d4d4d8;border-radius:6px;padding:9px 18px;font-size:0.875rem;font-weight:600;cursor:pointer;color:#52525b">Cancelar</button>
       </div>
     </div>
@@ -611,6 +619,7 @@
     $('tab-artigos').style.display  = tab === 'artigos'  ? '' : 'none';
     if (tab === 'artigos' && !articlesLoaded) {
       loadArticles();
+      loadScheduled();
       articlesLoaded = true;
     }
     if (tab === 'produtos') closeEditor();
@@ -670,6 +679,7 @@
     initEditor();
     $('editor-heading').textContent = heading;
     $('articles-section').style.display = 'none';
+    $('scheduled-section').style.display = 'none';
     $('article-editor').style.display = 'block';
     $('article-editor').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -677,6 +687,7 @@
   function closeEditor() {
     $('article-editor').style.display = 'none';
     $('articles-section').style.display = 'block';
+    $('scheduled-section').style.display = 'block';
     editingSlug = null;
     ['a-slug', 'a-title', 'a-desc', 'a-date', 'a-image'].forEach(id => $(''+id).value = '');
     if (easyMDE) easyMDE.value('');
@@ -707,7 +718,7 @@
         const body = match[2];
         $('a-title').value = (fm.match(/title:\s*"(.*)"/)?.[1] || '');
         $('a-desc').value  = (fm.match(/description:\s*"(.*)"/)?.[1] || '');
-        $('a-date').value  = (fm.match(/date:\s*"(.*)"/)?.[1] || '');
+        $('a-date').value  = (fm.match(/publish_date:\s*"(.*)"/)?.[1] || fm.match(/date:\s*"(.*)"/)?.[1] || '');
         $('a-image').value = (fm.match(/image:\s*"(.*)"/)?.[1] || '');
         easyMDE.value(body);
       } else {
@@ -719,35 +730,95 @@
     }
   }
 
-  $('btn-save-article').addEventListener('click', async () => {
+  async function saveArticle(publishDate) {
     const slug    = $('a-slug').value.trim();
     const title   = $('a-title').value.trim();
     const content = easyMDE ? easyMDE.value().trim() : '';
-
-    if (!slug || !title || !content) {
-      showMsg('Slug, título e conteúdo são obrigatórios.', 'error');
-      return;
-    }
+    if (!slug || !title || !content) { showMsg('Slug, título e conteúdo são obrigatórios.', 'error'); return; }
 
     $('btn-save-article').disabled = true;
+    $('btn-schedule-article').disabled = true;
     try {
-      await api('/artigos', 'POST', {
-        slug,
-        title,
-        description: $('a-desc').value.trim(),
-        date: $('a-date').value.trim(),
-        image: $('a-image').value.trim(),
+      const result = await api('/artigos', 'POST', {
+        slug, title,
+        description:  $('a-desc').value.trim(),
+        publish_date: publishDate,
+        image:        $('a-image').value.trim(),
         content
       });
-      showMsg('Artigo publicado! O HTML será gerado em instantes.');
+      showMsg(result.scheduled ? `Agendado para ${publishDate}.` : 'Publicado! O HTML será gerado em instantes.');
       closeEditor();
       loadArticles();
+      loadScheduled();
     } catch (e) {
       showMsg(e.message, 'error');
     } finally {
       $('btn-save-article').disabled = false;
+      $('btn-schedule-article').disabled = false;
     }
+  }
+
+  $('btn-save-article').addEventListener('click', () => {
+    const today = new Date().toISOString().split('T')[0];
+    saveArticle(today);
   });
+
+  $('btn-schedule-article').addEventListener('click', () => {
+    const date = $('a-date').value.trim();
+    const today = new Date().toISOString().split('T')[0];
+    if (!date) { showMsg('Preencha a data de publicação para agendar.', 'error'); return; }
+    if (date <= today) { showMsg('A data deve ser futura para agendar.', 'error'); return; }
+    saveArticle(date);
+  });
+
+  // --- Agendados ---
+
+  async function loadScheduled() {
+    $('scheduled-list').innerHTML = '<div class="loading">Carregando...</div>';
+    try {
+      const items = await api('/artigos/agendados');
+      renderScheduledList(items);
+    } catch (e) {
+      $('scheduled-list').innerHTML = '';
+      showMsg(e.message, 'error');
+    }
+  }
+
+  function renderScheduledList(items) {
+    const list  = $('scheduled-list');
+    const empty = $('scheduled-empty');
+    if (!items.length) {
+      list.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+    list.innerHTML = items.map(a => {
+      const d = new Date(a.publish_date + 'T12:00:00').toLocaleDateString('pt-BR');
+      return `
+        <div class="product-item" style="margin-bottom:8px">
+          ${a.image ? `<img src="${a.image}" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:6px;flex-shrink:0;background:#e4e4e7">` : '<div style="width:56px;height:56px;border-radius:6px;background:#e4e4e7;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.2rem">📅</div>'}
+          <div class="product-info">
+            <div class="product-title">${a.title}</div>
+            <div class="product-url">/artigos/${a.slug}/</div>
+          </div>
+          <span class="product-type" style="background:#ede9fe;color:#6366f1;border-color:#c4b5fd">Publica ${d}</span>
+          <button class="btn-primary" style="padding:5px 12px;font-size:0.8rem;flex-shrink:0" onclick="editArticle('${a.slug}')">Editar</button>
+          <button class="btn-danger" style="flex-shrink:0" onclick="cancelScheduled('${a.slug}', '${a.title.replace(/'/g, "\\'")}')">Cancelar</button>
+        </div>`;
+    }).join('');
+  }
+
+  async function cancelScheduled(slug, title) {
+    if (!confirm(`Cancelar o agendamento de "${title}"?`)) return;
+    try {
+      await api('/artigos/agendados', 'DELETE', { slug });
+      showMsg('Agendamento cancelado.');
+      loadScheduled();
+    } catch (e) {
+      showMsg(e.message, 'error');
+    }
+  }
 
   async function deleteArticle(slug, title) {
     if (!confirm(`Remover o artigo "${title}"?`)) return;

@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths: ['artigos/*.md']
   workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * *'  # meio-dia UTC = 9h BRT
 
 jobs:
   build:
