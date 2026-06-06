@@ -193,7 +193,7 @@ Além do desempenho profissional, ele permite jogar títulos modernos com boa qu
 | Modelo                | Processador         | RAM       | SSD    | Perfil                 |
 | --------------------- | ------------------- | --------- | ------ | ---------------------- |
 | Lenovo IdeaPad Slim 3 | Ryzen 5             | 8 GB      | 512 GB | Melhor custo-benefício |
-| Acer Aspire 5         | Ryzen 7             | 8 a 16 GB | 512 GB | Melhor desempenho      |
+| Acer Aspire Go         | Core i5           | 8 a 16 GB | 512 GB | Melhor desempenho      |
 | ASUS Vivobook 15      | Core i5 / Ryzen 5   | 8 GB      | 512 GB | Trabalho e estudos     |
 | Samsung Galaxy Book4  | Core i5             | 8 GB      | 512 GB | Mobilidade             |
 | Lenovo LOQ            | Core i5 H / Ryzen H | 16 GB     | 512 GB | Trabalho + jogos       |
