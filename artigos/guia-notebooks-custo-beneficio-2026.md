@@ -2,7 +2,7 @@
 title: "Melhores Notebooks Custo-Benefício de 2026: Guia Completo para Escolher sem Gastar Demais"
 description: "Confira os melhores notebooks custo-benefício de 2026. Veja comparativos, vantagens, desempenho e descubra qual modelo vale mais a pena comprar."
 date: "2026-06-06"
-image: "blob:https://gemini.google.com/22a93861-776f-405b-a443-8d2740386343"
+image: "https://i.ibb.co/84fpFQQm/guia.png"
 ---
 
 # Melhores Notebooks Custo-Benefício de 2026: Guia Completo para Escolher sem Gastar Demais
