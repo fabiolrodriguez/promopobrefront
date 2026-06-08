@@ -303,6 +303,21 @@
       <div id="bulk-bar" style="display:none;align-items:center;gap:10px;margin-bottom:10px;padding:8px 12px;background:#f4f4f5;border-radius:6px">
         <input type="checkbox" id="check-all" onchange="toggleSelectAll(this)" title="Selecionar todos" style="width:16px;height:16px;cursor:pointer;flex-shrink:0">
         <span id="sel-count" style="font-size:0.85rem;color:#52525b;flex:1"></span>
+        <select id="bulk-cat-select" style="border:1px solid #d4d4d8;border-radius:6px;padding:5px 10px;font-size:0.8rem;background:#fff;outline:none">
+          <option value="">Categoria...</option>
+          <option value="tecnologia">Tecnologia</option>
+          <option value="eletrodomesticos">Eletrodomésticos</option>
+          <option value="moda">Moda</option>
+          <option value="livros">Livros</option>
+          <option value="casa">Casa</option>
+          <option value="esporte">Esporte</option>
+          <option value="beleza">Beleza</option>
+          <option value="ferramentas">Ferramentas</option>
+          <option value="saude">Saúde</option>
+          <option value="alimentos">Alimentos</option>
+          <option value="outros">Outros</option>
+        </select>
+        <button class="btn-primary" id="btn-bulk-cat" onclick="bulkUpdateCategory()" style="padding:5px 12px;font-size:0.8rem">Aplicar categoria</button>
         <button class="btn-danger" id="btn-bulk-delete" onclick="bulkDelete()">Remover selecionados</button>
       </div>
       <div id="product-list"><div class="loading">Carregando...</div></div>
@@ -386,6 +401,7 @@
     bar.style.display = allProducts.length ? 'flex' : 'none';
     $('sel-count').textContent = `${count} selecionado(s)`;
     $('btn-bulk-delete').disabled = count === 0;
+    $('btn-bulk-cat').disabled    = count === 0;
     $('check-all').indeterminate = count > 0 && count < allProducts.length;
     $('check-all').checked = count > 0 && count === allProducts.length;
   }
@@ -405,6 +421,27 @@
       else selectedUrls.delete(url);
     });
     updateBulkBar();
+  }
+
+  async function bulkUpdateCategory() {
+    const urls     = [...selectedUrls];
+    const category = $('bulk-cat-select').value;
+    if (!urls.length) return;
+    if (!category) { showMsg('Selecione uma categoria antes de aplicar.', 'error'); return; }
+    $('btn-bulk-cat').disabled = true;
+    try {
+      const result = await api('/products/bulk', 'PUT', { urls, category });
+      showMsg(`Categoria atualizada em ${result.updated} produto(s).`);
+      allProducts = allProducts.map(p =>
+        selectedUrls.has(getUrl(p)) ? { ...p, category } : p
+      );
+      selectedUrls.clear();
+      $('bulk-cat-select').value = '';
+      renderList(filterBySearch(allProducts));
+    } catch (e) {
+      showMsg(e.message, 'error');
+      $('btn-bulk-cat').disabled = false;
+    }
   }
 
   async function bulkDelete() {

@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: '0 12 * * *'  # meio-dia UTC = 9h BRT
 
+concurrency:
+  group: build-articles
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
