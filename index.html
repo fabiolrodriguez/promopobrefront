@@ -259,6 +259,32 @@
     }
 
     /* Busca */
+    #filtros {
+      display: flex;
+      gap: 8px;
+      padding: 1rem 1rem 0;
+      overflow-x: auto;
+      max-width: 1200px;
+      margin: 0 auto;
+      scrollbar-width: none;
+    }
+    #filtros::-webkit-scrollbar { display: none; }
+    .filtro-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      color: var(--text);
+      transition: background .15s, color .15s, border-color .15s;
+      flex-shrink: 0;
+    }
+    .filtro-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .filtro-btn:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+
     #busca-wrap {
       background: #fff;
       padding: 0.75rem 1rem;
@@ -297,6 +323,21 @@
     <a href="/artigos/" style="color:#fff;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.55);border-radius:20px;padding:5px 16px;opacity:0.9">Artigos</a>
   </nav>
 </header>
+
+<div id="filtros">
+  <button class="filtro-btn active" data-cat="tudo">Tudo</button>
+  <button class="filtro-btn" data-cat="tecnologia">Tecnologia</button>
+  <button class="filtro-btn" data-cat="eletrodomesticos">Eletrodomésticos</button>
+  <button class="filtro-btn" data-cat="moda">Moda</button>
+  <button class="filtro-btn" data-cat="livros">Livros</button>
+  <button class="filtro-btn" data-cat="casa">Casa</button>
+  <button class="filtro-btn" data-cat="esporte">Esporte</button>
+  <button class="filtro-btn" data-cat="beleza">Beleza</button>
+  <button class="filtro-btn" data-cat="ferramentas">Ferramentas</button>
+  <button class="filtro-btn" data-cat="saude">Saúde</button>
+  <button class="filtro-btn" data-cat="alimentos">Alimentos</button>
+  <button class="filtro-btn" data-cat="outros">Outros</button>
+</div>
 
 <div id="busca-wrap">
   <input id="busca" type="search" placeholder="Buscar produto..." autocomplete="off">
@@ -366,9 +407,9 @@
   // ── Card unificado ───────────────────────────────────────────
   // Aceita campos opcionais: desc, preco, preco_original, desconto_pct
 
-  function renderCard({ titulo, link, imagem, loja, desc, preco, preco_original, desconto_pct }) {
+  function renderCard({ titulo, link, imagem, loja, desc, preco, preco_original, desconto_pct, category }) {
     return `
-      <div class="card">
+      <div class="card" data-category="${category || ''}">
         <div class="card-img-wrap">
           ${imagem
             ? `<img src="${esc(imagem)}" alt="${esc(titulo)}" loading="lazy"
@@ -413,23 +454,36 @@
 
   // ── Busca ────────────────────────────────────────────────────
 
-  let searchQuery = '';
+  let searchQuery    = '';
+  let activeCategory = 'tudo';
 
   function filtrar(q) {
     searchQuery = q.toLowerCase().trim();
     let visiveis = 0;
     Array.from(document.getElementById('grid').children).forEach(el => {
-      const titulo = el.querySelector('.card-title')?.textContent?.toLowerCase() || '';
-      const loja   = el.querySelector('.card-source')?.textContent?.toLowerCase() || '';
-      const match  = !searchQuery || titulo.includes(searchQuery) || loja.includes(searchQuery);
-      el.style.display = match ? '' : 'none';
-      if (match) visiveis++;
+      const titulo  = el.querySelector('.card-title')?.textContent?.toLowerCase() || '';
+      const loja    = el.querySelector('.card-source')?.textContent?.toLowerCase() || '';
+      const cat     = el.dataset.category || '';
+      const textoOk = !searchQuery || titulo.includes(searchQuery) || loja.includes(searchQuery);
+      const catOk   = activeCategory === 'tudo' || cat === activeCategory;
+      const visible = textoOk && catOk;
+      el.style.display = visible ? '' : 'none';
+      if (visible) visiveis++;
     });
     document.getElementById('sem-resultado').style.display =
-      searchQuery && visiveis === 0 ? '' : 'none';
+      visiveis === 0 && (searchQuery || activeCategory !== 'tudo') ? '' : 'none';
   }
 
   document.getElementById('busca').addEventListener('input', e => filtrar(e.target.value));
+
+  document.querySelectorAll('.filtro-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.dataset.cat;
+      filtrar(searchQuery);
+    });
+  });
 
   // ── Init ─────────────────────────────────────────────────────
 
@@ -455,7 +509,7 @@
     // Links manuais: renderiza skeleton enquanto busca microlink
     grid.innerHTML =
       produtos.map(p => renderCard(p)).join('') +
-      links.map((_, i) => `<div id="l${i}">${skeletonHTML()}</div>`).join('');
+      links.map((link, i) => `<div id="l${i}" data-category="${link.category || ''}">${skeletonHTML()}</div>`).join('');
 
     status.textContent = 'Carregando...';
 

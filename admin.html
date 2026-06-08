@@ -83,6 +83,19 @@
 
     input:focus { border-color: #18181b; }
 
+    select {
+      border: 1px solid #d4d4d8;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      width: 100%;
+      outline: none;
+      background: #fff;
+      color: #18181b;
+      cursor: pointer;
+    }
+    select:focus { border-color: #18181b; }
+
     /* Botoes */
     button {
       border: none;
@@ -251,6 +264,23 @@
         <div class="form-group">
           <label for="f-image">URL da imagem *</label>
           <input type="url" id="f-image" placeholder="https://...jpg">
+        </div>
+        <div class="form-group">
+          <label for="f-cat">Categoria</label>
+          <select id="f-cat">
+            <option value="">Selecionar...</option>
+            <option value="tecnologia">Tecnologia</option>
+            <option value="eletrodomesticos">Eletrodomésticos</option>
+            <option value="moda">Moda</option>
+            <option value="livros">Livros</option>
+            <option value="casa">Casa</option>
+            <option value="esporte">Esporte</option>
+            <option value="beleza">Beleza</option>
+            <option value="ferramentas">Ferramentas</option>
+            <option value="saude">Saúde</option>
+            <option value="alimentos">Alimentos</option>
+            <option value="outros">Outros</option>
+          </select>
         </div>
       </div>
       <button class="btn-primary btn-add" id="btn-add">Salvar produto</button>
@@ -454,6 +484,7 @@
             <div class="product-url">${url}</div>
           </div>
           <span class="product-type">${isRich ? 'rico' : 'link'}</span>
+          <button class="btn-primary" style="padding:5px 12px;font-size:0.8rem" onclick="editProduct('${encodeURIComponent(url)}')">Editar</button>
           <button class="btn-danger" onclick="deleteProduct('${encodeURIComponent(url)}')">Remover</button>
         </div>
       `;
@@ -471,6 +502,55 @@
     } catch (e) {
       $('product-list').innerHTML = '';
       showMsg(e.message, 'error');
+    }
+  }
+
+  const CAT_OPTIONS = [
+    ['', 'Selecionar...'], ['tecnologia','Tecnologia'], ['eletrodomesticos','Eletrodomésticos'],
+    ['moda','Moda'], ['livros','Livros'], ['casa','Casa'], ['esporte','Esporte'],
+    ['beleza','Beleza'], ['ferramentas','Ferramentas'], ['saude','Saúde'],
+    ['alimentos','Alimentos'], ['outros','Outros']
+  ];
+
+  function editProduct(encodedUrl) {
+    const url     = decodeURIComponent(encodedUrl);
+    const product = allProducts.find(p => getUrl(p) === url);
+    if (!product) return;
+    const el = document.querySelector(`.product-item[data-url="${encodedUrl}"]`);
+    if (!el) return;
+    const cat = product.category || '';
+    const opts = CAT_OPTIONS.map(([v, l]) =>
+      `<option value="${v}" ${v === cat ? 'selected' : ''}>${l}</option>`).join('');
+    el.innerHTML = `
+      <input type="text" value="${(getTitle(product) || '').replace(/"/g,'&quot;')}" placeholder="Título"
+        style="flex:2;min-width:140px;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none">
+      <input type="url" value="${(getImage(product) || '').replace(/"/g,'&quot;')}" placeholder="URL da imagem"
+        style="flex:2;min-width:140px;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none">
+      <select style="flex:1;min-width:130px;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none;background:#fff">${opts}</select>
+      <button class="btn-primary" style="padding:5px 12px;font-size:0.8rem;flex-shrink:0"
+        onclick="saveEditProduct('${encodedUrl}', this)">Salvar</button>
+      <button class="btn-ghost" style="flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:5px 12px;font-size:0.8rem"
+        onclick="renderList(filterBySearch(allProducts))">Cancelar</button>
+    `;
+  }
+
+  async function saveEditProduct(encodedUrl, btn) {
+    const url = decodeURIComponent(encodedUrl);
+    const el  = document.querySelector(`.product-item[data-url="${encodedUrl}"]`);
+    const [titleInput, imageInput] = el.querySelectorAll('input');
+    const category = el.querySelector('select').value;
+    const title    = titleInput.value.trim();
+    const image    = imageInput.value.trim();
+    btn.disabled   = true;
+    try {
+      await api('/products', 'PUT', { url, title, image, category });
+      const idx = allProducts.findIndex(p => getUrl(p) === url);
+      if (idx >= 0) allProducts[idx] = { url, title, image, ...(category && { category }) };
+      renderList(filterBySearch(allProducts));
+      showMsg('Produto atualizado.');
+    } catch (e) {
+      showMsg(e.message, 'error');
+      btn.disabled = false;
     }
   }
 
@@ -509,8 +589,9 @@
 
     $('btn-add').disabled = true;
     try {
-      await api('/products', 'POST', { url, title, image });
-      allProducts.unshift({ url, title, image });
+      const category = $('f-cat').value;
+      await api('/products', 'POST', { url, title, image, category });
+      allProducts.unshift({ url, title, image, category });
       renderList(filterBySearch(allProducts));
       $('f-url').value = $('f-title').value = $('f-image').value = '';
       showMsg('Produto adicionado!');
@@ -531,6 +612,20 @@
       <input type="url"  placeholder="URL do produto" style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
       <input type="text" placeholder="Titulo"         style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
       <input type="url"  placeholder="URL da imagem"  style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <select style="flex:1;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none;background:#fff;min-width:130px">
+        <option value="">Categoria</option>
+        <option value="tecnologia">Tecnologia</option>
+        <option value="eletrodomesticos">Eletrodomésticos</option>
+        <option value="moda">Moda</option>
+        <option value="livros">Livros</option>
+        <option value="casa">Casa</option>
+        <option value="esporte">Esporte</option>
+        <option value="beleza">Beleza</option>
+        <option value="ferramentas">Ferramentas</option>
+        <option value="saude">Saúde</option>
+        <option value="alimentos">Alimentos</option>
+        <option value="outros">Outros</option>
+      </select>
       <button class="btn-danger" onclick="this.closest('.bulk-row').remove()" style="flex-shrink:0;padding:6px 10px">×</button>
     `;
     $('bulk-rows').appendChild(row);
@@ -543,7 +638,8 @@
   $('btn-bulk-save').addEventListener('click', async () => {
     const products = [...document.querySelectorAll('.bulk-row')].map(row => {
       const [url, title, image] = [...row.querySelectorAll('input')].map(i => i.value.trim());
-      return { url, title, image };
+      const category = row.querySelector('select')?.value || '';
+      return { url, title, image, category };
     }).filter(p => p.url && p.title && p.image);
 
     if (products.length === 0) { showMsg('Preencha pelo menos uma linha completa.', 'error'); return; }
