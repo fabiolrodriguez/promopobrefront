@@ -267,7 +267,7 @@
         </div>
         <div class="form-group" style="max-width:160px">
           <label for="f-price">Preço (R$)</label>
-          <input type="number" id="f-price" min="0" step="0.01" placeholder="299.90">
+          <input type="text" id="f-price" placeholder="R$ 0,00" oninput="maskPrice(this)">
         </div>
         <div class="form-group">
           <label for="f-cat">Categoria</label>
@@ -396,6 +396,24 @@
   const WORKER_URL = 'https://promopobre.fabio-rodriguez.workers.dev';
 
   const $ = id => document.getElementById(id);
+
+  function maskPrice(el) {
+    const digits = el.value.replace(/\D/g, '');
+    if (!digits) { el.value = ''; return; }
+    el.value = (parseInt(digits, 10) / 100)
+      .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function parsePrice(str) {
+    if (!str) return null;
+    const clean = str.replace('R$', '').replace(/\s/g, '').replace(/\./g, '').replace(',', '.');
+    return parseFloat(clean) || null;
+  }
+
+  function formatPrice(num) {
+    if (num == null) return '';
+    return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
   let allProducts = [];
   let selectedUrls = new Set();
 
@@ -567,8 +585,8 @@
         style="flex:2;min-width:140px;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none">
       <input type="url" value="${(getImage(product) || '').replace(/"/g,'&quot;')}" placeholder="URL da imagem"
         style="flex:2;min-width:140px;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none">
-      <input type="number" value="${product.price || ''}" placeholder="Preço" min="0" step="0.01"
-        style="width:90px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none">
+      <input type="text" value="${formatPrice(product.price || null)}" placeholder="R$ 0,00" oninput="maskPrice(this)"
+        style="width:110px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none">
       <select style="flex:1;min-width:130px;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none;background:#fff">${opts}</select>
       <button class="btn-primary" style="padding:5px 12px;font-size:0.8rem;flex-shrink:0"
         onclick="saveEditProduct('${encodedUrl}', this)">Salvar</button>
@@ -584,7 +602,7 @@
     const category = el.querySelector('select').value;
     const title    = titleInput.value.trim();
     const image    = imageInput.value.trim();
-    const price    = parseFloat(priceInput.value) || null;
+    const price    = parsePrice(priceInput.value);
     btn.disabled   = true;
     try {
       await api('/products', 'PUT', { url, title, image, category, price });
@@ -634,7 +652,7 @@
     $('btn-add').disabled = true;
     try {
       const category = $('f-cat').value;
-      const price    = parseFloat($('f-price').value) || null;
+      const price    = parsePrice($('f-price').value);
       await api('/products', 'POST', { url, title, image, category, price });
       allProducts.unshift({ url, title, image, category, ...(price && { price }) });
       renderList(filterBySearch(allProducts));
@@ -657,7 +675,7 @@
       <input type="url"  placeholder="URL do produto" style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
       <input type="text" placeholder="Titulo"         style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
       <input type="url"    placeholder="URL da imagem"  style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
-      <input type="number" placeholder="Preço" min="0" step="0.01" style="width:90px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <input type="text" placeholder="R$ 0,00" oninput="maskPrice(this)" style="width:100px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
       <select style="flex:1;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none;background:#fff;min-width:130px">
         <option value="">Categoria</option>
         <option value="tecnologia">Tecnologia</option>
@@ -685,7 +703,7 @@
     const products = [...document.querySelectorAll('.bulk-row')].map(row => {
       const [url, title, image, priceStr] = [...row.querySelectorAll('input')].map(i => i.value.trim());
       const category = row.querySelector('select')?.value || '';
-      const price    = parseFloat(priceStr) || null;
+      const price    = parsePrice(priceStr);
       return { url, title, image, category, ...(price && { price }) };
     }).filter(p => p.url && p.title && p.image);
 
