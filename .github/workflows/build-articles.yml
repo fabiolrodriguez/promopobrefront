@@ -20,6 +20,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-node@v4
         with:
@@ -36,5 +38,6 @@ jobs:
           git add artigos/ sitemap.xml artigos.json artigos_rascunhos.json
           git diff --staged --quiet || git commit -m "build: gera artigos e sitemap [skip ci]"
           git restore .
+          git clean -fd
           git pull --rebase origin main
           git push
