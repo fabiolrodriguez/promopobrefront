@@ -35,5 +35,6 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add artigos/ sitemap.xml artigos.json artigos_rascunhos.json
           git diff --staged --quiet || git commit -m "build: gera artigos e sitemap [skip ci]"
+          git restore .
           git pull --rebase origin main
           git push
