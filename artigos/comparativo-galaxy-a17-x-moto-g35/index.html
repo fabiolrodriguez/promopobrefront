@@ -151,6 +151,17 @@
     .content table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.9rem; }
     .content th, .content td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
     .content th { background: var(--bg); font-weight: 600; }
+
+    .related-articles { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .related-articles h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 1.25rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; color: var(--text); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: box-shadow .15s; }
+    .related-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+    .related-card img { width: 100%; height: 110px; object-fit: cover; }
+    .related-no-img { width: 100%; height: 110px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+    .related-info { padding: 0.65rem 0.75rem; }
+    .related-title { display: block; font-size: 0.82rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.25rem; }
+    .related-date { font-size: 0.72rem; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -353,6 +364,42 @@
 
     </div>
   </article>
+  <section class="related-articles">
+  <h2>Artigos Relacionados</h2>
+  <div class="related-grid">
+    <a href="/artigos/analise-moto-g35/" class="related-card">
+      <img src="https://m.media-amazon.com/images/I/61ovAW4n5fL._AC_SL1200_.jpg" alt="Moto G35 Vale a Pena? Review Completo do Celular Custo-Benefício da Motorola" loading="lazy">
+      <div class="related-info">
+        <span class="related-title">Moto G35 Vale a Pena? Review Completo do Celular Custo-Benefício da Motorola</span>
+        <span class="related-date">12 de junho de 2026</span>
+      </div>
+    </a><a href="/artigos/melhor-celular-barato-2026/" class="related-card">
+      <img src="https://i.ibb.co/F45MYwRd/smartphones-2026.png" alt="Melhores Celulares Baratos de 2026: 5 Smartphones que Valem Cada Real Investido" loading="lazy">
+      <div class="related-info">
+        <span class="related-title">Melhores Celulares Baratos de 2026: 5 Smartphones que Valem Cada Real Investido</span>
+        <span class="related-date">9 de junho de 2026</span>
+      </div>
+    </a><a href="/artigos/melhor-air-fryer-2026/" class="related-card">
+      <img src="https://i.ibb.co/Q3cvH3Tn/airfryers.png" alt="Melhores Air Fryers de 2026: Guia Completo para Escolher a Opção Ideal" loading="lazy">
+      <div class="related-info">
+        <span class="related-title">Melhores Air Fryers de 2026: Guia Completo para Escolher a Opção Ideal</span>
+        <span class="related-date">8 de junho de 2026</span>
+      </div>
+    </a><a href="/artigos/guia-notebooks-custo-beneficio-2026/" class="related-card">
+      <img src="https://i.ibb.co/84fpFQQm/guia.png" alt="Melhores Notebooks Custo-Benefício de 2026: Guia Completo para Escolher sem Gastar Demais" loading="lazy">
+      <div class="related-info">
+        <span class="related-title">Melhores Notebooks Custo-Benefício de 2026: Guia Completo para Escolher sem Gastar Demais</span>
+        <span class="related-date">6 de junho de 2026</span>
+      </div>
+    </a><a href="/artigos/review-lenovo-ideapad-slim-3/" class="related-card">
+      <img src="https://http2.mlstatic.com/D_NQ_NP_2X_821552-MLA88888670641_072025-F.webp" alt="Lenovo IdeaPad Slim 3 Vale a Pena? Review Completo de um dos Melhores Notebooks Custo-Benefício de 2026" loading="lazy">
+      <div class="related-info">
+        <span class="related-title">Lenovo IdeaPad Slim 3 Vale a Pena? Review Completo de um dos Melhores Notebooks Custo-Benefício de 2026</span>
+        <span class="related-date">14 de junho de 2026</span>
+      </div>
+    </a>
+  </div>
+</section>
 </main>
 
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "bf2c3cefe2e948b78acb9d838b024a4e"}'></script><!-- End Cloudflare Web Analytics -->
