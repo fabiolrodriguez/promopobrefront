@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { marked } = require('marked');
 const matter = require('gray-matter');
+const { generateArticleSchema, renderSchemas } = require('./schema');
 
 const ROOT        = path.join(__dirname, '..');
 const ARTIGOS_DIR = path.join(ROOT, 'artigos');
@@ -103,15 +104,18 @@ for (const file of files) {
     ? `<img class="cover-image" src="${data.image}" alt="${data.title || ''}">`
     : '';
 
+  const schemaLd = renderSchemas(generateArticleSchema(data, content, slug, today));
+
   const page = TEMPLATE
     .replace(/\{\{title\}\}/g,          data.title || slug)
     .replace(/\{\{description\}\}/g,    data.description || '')
-    .replace(/\{\{date\}\}/g,           data.date || '')
-    .replace(/\{\{date_formatted\}\}/g, formatDate(data.date))
+    .replace(/\{\{date\}\}/g,           data.publish_date || data.date || '')
+    .replace(/\{\{date_formatted\}\}/g, formatDate(data.publish_date || data.date))
     .replace(/\{\{image\}\}/g,          data.image || '')
     .replace(/\{\{slug\}\}/g,           slug)
     .replace(/\{\{og_image\}\}/g,       ogImage)
     .replace(/\{\{cover_image\}\}/g,    coverImage)
+    .replace(/\{\{schema_ld\}\}/g,      schemaLd)
     .replace(/\{\{content\}\}/g,        html);
 
   const outDir = path.join(ARTIGOS_DIR, slug);
