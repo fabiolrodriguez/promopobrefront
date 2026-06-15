@@ -273,25 +273,11 @@
     "price": 30.99
   },
   {
-    "url": "https://amzn.to/4onAxAu",
-    "title": "Bettdow SmartWatch, relogio smartwatch com Ecrã tátil e Alexa, à prova d'água IP68, relogio feminino e masculino, com 100+ modo esportivo e recebimento de notificações(preto)",
-    "image": "https://m.media-amazon.com/images/I/61jq8y1sVZL._AC_SL1500_.jpg",
-    "category": "tecnologia",
-    "price": 120.37
-  },
-  {
     "url": "https://meli.la/13M8HqT",
     "title": "Perfume Masculino Aromático Cítrico Fresco e Energizante, Eau de Toilette Polo Sport Ralph Lauren 100ml",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_997597-MLA112403309983_052026-F.webp",
     "category": "beleza",
     "price": 199.99
-  },
-  {
-    "url": "https://amzn.to/3SwkPa8",
-    "title": "Kit Rapunzel (Shampoo + Tônico + Milk Spray) - Lola From Rio",
-    "image": "https://m.media-amazon.com/images/I/41OcWO275YL._AC_.jpg",
-    "category": "beleza",
-    "price": 58.58
   },
   {
     "url": "https://meli.la/1z4gvxy",
@@ -322,13 +308,6 @@
     "price": 62
   },
   {
-    "url": "https://amzn.to/3S0692W",
-    "title": "Kit Morte Súbita (Shampoo + Condicionador + Spray Reparaçao) - Lola From Rio",
-    "image": "https://m.media-amazon.com/images/I/71ggER1mlqL._AC_SL1500_.jpg",
-    "category": "beleza",
-    "price": 56.88
-  },
-  {
     "url": "https://s.shopee.com.br/9fIQGKIzD2",
     "title": "Dispenser Copa Do Mundo 2026 - 100 Envelopes /700 Figurinhas",
     "image": "https://down-br.img.susercontent.com/file/br-11134207-820lc-moa7ai1f629z35.webp",
@@ -348,19 +327,5 @@
     "image": "https://m.media-amazon.com/images/I/71Bnm202WgL._AC_SL1500_.jpg",
     "category": "ferramentas",
     "price": 150.44
-  },
-  {
-    "url": "https://amzn.to/4xlmfV2",
-    "title": "Licor Seco de Whisky Caramelo & Baunilha Ballantine's Sweet Blend Garrafa 700ml",
-    "image": "https://m.media-amazon.com/images/I/618s7QDlcQL._AC_SL1500_.jpg",
-    "category": "alimentos",
-    "price": 59
-  },
-  {
-    "url": "https://meli.la/2kJrid8",
-    "title": "Fritadeira Black Perform 4,5L Oster OFRT510",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_920195-MLA99870191773_112025-F.webp",
-    "category": "eletrodomesticos",
-    "price": 250
   }
 ]
