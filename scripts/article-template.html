@@ -126,6 +126,17 @@
     .content table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.9rem; }
     .content th, .content td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
     .content th { background: var(--bg); font-weight: 600; }
+
+    .related-articles { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .related-articles h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 1.25rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+    .related-card { display: flex; flex-direction: column; text-decoration: none; color: var(--text); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: box-shadow .15s; }
+    .related-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
+    .related-card img { width: 100%; height: 110px; object-fit: cover; }
+    .related-no-img { width: 100%; height: 110px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+    .related-info { padding: 0.65rem 0.75rem; }
+    .related-title { display: block; font-size: 0.82rem; font-weight: 600; line-height: 1.4; margin-bottom: 0.25rem; }
+    .related-date { font-size: 0.72rem; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -147,6 +158,7 @@
       {{content}}
     </div>
   </article>
+  {{related_articles}}
 </main>
 
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "bf2c3cefe2e948b78acb9d838b024a4e"}'></script><!-- End Cloudflare Web Analytics -->

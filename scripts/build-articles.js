@@ -81,49 +81,105 @@ for (const entry of fs.readdirSync(ARTIGOS_DIR)) {
   }
 }
 
-const articleUrls = [];
+// Stop words PT-BR
+const STOP_WORDS = new Set(['de','do','da','dos','das','em','no','na','nos','nas','para','com','por','um','uma','uns','umas','os','as','que','e','o','a','se','ao','aos','mais','mas','ou','foi','ser','ter','tem','está','são','este','esta','isso','esse','essa']);
 
+function tokenize(text) {
+  return (text || '').toLowerCase()
+    .replace(/[^a-záéíóúâêîôûãõç\s]/g, ' ')
+    .split(/\s+/)
+    .filter(w => w.length > 3 && !STOP_WORDS.has(w));
+}
+
+function findRelated(currentSlug, currentData, allArticles, limit = 5) {
+  const currentTokens = new Set(tokenize(`${currentData.title} ${currentData.description || ''}`));
+  const scored = allArticles
+    .filter(a => a.slug !== currentSlug)
+    .map(a => {
+      const tokens = tokenize(`${a.data.title} ${a.data.description || ''}`);
+      let score = tokens.filter(t => currentTokens.has(t)).length;
+      if (a.data.type && a.data.type === currentData.type) score += 2;
+      return { ...a, score };
+    })
+    .sort((a, b) =>
+      b.score - a.score ||
+      (b.data.publish_date || b.data.date || '').localeCompare(a.data.publish_date || a.data.date || '')
+    )
+    .slice(0, limit);
+
+  // Completa com mais recentes se não atingiu o limite
+  if (scored.length < limit) {
+    const seen = new Set([currentSlug, ...scored.map(a => a.slug)]);
+    const recent = allArticles
+      .filter(a => !seen.has(a.slug))
+      .sort((a, b) => (b.data.publish_date || b.data.date || '').localeCompare(a.data.publish_date || a.data.date || ''))
+      .slice(0, limit - scored.length);
+    scored.push(...recent);
+  }
+  return scored;
+}
+
+function renderRelated(articles) {
+  if (!articles.length) return '';
+  return `<section class="related-articles">
+  <h2>Artigos Relacionados</h2>
+  <div class="related-grid">
+    ${articles.map(a => `<a href="/artigos/${a.slug}/" class="related-card">
+      ${a.data.image
+        ? `<img src="${a.data.image}" alt="${(a.data.title || '').replace(/"/g, '&quot;')}" loading="lazy">`
+        : '<div class="related-no-img">📝</div>'}
+      <div class="related-info">
+        <span class="related-title">${a.data.title || a.slug}</span>
+        <span class="related-date">${formatDate(a.data.publish_date || a.data.date)}</span>
+      </div>
+    </a>`).join('')}
+  </div>
+</section>`;
+}
+
+// Passo 1: coleta todos os artigos publicados
+const allArticles = [];
 for (const file of files) {
   const slug = file.replace('.md', '');
   const src  = fs.readFileSync(path.join(ARTIGOS_DIR, file), 'utf8');
   const { data, content } = matter(src);
-
   const publishDate = data.publish_date || data.date || null;
   if (publishDate && publishDate > today) {
     console.log(`Pulando (agendado para ${publishDate}): ${slug}`);
     continue;
   }
+  allArticles.push({ slug, data, content });
+}
 
-  const html = processLinks(marked(content));
+const articleUrls = [];
 
-  const ogImage = data.image
-    ? `<meta property="og:image" content="${data.image}">`
-    : '';
-
-  const coverImage = data.image
-    ? `<img class="cover-image" src="${data.image}" alt="${data.title || ''}">`
-    : '';
-
-  const schemaLd = renderSchemas(generateArticleSchema(data, content, slug, today));
+// Passo 2: builda cada artigo com acesso aos metadados de todos os outros
+for (const { slug, data, content } of allArticles) {
+  const html        = processLinks(marked(content));
+  const related     = findRelated(slug, data, allArticles);
+  const ogImage     = data.image ? `<meta property="og:image" content="${data.image}">` : '';
+  const coverImage  = data.image ? `<img class="cover-image" src="${data.image}" alt="${(data.title || '').replace(/"/g, '&quot;')}">` : '';
+  const schemaLd    = renderSchemas(generateArticleSchema(data, content, slug, today));
 
   const page = TEMPLATE
-    .replace(/\{\{title\}\}/g,          data.title || slug)
-    .replace(/\{\{description\}\}/g,    data.description || '')
-    .replace(/\{\{date\}\}/g,           data.publish_date || data.date || '')
-    .replace(/\{\{date_formatted\}\}/g, formatDate(data.publish_date || data.date))
-    .replace(/\{\{image\}\}/g,          data.image || '')
-    .replace(/\{\{slug\}\}/g,           slug)
-    .replace(/\{\{og_image\}\}/g,       ogImage)
-    .replace(/\{\{cover_image\}\}/g,    coverImage)
-    .replace(/\{\{schema_ld\}\}/g,      schemaLd)
-    .replace(/\{\{content\}\}/g,        html);
+    .replace(/\{\{title\}\}/g,            data.title || slug)
+    .replace(/\{\{description\}\}/g,      data.description || '')
+    .replace(/\{\{date\}\}/g,             data.publish_date || data.date || '')
+    .replace(/\{\{date_formatted\}\}/g,   formatDate(data.publish_date || data.date))
+    .replace(/\{\{image\}\}/g,            data.image || '')
+    .replace(/\{\{slug\}\}/g,             slug)
+    .replace(/\{\{og_image\}\}/g,         ogImage)
+    .replace(/\{\{cover_image\}\}/g,      coverImage)
+    .replace(/\{\{schema_ld\}\}/g,        schemaLd)
+    .replace(/\{\{related_articles\}\}/g, renderRelated(related))
+    .replace(/\{\{content\}\}/g,          html);
 
   const outDir = path.join(ARTIGOS_DIR, slug);
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, 'index.html'), page);
   console.log(`Gerado: artigos/${slug}/index.html`);
 
-  articleUrls.push({ slug, date: data.date || '' });
+  articleUrls.push({ slug, date: data.publish_date || data.date || '' });
 }
 
 // Gera sitemap.xml
