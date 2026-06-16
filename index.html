@@ -155,6 +155,21 @@
       color: var(--accent);
     }
 
+    .card-cupom {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: #16a34a;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 4px;
+      padding: 2px 7px;
+      cursor: pointer;
+    }
+    .card-cupom:hover { background: #dcfce7; }
+
     .card-footer { padding: 0.75rem 1rem 1rem; }
 
     .btn {
@@ -432,7 +447,7 @@
   // ── Card unificado ───────────────────────────────────────────
   // Aceita campos opcionais: desc, preco, preco_original, desconto_pct
 
-  function renderCard({ titulo, link, imagem, loja, desc, preco, preco_original, desconto_pct, category }) {
+  function renderCard({ titulo, link, imagem, loja, desc, preco, preco_original, desconto_pct, category, coupon }) {
     const shareText = encodeURIComponent(`🔥 ${titulo}\n${link}`);
     const shareUrl  = encodeURIComponent(link);
     const tgText    = encodeURIComponent(`🔥 ${titulo}`);
@@ -458,6 +473,7 @@
               ${preco_original ? `<p class="preco-original">${brl(preco_original)}</p>` : ''}
               <p class="preco-atual">${brl(preco)}</p>
             </div>` : ''}
+          ${coupon ? `<div class="card-cupom" onclick="copyLink('${coupon}');event.preventDefault()" title="Clique para copiar o cupom">CUPOM: ${esc(coupon)}</div>` : ''}
         </div>
         <div class="card-footer">
           <a class="btn" href="${esc(link)}" target="_blank" rel="noopener noreferrer">Ver oferta &rarr;</a>
@@ -564,7 +580,7 @@
 
     // Resolve previews dos links manuais
     let resolvidos = 0;
-    await Promise.all(links.map(async ({ url, image, title, description, price, category }, i) => {
+    await Promise.all(links.map(async ({ url, image, title, description, price, category, coupon }, i) => {
       let data = null;
       try { data = await fetchPreview(url); } catch {}
 
@@ -580,6 +596,7 @@
         desc:     data?.description || '',
         preco:    price ?? null,
         category,
+        coupon:   coupon || null,
       });
 
       if (searchQuery) filtrar(searchQuery);
