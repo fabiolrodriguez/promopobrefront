@@ -17,20 +17,8 @@ O segredo está justamente nas diferentes versões disponíveis.
 
 Enquanto a configuração mais básica atende quem quer economizar ao máximo, a versão com 8 GB de RAM e 256 GB de armazenamento entrega uma experiência surpreendentemente completa para a categoria.
 
-## Imagens do Galaxy A07
 
 ![Samsung Galaxy A07 Frontal](https://m.media-amazon.com/images/I/51DkRNvvgNL._AC_SL1000_.jpg)
-
-Referência das imagens oficiais:
-
-* Galaxy A07 Front Green
-* Galaxy A07 Back Green
-* Galaxy A07 Front Black
-* Galaxy A07 Back Black
-* Galaxy A07 Front Violet
-* Galaxy A07 Back Violet
-
-Disponíveis na página oficial da Samsung.
 
 ---
 
