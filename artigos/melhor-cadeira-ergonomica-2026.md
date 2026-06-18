@@ -2,7 +2,7 @@
 title: "Melhores Cadeiras Ergonômicas até R$ 1.000 em 2026: Conforto para Home Office sem Gastar uma Fortuna"
 description: "Confira as melhores cadeiras ergonômicas até R$ 1.000 em 2026. Veja opções da Flexform, DT3, Elements e outras marcas ideais para home office e produtividade."
 publish_date: "2026-06-19"
-image: ""
+image: "https://i.ibb.co/BMkRCMj/cadeiras-2026.png"
 ---
 
 # Melhores Cadeiras Ergonômicas até R$ 1.000 em 2026: Conforto para Home Office sem Gastar uma Fortuna
