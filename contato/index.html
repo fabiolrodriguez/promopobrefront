@@ -3,94 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artigos - Promopobre</title>
-  <meta name="description" content="Análises e reviews dos melhores produtos em oferta. Encontre o produto certo antes de comprar.">
+  <title>Contato - Promopobre</title>
+  <meta name="description" content="Entre em contato com o Promopobre. Sugestões, dúvidas ou parcerias.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://promopobre.com.br/artigos/">
+  <link rel="canonical" href="https://promopobre.com.br/contato/">
   <link rel="icon" type="image/png" href="/icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
 
   <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://promopobre.com.br/artigos/">
-  <meta property="og:title"       content="Artigos - Promopobre">
-  <meta property="og:description" content="Análises e reviews dos melhores produtos em oferta.">
+  <meta property="og:url"         content="https://promopobre.com.br/contato/">
+  <meta property="og:title"       content="Contato - Promopobre">
+  <meta property="og:description" content="Entre em contato com o Promopobre.">
   <meta property="og:locale"      content="pt_BR">
 
   <link rel="stylesheet" href="/shared.css">
   <style>
-    main { max-width: 780px; margin: 0 auto; padding: 2rem 1rem 4rem; }
-
-    #grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
+    main {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 3rem 1rem 5rem;
     }
 
-    .article-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      text-decoration: none;
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow .15s;
-    }
-
-    .article-card:hover { box-shadow: 0 4px 20px rgba(255, 214, 0, 0.15); }
-
-    .article-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      background: var(--bg);
-    }
-
-    .article-card .no-img {
-      width: 100%;
-      height: 180px;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-    }
-
-    .article-card .body {
-      padding: 1rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .article-card h2 {
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.4;
+    main h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
       margin-bottom: 0.4rem;
     }
 
-    .article-card p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-      flex: 1;
-    }
-
-    .article-card .meta {
-      margin-top: 0.75rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    #status {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: var(--muted);
+    main p.subtitulo {
       font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.6rem 0.875rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--yellow); }
+
+    .form-group textarea { resize: vertical; min-height: 140px; }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--header-bg);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    button[type="submit"]:hover:not(:disabled) { background: #2a2a2e; }
+    button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .form-success {
+      text-align: center;
+      padding: 2rem;
+      color: #16a34a;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: #f0fdf4;
+      border-radius: 12px;
+    }
+
+    #form-erro {
+      display: none;
+      color: var(--accent);
+      font-size: 0.82rem;
+      margin-top: 0.5rem;
+      text-align: center;
     }
   </style>
 </head>
@@ -114,45 +126,64 @@
 </header>
 
 <main>
-  <div id="grid"></div>
-  <div id="status">Carregando...</div>
+  <h2>Fale conosco</h2>
+  <p class="subtitulo">Sugestões, dúvidas ou parcerias — respondemos em breve.</p>
+
+  <form id="form-contato" novalidate>
+    <input type="hidden" name="access_key" value="3dca8138-fa07-4cf5-81f0-b962d9bd1f80">
+    <input type="hidden" name="from_name"  value="Promopobre - Contato">
+    <input type="checkbox" name="botcheck" style="display:none">
+
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input id="nome" name="name" type="text" required placeholder="Seu nome">
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" required placeholder="seu@email.com">
+    </div>
+    <div class="form-group">
+      <label for="mensagem">Mensagem</label>
+      <textarea id="mensagem" name="message" required placeholder="Como podemos ajudar?"></textarea>
+    </div>
+
+    <button type="submit">Enviar mensagem</button>
+    <p id="form-erro">Erro ao enviar. Tente novamente.</p>
+  </form>
 </main>
 
 <script>
-  async function load() {
+  async function enviarContato(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn  = form.querySelector('button[type="submit"]');
+    const erro = document.getElementById('form-erro');
+
+    btn.disabled    = true;
+    btn.textContent = 'Enviando...';
+    erro.style.display = 'none';
+
     try {
-      const res = await fetch('/artigos.json');
-      const articles = await res.json();
-
-      const status = document.getElementById('status');
-      const grid   = document.getElementById('grid');
-
-      if (!articles.length) {
-        status.textContent = 'Nenhum artigo publicado ainda.';
-        return;
+      const res  = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const json = await res.json();
+      if (json.success) {
+        form.innerHTML = '<p class="form-success">Mensagem enviada! Retornaremos em breve.</p>';
+      } else {
+        throw new Error();
       }
-
-      status.style.display = 'none';
-      grid.innerHTML = articles.map(a => `
-        <a class="article-card" href="/artigos/${a.slug}/">
-          ${a.image
-            ? `<img src="${a.image}" alt="${a.title}" loading="lazy">`
-            : `<div class="no-img">📝</div>`
-          }
-          <div class="body">
-            <h2>${a.title}</h2>
-            <p>${a.description || ''}</p>
-            <div class="meta">${a.date ? new Date(a.date + 'T12:00:00').toLocaleDateString('pt-BR') : ''}</div>
-          </div>
-        </a>
-      `).join('');
-    } catch (e) {
-      document.getElementById('status').textContent = 'Erro ao carregar artigos.';
+    } catch {
+      btn.disabled    = false;
+      btn.textContent = 'Enviar mensagem';
+      erro.style.display = '';
     }
   }
 
-  load();
+  document.getElementById('form-contato').addEventListener('submit', enviarContato);
 </script>
+
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "bf2c3cefe2e948b78acb9d838b024a4e"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
