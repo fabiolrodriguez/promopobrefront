@@ -1,5 +1,33 @@
 [
   {
+    "url": "https://link.amazon/B01MZ3PYm",
+    "title": "Smart TV LCD LED 32\" AOC 32S5155/78G - Wi-Fi, HD, Quad Core, Dolby Áudio, 60 Hz",
+    "image": "https://m.media-amazon.com/images/I/5127C3SrlYL._AC_SL1000_.jpg",
+    "category": "casa",
+    "price": 757.15
+  },
+  {
+    "url": "https://meli.la/1mck3gt",
+    "title": "Presente Kaiak Colônia 25ml, Shampoo E P Barba 50ml",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_959650-MLA97111984225_112025-F.webp",
+    "category": "beleza",
+    "price": 107
+  },
+  {
+    "url": "https://link.amazon/B08I8eURk",
+    "title": "Cif Cremoso Limpeza Milagrosa Remove 100% Da Sujeira 450 Ml",
+    "image": "https://m.media-amazon.com/images/I/41lEhjADhXL._AC_SL1200_.jpg",
+    "category": "casa",
+    "price": 12.24
+  },
+  {
+    "url": "https://link.amazon/B034wEbWK",
+    "title": "Brilhante Limpeza Total - Lava Roupas Líquido 3L",
+    "image": "https://m.media-amazon.com/images/I/71Ug0t+pOoL._AC_SL1500_.jpg",
+    "category": "casa",
+    "price": 21.61
+  },
+  {
     "url": "https://meli.la/2g7Rn4r",
     "title": "Monitor 21,5 Aoc Fhd 22b30hm2 Gaming Widescreen Va Vga Hdmi",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_872381-MLB110782662324_052026-F.webp",
