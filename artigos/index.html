@@ -8,6 +8,9 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://promopobre.com.br/artigos/">
   <link rel="icon" type="image/png" href="/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
 
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://promopobre.com.br/artigos/">
@@ -17,12 +20,14 @@
 
   <style>
     :root {
-      --accent: #e63946;
-      --bg: #f4f4f5;
+      --accent: #D42B2B;
+      --yellow: #FFD600;
+      --header-bg: #0C0C0E;
+      --bg: #F4F4F0;
       --card: #ffffff;
-      --text: #111827;
-      --muted: #6b7280;
-      --border: #e5e7eb;
+      --text: #0D0D0D;
+      --muted: #696969;
+      --border: #E4E4E0;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,15 +40,15 @@
     }
 
     header {
-      background: linear-gradient(135deg, var(--accent) 0%, #ff6b6b 100%);
+      background: var(--header-bg);
       color: #fff;
       padding: 2rem 1rem 1.5rem;
       text-align: center;
     }
 
     header a { color: #fff; text-decoration: none; }
-    header h1 { font-size: 1.8rem; font-weight: 800; }
-    header p  { margin-top: 0.3rem; font-size: 0.9rem; opacity: 0.88; }
+    header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 800; }
+    header p  { margin-top: 0.3rem; font-size: 0.9rem; opacity: 0.7; }
 
     main { max-width: 780px; margin: 0 auto; padding: 2rem 1rem 4rem; }
 
@@ -65,7 +70,7 @@
       transition: box-shadow .15s;
     }
 
-    .article-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+    .article-card:hover { box-shadow: 0 4px 20px rgba(255, 214, 0, 0.15); }
 
     .article-card img {
       width: 100%;
@@ -122,7 +127,7 @@
 <body>
 
 <header>
-  <a href="/"><h1>Promopobre</h1></a>
+  <a href="/"><h1>Promo<span style="color:#FFD600">pobre</span></h1></a>
   <p>Análises e reviews para você comprar melhor</p>
 </header>
 
