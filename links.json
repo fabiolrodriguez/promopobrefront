@@ -336,22 +336,6 @@
     "price": 688.4
   },
   {
-    "url": "https://meli.la/1ohh94C",
-    "title": "Principia Kit Antiacne Avançado",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_623712-MLA99399240295_112025-F.webp",
-    "category": "beleza",
-    "price": 157.76,
-    "coupon": "ANITTA"
-  },
-  {
-    "url": "https://meli.la/1ES31UP",
-    "title": "Fone Headset Gamer HAVIT H2230d P2 P3 3,5MM Microfone Removível Consoles PC Preto",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_638002-MLA99508042592_112025-F.webp",
-    "category": "tecnologia",
-    "price": 61.92,
-    "coupon": "ANITTA"
-  },
-  {
     "url": "https://link.amazon/B0acJiDsH",
     "title": "Hisense Smart TV 4K 50\" Polegadas 50Q6QVV com Processador AI, Dolby Vision, HDR10+, HLG, Filmmaker Mode, Dolby Gaming, Dolby Atmos, MiraCast e Compatibilidade Alexa e Google",
     "image": "https://m.media-amazon.com/images/I/81uK85S8szL._AC_SL1500_.jpg",
@@ -360,33 +344,11 @@
     "coupon": "SEMANANOVA"
   },
   {
-    "url": "https://link.amazon/B0gjnshmC",
-    "title": "Caixa de som Bluetooth portátil LG XBOOM à prova d'água (IP67) e 24 horas de bateria - XG7S",
-    "image": "https://m.media-amazon.com/images/I/71GIyQoI-pL._AC_SL1500_.jpg",
-    "category": "tecnologia",
-    "price": 499
-  },
-  {
-    "url": "https://meli.la/1xFt9qc",
-    "title": "Tênis Fila Vector Feminino Esportivo Leve Conforto Diári",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_944954-MLB93734910717_092025-F-tnis-fila-vector-feminino-esportivo-leve-conforto-diario.webp",
-    "category": "moda",
-    "price": 147.59,
-    "coupon": "MODANOMELI"
-  },
-  {
     "url": "https://meli.la/1bz23zn",
     "title": "Fritadeira Air Fryer 5,5l Widemax Com Interior De Alumínio 1900w Midea",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_916338-MLA100014649407_122025-F.webp",
     "category": "eletrodomesticos",
     "price": 287.36
-  },
-  {
-    "url": "https://amzn.to/3S8XPy5",
-    "title": "G-Tech Nebulizador de Rede Vibratória NEBMESH2, Branca",
-    "image": "https://m.media-amazon.com/images/I/71Onp1KWoaL._AC_SL1500_.jpg",
-    "category": "saude",
-    "price": 110
   },
   {
     "url": "https://meli.la/22N8umk",
@@ -440,35 +402,6 @@
     "price": 188.89
   },
   {
-    "url": "https://meli.la/2onNF1T",
-    "title": "Câmera Inteligente iM3 C Black Intelbras",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_615216-MLA99419117904_112025-F.webp",
-    "category": "casa",
-    "price": 173.43
-  },
-  {
-    "url": "https://meli.la/2TDTu8k",
-    "title": "Combo Nativa Spa Cereja Rouge: Loção Corporal 400ml + Sabonete",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_836136-MLA92293308920_092025-F.webp",
-    "category": "beleza",
-    "price": 119.8
-  },
-  {
-    "url": "https://amzn.to/43Kjyif",
-    "title": "Smartphone Motorola Edge 70 5G - 256GB 24GB (8GB RAM + 16GB RAM Boost), Ultrafino, 3 cameras 50MP, Tela 1.5K extreme Amoled 120hz - Bronze Green",
-    "image": "https://m.media-amazon.com/images/I/61OaHpwFsuL._AC_SL1200_.jpg",
-    "category": "tecnologia",
-    "price": 1935.89,
-    "coupon": "SMART100"
-  },
-  {
-    "url": "https://meli.la/2QJXnFs",
-    "title": "Extratora de Sujeira Portátil WAP Spot Cleaner W3 Borrifa Esfrega e Extrai 1450W de Potência e Bico de Autolimpeza",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_945436-MLA100025553119_122025-F.webp",
-    "category": "casa",
-    "price": 399.41
-  },
-  {
     "url": "https://amzn.to/4eyeJgV",
     "title": "BLACK+DECKER Processador de Alimentos Antiaderente em Inox, Gourmand Gris, Modelo MP300G, 220V",
     "image": "https://m.media-amazon.com/images/I/416+bxlNytL._AC_SL1000_.jpg",
@@ -476,26 +409,11 @@
     "price": 232.55
   },
   {
-    "url": "https://amzn.to/4eAaCRI",
-    "title": "Air Fryer Electrolux por Rita Lobo 3L Preta Efficient c/Desligamento Automático 1200W (EAF05) 220V",
-    "image": "https://m.media-amazon.com/images/I/41wddh0AGmL._AC_SL1000_.jpg",
-    "category": "eletrodomesticos",
-    "price": 199.4
-  },
-  {
     "url": "https://amzn.to/4vThctt",
     "title": "Kit V-Floc Shampoo Neutro Super Concentrado Automotivo + Cera Liquida Protetora Tok Final Vonixx Luva Pano Microfibra",
     "image": "https://m.media-amazon.com/images/I/71By6LODSNL._AC_SL1200_.jpg",
     "category": "outros",
     "price": 66.49
-  },
-  {
-    "url": "https://meli.la/2CpJ7b2",
-    "title": "Tênis Nike Ebernon Low Premium Masculino",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_636990-MLB112628181371_062026-F.webp",
-    "category": "moda",
-    "price": 293.03,
-    "coupon": "SEMPREMODA"
   },
   {
     "url": "https://amzn.to/4vbaWgz",
