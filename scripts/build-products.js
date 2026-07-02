@@ -54,6 +54,7 @@ function buildPage(data) {
     .replace(/\{\{imagem\}\}/g,         esc(data.imagem))
     .replace(/\{\{preco_html\}\}/g,     data.preco_html)
     .replace(/\{\{badge_html\}\}/g,     data.badge_html)
+    .replace(/\{\{obs_html\}\}/g,       data.obs_html)
     .replace(/\{\{coupon_html\}\}/g,    data.coupon_html)
     .replace(/\{\{expired_banner\}\}/g, data.expired_banner)
     .replace(/\{\{offer_cta\}\}/g,      data.offer_cta)
@@ -82,6 +83,7 @@ const products = links
     preco_original: e.preco_original || null,
     desconto_pct:   e.desconto_pct   || null,
     coupon:         e.coupon         || null,
+    obs:            e.obs            || null,
   }))
   .filter(p => p.titulo);
 
@@ -113,6 +115,10 @@ for (const p of products) {
     ? `<span class="badge-desconto">-${p.desconto_pct}%</span>`
     : '';
 
+  const obsHtml = p.obs
+    ? `<p class="produto-obs">${esc(p.obs)}</p>`
+    : '';
+
   const couponHtml = p.coupon
     ? `<div class="produto-cupom" onclick="copiarCupom(this,'${esc(p.coupon)}')" title="Clique para copiar o cupom">CUPOM: <strong>${esc(p.coupon)}</strong></div>`
     : '';
@@ -138,6 +144,7 @@ for (const p of products) {
     imagem:         p.imagem,
     preco_html:     precoHtml,
     badge_html:     badgeHtml,
+    obs_html:       obsHtml,
     coupon_html:    couponHtml,
     expired_banner: '',
     offer_cta:      `<a class="btn-oferta" href="${esc(p.link)}" target="_blank" rel="sponsored noopener">Ver oferta na ${esc(p.loja)} &rarr;</a>`,
@@ -185,6 +192,7 @@ for (const entry of fs.readdirSync(PRODUTOS_DIR)) {
     imagem:         meta.imagem || '',
     preco_html:     '',
     badge_html:     '',
+    obs_html:       '',
     coupon_html:    '',
     expired_banner: '<div class="oferta-expirada-banner">OFERTA EXPIRADA</div>',
     offer_cta:      '',

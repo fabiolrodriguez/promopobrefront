@@ -170,6 +170,8 @@
     }
     .produto-cupom:hover { background: #dcfce7; }
 
+    .produto-obs { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.75rem; }
+
     .produto-share { display: flex; gap: 6px; margin-bottom: 0.75rem; }
     .share-btn {
       display: inline-flex;
@@ -222,6 +224,7 @@
       <span class="produto-loja">{{loja}}</span>
       <h1>{{titulo}}</h1>
       {{preco_html}}
+      {{obs_html}}
       {{coupon_html}}
       {{offer_cta}}
       <div class="produto-share">

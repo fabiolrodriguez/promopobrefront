@@ -132,6 +132,13 @@
       color: var(--text);
     }
 
+    .card-obs {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 4px;
+      margin-bottom: 2px;
+    }
+
     .card-cupom {
       display: inline-block;
       margin-top: 6px;
@@ -373,7 +380,7 @@
   // ── Card unificado ───────────────────────────────────────────
   // Aceita campos opcionais: desc, preco, preco_original, desconto_pct
 
-  function renderCard({ titulo, link, imagem, loja, desc, preco, preco_original, desconto_pct, category, coupon, slug }) {
+  function renderCard({ titulo, link, imagem, loja, desc, preco, preco_original, desconto_pct, category, coupon, slug, obs }) {
     const shareText = encodeURIComponent(`🔥 ${titulo}\n${link}`);
     const shareUrl  = encodeURIComponent(link);
     const tgText    = encodeURIComponent(`🔥 ${titulo}`);
@@ -398,6 +405,7 @@
               ${preco_original ? `<p class="preco-original">${brl(preco_original)}</p>` : ''}
               <p class="preco-atual">${brl(preco)}</p>
             </div>` : ''}
+          ${obs ? `<p class="card-obs">${esc(obs)}</p>` : ''}
           ${coupon ? `<div class="card-cupom" onclick="copyLink('${coupon}');event.preventDefault()" title="Clique para copiar o cupom">CUPOM: ${esc(coupon)}</div>` : ''}
         </div>
         <div class="card-footer">
@@ -505,7 +513,7 @@
 
     // Resolve previews dos links manuais
     let resolvidos = 0;
-    await Promise.all(links.map(async ({ url, image, title, description, price, category, coupon }, i) => {
+    await Promise.all(links.map(async ({ url, image, title, description, price, category, coupon, obs }, i) => {
       let data = null;
       try { data = await fetchPreview(url); } catch {}
 
@@ -522,6 +530,7 @@
         preco:    price ?? null,
         category,
         coupon:   coupon || null,
+        obs:      obs    || null,
         slug:     toSlug(title || titleFromSlug(url) || hostname(url)),
       });
 
