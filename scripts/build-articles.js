@@ -196,7 +196,24 @@ const articleEntries = articleUrls.map(({ slug, date }) => ({
   changefreq: 'monthly',
 }));
 
-const allUrls = [...staticUrls, ...articleEntries];
+// Inclui páginas de produto geradas por build-products.js
+const PRODUTOS_DIR = path.join(ROOT, 'produtos');
+const productEntries = [];
+if (fs.existsSync(PRODUTOS_DIR)) {
+  for (const entry of fs.readdirSync(PRODUTOS_DIR)) {
+    const metaPath = path.join(PRODUTOS_DIR, entry, 'meta.json');
+    if (fs.existsSync(metaPath)) {
+      productEntries.push({
+        loc:        `${BASE_URL}/produtos/${entry}/`,
+        lastmod:    today,
+        priority:   '0.6',
+        changefreq: 'weekly',
+      });
+    }
+  }
+}
+
+const allUrls = [...staticUrls, ...articleEntries, ...productEntries];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

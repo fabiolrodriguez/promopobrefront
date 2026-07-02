@@ -3,7 +3,7 @@ name: Build Articles
 on:
   push:
     branches: [main]
-    paths: ['artigos/*.md']
+    paths: ['artigos/*.md', 'links.json']
   workflow_dispatch:
   schedule:
     - cron: '0 12 * * *'  # meio-dia UTC = 9h BRT
@@ -34,6 +34,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull origin main
+
+      - run: node scripts/build-products.js
 
       - run: node scripts/build-articles.js
 
