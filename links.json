@@ -177,20 +177,6 @@
     "price": 74
   },
   {
-    "url": "https://link.amazon/B0buLXWz0",
-    "title": "Neve Papel Higiênico Supreme Folha Tripla, 20m, Leve 32 Pague 28 Rolos",
-    "image": "https://m.media-amazon.com/images/I/61ysOEhEKrL._AC_SL1500_.jpg",
-    "category": "casa",
-    "price": 49.9
-  },
-  {
-    "url": "https://meli.la/1Xsx2M2",
-    "title": "Tablet Xiaomi Redmi Pad2 De 128gb 6gb 11\" Fhd+ 90hz Cor cinza",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_759333-MLA99918798025_112025-F.webp",
-    "category": "tecnologia",
-    "price": 1165.8
-  },
-  {
     "url": "https://meli.la/2kwP72f",
     "title": "Air Fryer Britânia 4,2L Dura Mais 1500W BFR38 127V",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_863348-MLA95248403043_102025-F.webp",
@@ -233,13 +219,6 @@
     "category": "tecnologia",
     "price": 582.69,
     "coupon": "APROVEITAHOJE"
-  },
-  {
-    "url": "https://meli.la/1RfzPFM",
-    "title": "Jogo De Toalhas Tóquio G3 5 Peças Cinza Steel Altenburg",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_889468-MLA95656411144_102025-F.webp",
-    "category": "casa",
-    "price": 119.9
   },
   {
     "url": "https://link.amazon/B0f6Z7R2E",
@@ -307,14 +286,6 @@
     "price": 418.4
   },
   {
-    "url": "https://link.amazon/B061tJKtH",
-    "title": "Apple iPhone 15 (128 GB) — Amarelo",
-    "image": "https://m.media-amazon.com/images/I/41iBy6do6ZL._AC_SL1000_.jpg",
-    "category": "tecnologia",
-    "price": 3239.19,
-    "coupon": "JOGOSFUT"
-  },
-  {
     "url": "https://meli.la/1q2HdBT",
     "title": "Filtro de Linha Clamper 8 Tomadas com DPS 1m Preto",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_734416-MLA110849139223_042026-F.webp",
@@ -323,35 +294,12 @@
     "coupon": "PRECINHO"
   },
   {
-    "url": "https://meli.la/1JmF1e5",
-    "title": "Panela Elétrica De Arroz Rizzo Elgin 5 Xícaras, 400w",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_657015-MLA99965040533_112025-F.webp",
-    "category": "casa",
-    "price": 91,
-    "coupon": "VITORIANOCAMPO"
-  },
-  {
-    "url": "https://link.amazon/B0i3aaIS7",
-    "title": "Kit Rexona Antitranspirante Aerossol Bamboo 2 Unidades de 150ml + 2 Pacotes de Figurinhas - Edição Limitada Copa do Mundo da FIFA 26",
-    "image": "https://m.media-amazon.com/images/I/71y88qVyx9L._AC_SL1500_.jpg",
-    "category": "beleza",
-    "price": 24.9
-  },
-  {
     "url": "https://meli.la/1TAvK9E",
     "title": "Aparelho de Jantar Tramontina Floralis Porcelana 20 peças",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_919598-MLA95700717574_102025-F.webp",
     "category": "casa",
     "price": 191.97,
     "coupon": "BOLAROLANDO"
-  },
-  {
-    "url": "https://meli.la/33VUSUu",
-    "title": "Celular Samsung Galaxy A36 5g 256gb 8gb Ram Branco",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_697102-MLA99477666220_112025-F.webp",
-    "category": "tecnologia",
-    "price": 1317.1,
-    "coupon": "OFERTAPARAVC"
   },
   {
     "url": "https://link.amazon/B08rV7zzN",
