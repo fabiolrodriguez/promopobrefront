@@ -275,6 +275,10 @@
           <input type="text" id="f-coupon" placeholder="PROMO10">
         </div>
         <div class="form-group">
+          <label for="f-obs">Observação</label>
+          <input type="text" id="f-obs" placeholder="valor no pix, apenas prime...">
+        </div>
+        <div class="form-group">
           <label for="f-cat">Categoria</label>
           <select id="f-cat">
             <option value="">Selecionar...</option>
@@ -594,6 +598,8 @@
         style="width:110px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none">
       <input type="text" value="${product.coupon || ''}" placeholder="Cupom"
         style="width:90px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none">
+      <input type="text" value="${product.obs || ''}" placeholder="Observação"
+        style="flex:1;min-width:120px;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none">
       <select style="flex:1;min-width:130px;border:1px solid #d4d4d8;border-radius:6px;padding:6px 10px;font-size:0.85rem;outline:none;background:#fff">${opts}</select>
       <button class="btn-primary" style="padding:5px 12px;font-size:0.8rem;flex-shrink:0"
         onclick="saveEditProduct('${encodedUrl}', this)">Salvar</button>
@@ -605,17 +611,18 @@
   async function saveEditProduct(encodedUrl, btn) {
     const url = decodeURIComponent(encodedUrl);
     const el  = document.querySelector(`.product-item[data-url="${encodedUrl}"]`);
-    const [titleInput, imageInput, priceInput, couponInput] = el.querySelectorAll('input');
+    const [titleInput, imageInput, priceInput, couponInput, obsInput] = el.querySelectorAll('input');
     const category = el.querySelector('select').value;
     const title    = titleInput.value.trim();
     const image    = imageInput.value.trim();
     const price    = parsePrice(priceInput.value);
     const coupon   = couponInput.value.trim() || null;
+    const obs      = obsInput.value.trim()    || null;
     btn.disabled   = true;
     try {
-      await api('/products', 'PUT', { url, title, image, category, price, coupon });
+      await api('/products', 'PUT', { url, title, image, category, price, coupon, obs });
       const idx = allProducts.findIndex(p => getUrl(p) === url);
-      if (idx >= 0) allProducts[idx] = { url, title, image, ...(category && { category }), ...(price && { price }), ...(coupon && { coupon }) };
+      if (idx >= 0) allProducts[idx] = { url, title, image, ...(category && { category }), ...(price && { price }), ...(coupon && { coupon }), ...(obs && { obs }) };
       renderList(filterBySearch(allProducts));
       showMsg('Produto atualizado.');
     } catch (e) {
@@ -662,10 +669,11 @@
       const category = $('f-cat').value;
       const price    = parsePrice($('f-price').value);
       const coupon   = $('f-coupon').value.trim() || null;
-      await api('/products', 'POST', { url, title, image, category, price, coupon });
-      allProducts.unshift({ url, title, image, category, ...(price && { price }), ...(coupon && { coupon }) });
+      const obs      = $('f-obs').value.trim()    || null;
+      await api('/products', 'POST', { url, title, image, category, price, coupon, obs });
+      allProducts.unshift({ url, title, image, category, ...(price && { price }), ...(coupon && { coupon }), ...(obs && { obs }) });
       renderList(filterBySearch(allProducts));
-      $('f-url').value = $('f-title').value = $('f-image').value = '';
+      $('f-url').value = $('f-title').value = $('f-image').value = $('f-obs').value = '';
       showMsg('Produto adicionado!');
     } catch (e) {
       showMsg(e.message, 'error');
