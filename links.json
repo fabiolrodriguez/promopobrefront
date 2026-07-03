@@ -1,5 +1,27 @@
 [
   {
+    "url": "https://link.amazon/B0eKkNLGU",
+    "title": "La Roche-Posay Cicaplast Baume B5+ Cuidado Multirreparador Calmante",
+    "image": "https://m.media-amazon.com/images/I/41LpbF-1WDL._AC_SL1080_.jpg",
+    "category": "beleza",
+    "price": 58.61
+  },
+  {
+    "url": "https://link.amazon/B0aK2ykjF",
+    "title": "Furadeira e Parafusadeira à Bateria, Mondial, Vermelho, 12V, Bivolt - FPF-06M",
+    "image": "https://m.media-amazon.com/images/I/81f0lP0WdIL._AC_SL1500_.jpg",
+    "category": "ferramentas",
+    "price": 132.9,
+    "coupon": "CASAPRIME"
+  },
+  {
+    "url": "https://link.amazon/B0hbxhNIB",
+    "title": "SUGGAR FRITADEIRA LIGHT FRY TOUCH CONTROL 4 LITROS PRETA 110V FT0041PT",
+    "image": "https://m.media-amazon.com/images/I/517ByUA-tyL._AC_SL1200_.jpg",
+    "category": "eletrodomesticos",
+    "price": 149.62
+  },
+  {
     "url": "https://link.amazon/B08SSSDU8",
     "title": "MONDIAL Cooktop a Gás, 4 Bocas, Preto/Inox, Bivolt - CTG-01",
     "image": "https://m.media-amazon.com/images/I/517E2Ia2cWL._AC_SL1000_.jpg",
