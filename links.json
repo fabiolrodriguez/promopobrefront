@@ -1,5 +1,36 @@
 [
   {
+    "url": "https://link.amazon/B00vFBjz8",
+    "title": "BlidShop Cadeira de Escritório Ergonômica Florença, Tela Mesh Premium, Apoio Lombar Ajustável, Suporta 120kg, Altura Regulável (Preta)",
+    "image": "https://m.media-amazon.com/images/I/61bMbt9BCfL._AC_SL1024_.jpg",
+    "category": "casa",
+    "price": 331.72
+  },
+  {
+    "url": "https://link.amazon/B04sMYZJ2",
+    "title": "Smart TV TCL 65 Polegadas QLED 4K P7K WiFi Bluetooth Google TV HDR10+ Dolby Atmos Dolby Vision 65P7K",
+    "image": "https://m.media-amazon.com/images/I/81AtIfydXvL._AC_SL1500_.jpg",
+    "category": "casa",
+    "price": 2818.71,
+    "coupon": "PRECOPRIME"
+  },
+  {
+    "url": "https://link.amazon/B08LoHROx",
+    "title": "Monitor Gamer Samsung Odyssey G5 32, Resolução QHD, Taxa de atualização de 165Hz & 1ms de tempo de resposta (MPRT), Curvatura com 1000R, HDR 10, AMD FreeSync, Eye Saver Mode & Flicker Free Mode",
+    "image": "https://m.media-amazon.com/images/I/616NYrEQ6QL._AC_SL1000_.jpg",
+    "category": "tecnologia",
+    "price": 1061.91,
+    "coupon": "10OFF"
+  },
+  {
+    "url": "https://meli.la/1m1Pfwy",
+    "title": "O Boticário Glamour Midnight Deo Colônia Feminino 75ml",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_803193-MLA84540272032_052025-F.webp",
+    "category": "beleza",
+    "price": 89.91,
+    "coupon": "GOLEADATOTAL"
+  },
+  {
     "url": "https://link.amazon/B0dsfAvtd",
     "title": "Panela de Pressão Tramontina Vancouver Effect em Alumínio com Revestimento Interno e Externo em Antiaderente Starflon Max Preto 20 cm 4,5 L",
     "image": "https://m.media-amazon.com/images/I/81ubjq2DfxL._AC_SL1500_.jpg",
