@@ -9,6 +9,20 @@ const ARTIGOS_DIR = path.join(ROOT, 'artigos');
 const TEMPLATE    = fs.readFileSync(path.join(__dirname, 'article-template.html'), 'utf8');
 const BASE_URL    = 'https://promopobre.com.br';
 
+const CATEGORIES = [
+  { slug: 'casa',        label: 'Casa',        keywords: ['air fryer', 'ergonômic', 'aspirador', 'extratora', 'geladeira', 'fogão', 'microondas', 'ventilador', 'ar condicionado', 'eletrodoméstic', 'panela', 'sofá', 'limpeza doméstic'] },
+  { slug: 'ferramentas', label: 'Ferramentas', keywords: ['ferramenta', 'furadeira', 'parafusadeira', 'serra', 'martelo', 'alicate', 'broca', 'chave de fenda'] },
+  { slug: 'games',       label: 'Games',       keywords: ['console portátil', 'playstation', 'xbox', 'nintendo switch', 'ps4', 'ps5', 'videogame', 'gamer', 'portátil retrô', 'emulador', 'r36s', 'trimui'] },
+  { slug: 'smartphones', label: 'Smartphones', keywords: ['smartphone', 'celular', 'iphone', 'moto g', 'motorola', 'android', 'poco', 'galaxy a', 'galaxy m', 'galaxy s', ' realme ', 'redmi note'] },
+  { slug: 'tablets',     label: 'Tablets',     keywords: ['tablet', 'ipad', 'kindle', 'galaxy tab', 'redmi pad', 'lenovo tab', 'tab a9', 'tab a8'] },
+  { slug: 'tecnologia',  label: 'Tecnologia',  keywords: ['notebook', 'laptop', 'ideapad', 'processador', 'gpu', 'smart tv', 'televisão', ' tvs ', 'melhores tvs', 'streaming', 'home office', 'mochila para notebook'] },
+];
+
+function categorizeArticle(title, description) {
+  const text = `${title} ${description}`.toLowerCase();
+  return CATEGORIES.filter(cat => cat.keywords.some(kw => text.includes(kw))).map(cat => cat.slug);
+}
+
 marked.setOptions({ gfm: true, breaks: false });
 
 const AFFILIATE_DOMAINS = [
@@ -74,6 +88,7 @@ if (files.length === 0) {
 // Remove HTML directories that no longer have a .md source
 const slugsWithMd = new Set(files.map(f => f.replace('.md', '')));
 for (const entry of fs.readdirSync(ARTIGOS_DIR)) {
+  if (entry === 'categoria') continue;
   const full = path.join(ARTIGOS_DIR, entry);
   if (fs.statSync(full).isDirectory() && !slugsWithMd.has(entry)) {
     fs.rmSync(full, { recursive: true });
@@ -139,6 +154,9 @@ function renderRelated(articles) {
 
 // Passo 1: coleta todos os artigos publicados
 const allArticles = [];
+const articlesByCategory = {};
+CATEGORIES.forEach(c => { articlesByCategory[c.slug] = []; });
+
 for (const file of files) {
   const slug = file.replace('.md', '');
   const src  = fs.readFileSync(path.join(ARTIGOS_DIR, file), 'utf8');
@@ -149,6 +167,12 @@ for (const file of files) {
     continue;
   }
   allArticles.push({ slug, data, content });
+  const cats = categorizeArticle(data.title || '', data.description || '');
+  for (const catSlug of cats) {
+    if (articlesByCategory[catSlug]) {
+      articlesByCategory[catSlug].push({ slug, title: data.title, description: data.description, date: data.publish_date || data.date || '', image: data.image || '' });
+    }
+  }
 }
 
 const articleUrls = [];
@@ -182,6 +206,112 @@ for (const { slug, data, content } of allArticles) {
   articleUrls.push({ slug, date: data.publish_date || data.date || '' });
 }
 
+// Gera páginas de categoria
+const CAT_DIR = path.join(ARTIGOS_DIR, 'categoria');
+fs.mkdirSync(CAT_DIR, { recursive: true });
+
+// Remove diretórios de categoria que não existem mais
+for (const entry of fs.readdirSync(CAT_DIR)) {
+  const full = path.join(CAT_DIR, entry);
+  if (fs.statSync(full).isDirectory() && !CATEGORIES.find(c => c.slug === entry)) {
+    fs.rmSync(full, { recursive: true });
+    console.log(`Categoria removida: ${entry}/`);
+  }
+}
+
+const categoryEntries = [];
+
+for (const cat of CATEGORIES) {
+  const articles = articlesByCategory[cat.slug];
+  if (!articles.length) continue;
+
+  const outDir = path.join(CAT_DIR, cat.slug);
+  fs.mkdirSync(outDir, { recursive: true });
+
+  const catNavLinks = CATEGORIES
+    .filter(c => articlesByCategory[c.slug].length > 0)
+    .map(c => `<a href="/artigos/categoria/${c.slug}/" class="cat-chip${c.slug === cat.slug ? ' active' : ''}">${c.label}</a>`)
+    .join('');
+
+  const cards = articles
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+    .map(a => `
+        <a class="article-card" href="/artigos/${a.slug}/">
+          ${a.image
+            ? `<img src="${a.image}" alt="${(a.title || '').replace(/"/g, '&quot;')}" loading="lazy">`
+            : `<div class="no-img">📝</div>`}
+          <div class="body">
+            <h2>${a.title || a.slug}</h2>
+            <p>${a.description || ''}</p>
+            <div class="meta">${a.date ? new Date(a.date + 'T12:00:00').toLocaleDateString('pt-BR') : ''}</div>
+          </div>
+        </a>`).join('');
+
+  const page = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${cat.label} - Artigos - Promopobre</title>
+  <meta name="description" content="Artigos e reviews de ${cat.label.toLowerCase()} com melhor custo-benefício. Análises completas antes de comprar.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="${BASE_URL}/artigos/categoria/${cat.slug}/">
+  <link rel="icon" type="image/png" href="/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="${BASE_URL}/artigos/categoria/${cat.slug}/">
+  <meta property="og:title"       content="${cat.label} - Artigos - Promopobre">
+  <meta property="og:description" content="Artigos e reviews de ${cat.label.toLowerCase()} com melhor custo-benefício.">
+  <meta property="og:locale"      content="pt_BR">
+  <link rel="stylesheet" href="/shared.css">
+  <style>
+    main { max-width: 780px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--text); }
+    .cat-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .cat-chip { font-size: 0.8rem; font-weight: 600; padding: 5px 14px; border-radius: 20px; text-decoration: none; background: var(--card); border: 1px solid var(--border); color: var(--muted); transition: all .15s; }
+    .cat-chip:hover { border-color: #FFD600; color: var(--text); }
+    .cat-chip.active { background: #FFD600; border-color: #FFD600; color: #111; }
+    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .article-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; text-decoration: none; color: var(--text); display: flex; flex-direction: column; transition: box-shadow .15s; }
+    .article-card:hover { box-shadow: 0 4px 20px rgba(255, 214, 0, 0.15); }
+    .article-card img { width: 100%; height: 180px; object-fit: cover; background: var(--bg); }
+    .article-card .no-img { width: 100%; height: 180px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+    .article-card .body { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+    .article-card h2 { font-size: 1rem; font-weight: 700; line-height: 1.4; margin-bottom: 0.4rem; }
+    .article-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; flex: 1; }
+    .article-card .meta { margin-top: 0.75rem; font-size: 0.75rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/"><h1><img src="/icon.png" alt="" width="52" height="52" style="vertical-align:middle;margin-right:12px;border-radius:10px">Promo<span style="color:#FFD600">pobre</span></h1></a>
+  <p>As melhores ofertas selecionadas para voce</p>
+  <nav style="margin-top:1rem;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <a href="/artigos/" style="color:#fff;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:5px 16px;opacity:0.85">Artigos</a>
+    <a href="/contato/" style="color:#fff;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:5px 16px;opacity:0.85">Contato</a>
+  </nav>
+</header>
+<main>
+  <div class="breadcrumb"><a href="/">Home</a> › <a href="/artigos/">Artigos</a> › ${cat.label}</div>
+  <div class="cat-nav">
+    <a href="/artigos/" class="cat-chip">Todos</a>
+    ${catNavLinks}
+  </div>
+  <div id="grid">${cards}</div>
+</main>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "bf2c3cefe2e948b78acb9d838b024a4e"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>`;
+
+  fs.writeFileSync(path.join(outDir, 'index.html'), page);
+  console.log(`Gerado: artigos/categoria/${cat.slug}/index.html (${articles.length} artigo(s))`);
+  categoryEntries.push({ loc: `${BASE_URL}/artigos/categoria/${cat.slug}/`, lastmod: today, priority: '0.6', changefreq: 'weekly' });
+}
+
 // Gera sitemap.xml
 
 const staticUrls = [
@@ -213,7 +343,7 @@ if (fs.existsSync(PRODUTOS_DIR)) {
   }
 }
 
-const allUrls = [...staticUrls, ...articleEntries, ...productEntries];
+const allUrls = [...staticUrls, ...articleEntries, ...categoryEntries, ...productEntries];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

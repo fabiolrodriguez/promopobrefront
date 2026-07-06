@@ -92,6 +92,11 @@
       color: var(--muted);
       font-size: 0.9rem;
     }
+
+    .cat-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .cat-chip { font-size: 0.8rem; font-weight: 600; padding: 5px 14px; border-radius: 20px; text-decoration: none; background: var(--card); border: 1px solid var(--border); color: var(--muted); transition: all .15s; }
+    .cat-chip:hover { border-color: #FFD600; color: var(--text); }
+    .cat-chip.active { background: #FFD600; border-color: #FFD600; color: #111; }
   </style>
 </head>
 <body>
@@ -114,6 +119,15 @@
 </header>
 
 <main>
+  <div class="cat-nav">
+    <a href="/artigos/" class="cat-chip active">Todos</a>
+    <a href="/artigos/categoria/casa/" class="cat-chip">Casa</a>
+    <a href="/artigos/categoria/ferramentas/" class="cat-chip">Ferramentas</a>
+    <a href="/artigos/categoria/games/" class="cat-chip">Games</a>
+    <a href="/artigos/categoria/smartphones/" class="cat-chip">Smartphones</a>
+    <a href="/artigos/categoria/tablets/" class="cat-chip">Tablets</a>
+    <a href="/artigos/categoria/tecnologia/" class="cat-chip">Tecnologia</a>
+  </div>
   <div id="grid"></div>
   <div id="status">Carregando...</div>
 </main>
