@@ -190,6 +190,42 @@
 
     .produto-obs { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.75rem; }
 
+    .section-heading {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin: 2rem 0 0.75rem;
+    }
+
+    .related-article-link {
+      display: flex;
+      gap: 0.875rem;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow .15s;
+    }
+    .related-article-link:hover { box-shadow: 0 4px 16px rgba(255,214,0,.15); }
+    .related-article-link img { width: 80px; height: 60px; object-fit: cover; border-radius: 6px; flex-shrink: 0; background: var(--bg); }
+    .art-info { flex: 1; min-width: 0; }
+    .art-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .05em; }
+    .art-title { font-size: 0.88rem; font-weight: 700; line-height: 1.35; margin-top: 0.2rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    .similar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    @media (max-width: 480px) { .similar-grid { grid-template-columns: repeat(2, 1fr); } }
+    .similar-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; text-decoration: none; color: var(--text); display: flex; flex-direction: column; transition: box-shadow .15s; }
+    .similar-card:hover { box-shadow: 0 4px 16px rgba(255,214,0,.15); }
+    .similar-card img { width: 100%; height: 100px; object-fit: contain; background: var(--bg); padding: 0.5rem; }
+    .sim-body { padding: 0.5rem 0.625rem 0.625rem; flex: 1; display: flex; flex-direction: column; }
+    .sim-title { font-size: 0.76rem; font-weight: 600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .sim-price { font-size: 0.78rem; font-weight: 700; margin-top: 0.3rem; }
+
     .produto-share { display: flex; gap: 6px; margin-bottom: 0.75rem; }
     .share-btn {
       display: inline-flex;
@@ -214,6 +250,7 @@
   <a href="/"><h1><img src="/icon.png" alt="" width="52" height="52" style="vertical-align:middle;margin-right:12px;border-radius:10px">Promo<span style="color:#FFD600">pobre</span></h1></a>
   <p>As melhores ofertas selecionadas para voce</p>
   <nav style="margin-top:1rem;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <a href="/" title="Home" style="color:#fff;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:5px 12px;opacity:0.85;display:inline-flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="15" height="15"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a>
     <a href="/artigos/" style="color:#fff;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:5px 16px;opacity:0.85">Artigos</a>
     <a href="/contato/" style="color:#fff;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:5px 16px;opacity:0.85">Contato</a>
     <a href="https://t.me/promopobreoficial" target="_blank" rel="noopener" style="color:#fff;font-size:0.85rem;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,0.55);border-radius:20px;padding:5px 16px;opacity:0.9;display:inline-flex;align-items:center;gap:6px">
@@ -253,6 +290,31 @@
       <a class="btn-voltar" href="/">&larr; Voltar &agrave;s ofertas</a>
     </div>
   </article>
+  
+  <h2 class="section-heading">Produtos similares</h2>
+<div class="similar-grid">
+  <a class="similar-card" href="/produtos/jogo-de-frigideiras-3-pcs-caribe-rose-gold-em-aluminio-antiaderente-baquelite-tr/">
+    <img src="https://m.media-amazon.com/images/I/914Lag2tuVL._AC_SL1500_.jpg" alt="Jogo de Frigideiras 3 Pçs Caribe Rose Gold em Alumínio Antiaderente Baquelite Tramontina" loading="lazy" onerror="this.style.display='none'">
+    <div class="sim-body">
+      <span class="sim-title">Jogo de Frigideiras 3 Pçs Caribe Rose Gold em Alumínio Antiaderente Baquelite Tramontina</span>
+      <span class="sim-price">R$ 80,74</span>
+    </div>
+  </a>
+  <a class="similar-card" href="/produtos/mondial-cooktop-a-gas-4-bocas-pretoinox-bivolt-ctg-01/">
+    <img src="https://m.media-amazon.com/images/I/517E2Ia2cWL._AC_SL1000_.jpg" alt="MONDIAL Cooktop a Gás, 4 Bocas, Preto/Inox, Bivolt - CTG-01" loading="lazy" onerror="this.style.display='none'">
+    <div class="sim-body">
+      <span class="sim-title">MONDIAL Cooktop a Gás, 4 Bocas, Preto/Inox, Bivolt - CTG-01</span>
+      <span class="sim-price">R$ 306,80</span>
+    </div>
+  </a>
+  <a class="similar-card" href="/produtos/mondial-fritadeira-sem-oleo-air-fryer-digital-5l-preto-2000w-220v-af-50-dv/">
+    <img src="https://m.media-amazon.com/images/I/716V02lqAmL._AC_SL1500_.jpg" alt="MONDIAL Fritadeira Sem Óleo Air Fryer Digital 5L, Preto, 2000W, 220V - AF-50-DV" loading="lazy" onerror="this.style.display='none'">
+    <div class="sim-body">
+      <span class="sim-title">MONDIAL Fritadeira Sem Óleo Air Fryer Digital 5L, Preto, 2000W, 220V - AF-50-DV</span>
+      <span class="sim-price">R$ 283,00</span>
+    </div>
+  </a>
+</div>
 </main>
 
 <div id="copy-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#18181b;color:#fff;padding:8px 18px;border-radius:8px;font-size:0.875rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:100">Link copiado!</div>
