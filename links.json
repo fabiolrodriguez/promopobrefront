@@ -1,5 +1,35 @@
 [
   {
+    "url": "https://link.amazon/B05NGXYay",
+    "title": "Bosch Furadeira de Impacto GSB 13 RE-M - 750W 127V, em maleta",
+    "image": "https://m.media-amazon.com/images/I/61zfwVifj8L._AC_SL1000_.jpg",
+    "category": "ferramentas",
+    "price": 305.91,
+    "coupon": "PRIMETOOLS"
+  },
+  {
+    "url": "https://link.amazon/B024Tjl67",
+    "title": "Omo Sabão Líquido 2 Unidades Lavagem Perfeita 5L",
+    "image": "https://m.media-amazon.com/images/I/81YdMMEc4vL._AC_SL1500_.jpg",
+    "category": "casa",
+    "price": 94.81
+  },
+  {
+    "url": "https://link.amazon/B075NBUea",
+    "title": "Agratto 784 - Chaleira Eletrica Inox, 220v, 1,8 Litro, Preto/inox",
+    "image": "https://m.media-amazon.com/images/I/51cy5GBjh0L._AC_SL1000_.jpg",
+    "category": "eletrodomesticos",
+    "price": 39.94,
+    "coupon": "ELETROPD15"
+  },
+  {
+    "url": "https://meli.la/2tmEguN",
+    "title": "Micro-ondas Electrolux 20L Branco com Função Tira Odor e Descongelar MTO30",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_787358-MLA100187065347_122025-F.webp",
+    "category": "eletrodomesticos",
+    "price": 489
+  },
+  {
     "url": "https://link.amazon/B075fAFlp",
     "title": "Tablet Lenovo Idea Tab Plus Octa-Core, 8GB, 128GB, Wi-Fi® 5, Android™ 15, 12.1\" 2.5K 90Hz, Acompanha Caneta e Case",
     "image": "https://m.media-amazon.com/images/I/61gHVEMi-gL._AC_SL1000_.jpg",
