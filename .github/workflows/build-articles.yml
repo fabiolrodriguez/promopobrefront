@@ -35,6 +35,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull origin main
 
+      - run: node scripts/expire-links.js
+
       - run: node scripts/build-products.js
 
       - run: node scripts/build-articles.js
