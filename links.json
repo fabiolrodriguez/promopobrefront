@@ -1,5 +1,33 @@
 [
   {
+    "url": "https://link.amazon/B07qke0i9",
+    "title": "Pack Cerveja Spaten, Puro Malte, 269ml, Lata - 8 Unidades",
+    "image": "https://m.media-amazon.com/images/I/512l9934dfL._AC_SL1280_.jpg",
+    "category": "alimentos",
+    "price": 25.5
+  },
+  {
+    "url": "https://link.amazon/B01wG8ttX",
+    "title": "Heinz Ketchup Bacon & Cebola Caramelizada 397g",
+    "image": "https://m.media-amazon.com/images/I/51ngN-TT2WL._AC_SL1000_.jpg",
+    "category": "alimentos",
+    "price": 10.64
+  },
+  {
+    "url": "https://s.shopee.com.br/AUsHFOWdb2",
+    "title": "Smartphone Moto g06 4G Tela 6,9 Polegadas 256GB Câmera 50MP Motorola",
+    "image": "https://down-tx-br.img.susercontent.com/sg-11134201-8261r-mmai7s39tfd144.webp",
+    "category": "tecnologia",
+    "price": 775.44
+  },
+  {
+    "url": "https://meli.la/2EzESXS",
+    "title": "Loção Hidratante Corporal Sem Perfume, com Ceramidas Essenciais e Ácido Hialurônico, Textura Fluida CeraVe 473ml",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_841667-MLA110746696146_052026-F.webp",
+    "category": "beleza",
+    "price": 80.65
+  },
+  {
     "url": "https://meli.la/2qxtAG9",
     "title": "Smart Tv 55p 4k Uhd 55u6qv 60hz Vidaa Dolby Vision Hisense",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_845081-MLA110014772963_042026-F.webp",
