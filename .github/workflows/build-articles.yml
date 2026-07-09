@@ -43,4 +43,5 @@ jobs:
         run: |
           git add -A
           git diff --staged --quiet || git commit -m "build: gera artigos e sitemap [skip ci]"
+          git pull --rebase origin main
           git push
