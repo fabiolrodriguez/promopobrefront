@@ -257,7 +257,7 @@ for (const entry of fs.readdirSync(PRODUTOS_DIR)) {
     '@type': 'Product',
     name: meta.titulo,
     image: meta.imagem || '',
-    offers: { '@type': 'Offer', availability: 'https://schema.org/Discontinued' },
+    description: `Oferta expirada: ${meta.titulo}`,
   };
 
   const page = buildPage({
