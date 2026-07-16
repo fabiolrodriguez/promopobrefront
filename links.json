@@ -1,5 +1,34 @@
 [
   {
+    "url": "https://link.amazon/B0bcIEDGD",
+    "title": "Jameson - Whiskey Irlandês, 750 ml",
+    "image": "https://m.media-amazon.com/images/I/51syfbaTceL._AC_SL1000_.jpg",
+    "category": "alimentos",
+    "price": 69.08
+  },
+  {
+    "url": "https://meli.la/2GTHSKR",
+    "title": "Kit 10 Pacotes Canetas Marcador Permanente 36 Cores Multicores",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_709227-MLA112259800143_052026-F.webp",
+    "category": "outros",
+    "price": 55
+  },
+  {
+    "url": "https://meli.la/1DZS7Fa",
+    "title": "Fone De Ouvido Preto Havit Gamenote Fuxi-h6 - Black",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_601266-MLA91548200027_092025-F.webp",
+    "category": "tecnologia",
+    "price": 150.45,
+    "coupon": "COMPRAHOJE"
+  },
+  {
+    "url": "https://s.shopee.com.br/7fYHXzLobw",
+    "title": "Game Stick M15 Pro 4k 64GB com 2 controles sem fio +20.000 jogos",
+    "image": "https://down-bs-br.img.susercontent.com/sg-11134201-7rcee-m6gw6aktximz1a.webp",
+    "category": "tecnologia",
+    "price": 120.99
+  },
+  {
     "url": "https://s.shopee.com.br/4fufLW08Mb",
     "title": "PN-959/PN956 Carregador Portátil Bateria Power Bank 20000mah/10000mah",
     "image": "https://down-tx-br.img.susercontent.com/br-11134207-7r98o-lugiuycxtfo464.webp",
