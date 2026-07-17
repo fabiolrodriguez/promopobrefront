@@ -1,5 +1,26 @@
 [
   {
+    "url": "https://link.amazon/B00rVM1Fq",
+    "title": "VINHO CHILENO RESERVADO CABERNET SAUVIGNON COM 750ML",
+    "image": "https://m.media-amazon.com/images/I/512RMZ27OnL._AC_SL1500_.jpg",
+    "category": "alimentos",
+    "price": 22
+  },
+  {
+    "url": "https://meli.la/1EQ1mZQ",
+    "title": "O Boticário Kit Body Spray Egeo Dolce 100ml (2 Itens)",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_705395-MLA112269229300_062026-F.webp",
+    "category": "beleza",
+    "price": 74.85
+  },
+  {
+    "url": "https://meli.la/1BPCe5N",
+    "title": "Caixa De Som Speaker Aiwa AWS-SP-01 Bluetooth Cor Preto",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_812534-MLA99524049864_122025-F.webp",
+    "category": "tecnologia",
+    "price": 170.05
+  },
+  {
     "url": "https://link.amazon/B0bcIEDGD",
     "title": "Jameson - Whiskey Irlandês, 750 ml",
     "image": "https://m.media-amazon.com/images/I/51syfbaTceL._AC_SL1000_.jpg",
