@@ -41,10 +41,6 @@ Ele entrega:
 
 [Compre com desconto!](https://link.amazon/B0go5i6yL)
 
-
-::contentReference[oaicite:2]{index=2}
-
-
 ---
 
 ## PlayStation 5 Pro
@@ -59,9 +55,6 @@ Vale o investimento principalmente para quem possui uma TV 4K de alta qualidade.
 
 [Compre com desconto!](https://link.amazon/B063O56za)
 
-::contentReference[oaicite:4]{index=4}
-
-
 ---
 
 # 2. O Jogo
@@ -75,9 +68,6 @@ Grand Theft Auto VI chega trazendo o maior mapa já criado pela Rockstar, novos 
 Nossa recomendação é garantir a compra antecipadamente para jogar logo no lançamento.
 
 [Compre con desconto!](https://link.amazon/B0a7ULaWk)
-
-::contentReference[oaicite:6]{index=6}
-
 
 ---
 
@@ -94,9 +84,6 @@ Por isso recomendamos o headset oficial da Sony.
 O **PULSE Elite** utiliza áudio sem fio de baixa latência e foi desenvolvido para aproveitar os recursos de áudio 3D do PlayStation 5. :contentReference[oaicite:7]{index=7}
 
 [Compre com desconto!](https://link.amazon/B0er1mKoc)
-
-::contentReference[oaicite:8]{index=8}
-
 
 ---
 
