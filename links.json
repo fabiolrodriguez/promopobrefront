@@ -1,5 +1,35 @@
 [
   {
+    "url": "https://link.amazon/B0afOSN0Q",
+    "title": "Bourbon Whiskey Jim Beam White 1L",
+    "image": "https://m.media-amazon.com/images/I/71hDD6numwL._AC_SL1500_.jpg",
+    "category": "alimentos",
+    "price": 79.9
+  },
+  {
+    "url": "https://meli.la/1zUkwzp",
+    "title": "Camiseta Básica Tech Daily Insider",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_715589-MLB94366230245_102025-F-camiseta-basica-tech-daily-insider.webp",
+    "category": "moda",
+    "price": 52,
+    "coupon": "LOOKEMDIA"
+  },
+  {
+    "url": "https://meli.la/2m1cc7M",
+    "title": "Processador AMD Ryzen 5 5500 3.6GHz 4.2GHz Max Turbo Cache 16MB AM4 SEM COOLER",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_999665-MLA99900426735_112025-F.webp",
+    "category": "tecnologia",
+    "price": 479,
+    "coupon": "PRESENTE"
+  },
+  {
+    "url": "https://s.shopee.com.br/7KvaGa86lr",
+    "title": "Amplificador De Imagem Da Tela Do Celular Ampliada Lupa 3d Tela",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-81zu4-ml1nkihdt91d01.webp",
+    "category": "tecnologia",
+    "price": 18.99
+  },
+  {
     "url": "https://s.shopee.com.br/9pctxtDSf6",
     "title": "[BANY] Conjunto de Pijamas de Seda para Mulheres com 5 Peças, Vestido de Pijama com Decote em V e Camisola Us",
     "image": "https://down-bs-br.img.susercontent.com/sg-11134201-824ip-meptloc0yi2qc0.webp",
