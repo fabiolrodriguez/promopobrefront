@@ -252,14 +252,6 @@ for (const entry of fs.readdirSync(PRODUTOS_DIR)) {
   try { meta = JSON.parse(fs.readFileSync(metaPath, 'utf8')); }
   catch { continue; }
 
-  const schemaObj = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: meta.titulo,
-    image: meta.imagem || '',
-    description: `Oferta expirada: ${meta.titulo}`,
-  };
-
   const page = buildPage({
     titulo:         meta.titulo,
     loja:           meta.loja || '',
@@ -273,7 +265,7 @@ for (const entry of fs.readdirSync(PRODUTOS_DIR)) {
     offer_cta:        '',
     volta_cta:        '<a class="btn-voltar" href="/">Ver ofertas ativas &rarr;</a>',
     produto_class:    'expirado',
-    schema_json:      `<script type="application/ld+json">\n${JSON.stringify(schemaObj, null, 2)}\n</script>`,
+    schema_json:      '',
     related_article:  '',
     similar_products: '',
   });
