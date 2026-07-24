@@ -1,5 +1,36 @@
 [
   {
+    "url": "https://link.amazon/B0cE1SYOv",
+    "title": "Monitor portátil de 15,6 polegadas, conectividade USB-C e HDMI, resolução Full HD 1080p, falantes integrados compatível com diversos dispositivos–Preto",
+    "image": "https://m.media-amazon.com/images/I/71QcvEzWokL._AC_SL1500_.jpg",
+    "category": "tecnologia",
+    "price": 350
+  },
+  {
+    "url": "https://link.amazon/B0cpEbJuC",
+    "title": "Smart TV 43\" LG Full HD 43LR6700 Processador α5 Ger6 AI Alexa integrado LG Channels webOS 23 compatível com Controle Smart Magic",
+    "image": "https://m.media-amazon.com/images/I/61RFJ5GOqVL._AC_SL1200_.jpg",
+    "category": "casa",
+    "price": 1370.5,
+    "coupon": "BORALEVAR"
+  },
+  {
+    "url": "https://link.amazon/B08Rnu3dz",
+    "title": "Mini Air Fryer Fritadeira Elétrica Sem Óleo 1.4L Individual 900w 127v - Gaabor",
+    "image": "https://m.media-amazon.com/images/I/41txNbYPBzL._AC_SL1000_.jpg",
+    "category": "eletrodomesticos",
+    "price": 104.97,
+    "coupon": "CONSUMI30"
+  },
+  {
+    "url": "https://meli.la/1tmtjRa",
+    "title": "Monitor Aoc 21.5 120hz 1ms Gaming Hdmi 22b35hm23 Preto",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_744601-MLA99934274785_112025-F.webp",
+    "category": "tecnologia",
+    "price": 338.06,
+    "coupon": "POUPACERTO"
+  },
+  {
     "url": "https://meli.la/2DsYY9R",
     "title": "Scanner Automotivo Bluetooth Obd2 Eml 327 Android Ios Obdii",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_886444-MLB95702648919_102025-F-scanner-automotivo-bluetooth-obd2-eml-327-android-ios-obdii.webp",
