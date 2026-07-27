@@ -49,13 +49,6 @@
     "price": 58.52
   },
   {
-    "url": "https://link.amazon/B05NfQHGp",
-    "title": "Cadeira de Escritório Suporte Lombar Ergonômico Malha Respirável Mesh Apoio Cabeça Confortavél Art Cadeiras Presidente Premium",
-    "image": "https://m.media-amazon.com/images/I/71E3-OYpGRL._AC_SL1254_.jpg",
-    "category": "casa",
-    "price": 211.64
-  },
-  {
     "url": "https://meli.la/2hVccqs",
     "title": "Lavadora de Alta Pressão Compacta WAP WL 1800 1400W 1500PSI 360L/h 220V",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_969245-MLA99639655414_122025-F.webp",
@@ -75,30 +68,6 @@
     "image": "https://m.media-amazon.com/images/I/71QcvEzWokL._AC_SL1500_.jpg",
     "category": "tecnologia",
     "price": 350
-  },
-  {
-    "url": "https://link.amazon/B0cpEbJuC",
-    "title": "Smart TV 43\" LG Full HD 43LR6700 Processador α5 Ger6 AI Alexa integrado LG Channels webOS 23 compatível com Controle Smart Magic",
-    "image": "https://m.media-amazon.com/images/I/61RFJ5GOqVL._AC_SL1200_.jpg",
-    "category": "casa",
-    "price": 1370.5,
-    "coupon": "BORALEVAR"
-  },
-  {
-    "url": "https://link.amazon/B08Rnu3dz",
-    "title": "Mini Air Fryer Fritadeira Elétrica Sem Óleo 1.4L Individual 900w 127v - Gaabor",
-    "image": "https://m.media-amazon.com/images/I/41txNbYPBzL._AC_SL1000_.jpg",
-    "category": "eletrodomesticos",
-    "price": 104.97,
-    "coupon": "CONSUMI30"
-  },
-  {
-    "url": "https://meli.la/1tmtjRa",
-    "title": "Monitor Aoc 21.5 120hz 1ms Gaming Hdmi 22b35hm23 Preto",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_744601-MLA99934274785_112025-F.webp",
-    "category": "tecnologia",
-    "price": 338.06,
-    "coupon": "POUPACERTO"
   },
   {
     "url": "https://meli.la/2DsYY9R",
@@ -129,59 +98,11 @@
     "price": 60.39
   },
   {
-    "url": "https://meli.la/2QgLXzi",
-    "title": "Mochila Militar Bolsa Tática Resistente 30 Litros Super Reforçada Impermeável Bandeira Brasil Brinde Utilizzei",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_779454-MLA105648061458_012026-F.webp",
-    "category": "moda",
-    "price": 62.21,
-    "coupon": "PRAMODA"
-  },
-  {
-    "url": "https://meli.la/1WQS6pA",
-    "title": "Fechadura Digital de Sobrepor com Senha FR 10 Preto Intelbras",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_962132-MLA99518049008_112025-F.webp",
-    "category": "casa",
-    "price": 138,
-    "coupon": "CUPOMPRACASA"
-  },
-  {
-    "url": "https://meli.la/1amzC2N",
-    "title": "Kit 02 Bermuda Casual Short Moletom Maculina Academia Treino",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_861262-MLB90655673968_082025-F-kit-02-bermuda-casual-short-moletom-maculina-academia-treino.webp",
-    "category": "moda",
-    "price": 48.21,
-    "coupon": "LOOKEMDIA"
-  },
-  {
-    "url": "https://meli.la/1JANpgf",
-    "title": "Tênis Masculino Barreda Adidas",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_636076-MLB86010966128_062025-F-tenis-masculino-barreda-adidas.webp",
-    "category": "moda",
-    "price": 164.44,
-    "coupon": "PRAMODA"
-  },
-  {
     "url": "https://link.amazon/B0afOSN0Q",
     "title": "Bourbon Whiskey Jim Beam White 1L",
     "image": "https://m.media-amazon.com/images/I/71hDD6numwL._AC_SL1500_.jpg",
     "category": "alimentos",
     "price": 79.9
-  },
-  {
-    "url": "https://meli.la/1zUkwzp",
-    "title": "Camiseta Básica Tech Daily Insider",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_715589-MLB94366230245_102025-F-camiseta-basica-tech-daily-insider.webp",
-    "category": "moda",
-    "price": 52,
-    "coupon": "LOOKEMDIA"
-  },
-  {
-    "url": "https://meli.la/2m1cc7M",
-    "title": "Processador AMD Ryzen 5 5500 3.6GHz 4.2GHz Max Turbo Cache 16MB AM4 SEM COOLER",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_999665-MLA99900426735_112025-F.webp",
-    "category": "tecnologia",
-    "price": 479,
-    "coupon": "PRESENTE"
   },
   {
     "url": "https://s.shopee.com.br/7KvaGa86lr",
@@ -212,20 +133,6 @@
     "price": 598.04
   },
   {
-    "url": "https://link.amazon/B0amEgv7i",
-    "title": "Kit 15 Potes Herméticos Alimentos Com Tampa Vedação Em Silicone Conserva Sua Comida Pote Empilhável Organização Praticidade Cozinha Completa",
-    "image": "https://m.media-amazon.com/images/I/71VtGxWq+gL._AC_SL1200_.jpg",
-    "category": "casa",
-    "price": 68.99
-  },
-  {
-    "url": "https://meli.la/32SJSCU",
-    "title": "Kit 9 Pares Meias Puma Sapatilha Soquete Invisível OriginalKit 9 Pares Meias Puma Sapatilha Soquete Invisível Original",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_872253-MLB96642336275_102025-F-kit-9-pares-meias-puma-sapatilha-soquete-invisivel-original.webp",
-    "category": "moda",
-    "price": 59.99
-  },
-  {
     "url": "https://meli.la/1J1X7Sy",
     "title": "Mochila Masculina Bolsa Impermeável Faculdade Alça Reforçada Preto Liso",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_892888-MLA107403836976_032026-F.webp",
@@ -240,13 +147,6 @@
     "price": 38
   },
   {
-    "url": "https://link.amazon/B01nW0vVc",
-    "title": "Downy Verão Tropical Amaciante Líquido Concentrado 3L (Rende 12L)",
-    "image": "https://m.media-amazon.com/images/I/61an06yTbwL._AC_SL1200_.jpg",
-    "category": "casa",
-    "price": 39.98
-  },
-  {
     "url": "https://meli.la/1XR671K",
     "title": "Carregador Fonte Iphone Original 20w Apple Tipo C Turbo",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_957192-MLB95132377251_102025-F.webp",
@@ -254,32 +154,11 @@
     "price": 86.96
   },
   {
-    "url": "https://meli.la/27caaNz",
-    "title": "Mochila jiesipote À Prova D'água Reforçada Expansível Cor Preto",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_974980-MLA112776013576_062026-F.webp",
-    "category": "moda",
-    "price": 79.9
-  },
-  {
     "url": "https://s.shopee.com.br/9KgbLQPzZW",
     "title": "Frigideira Antiaderente 4 Partes Ovo Hambúrguer",
     "image": "https://down-tx-br.img.susercontent.com/sg-11134201-7rdxl-ly5gce3lti2f62.webp",
     "category": "casa",
     "price": 37.88
-  },
-  {
-    "url": "https://meli.la/1Gw885V",
-    "title": "5 Camisetas Básicas Masculina Dry Fit De Alta Qualidade",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_755666-MLB110753641784_052026-F-5-camisetas-basicas-masculina-dry-fit-de-alta-qualidade.webp",
-    "category": "moda",
-    "price": 48.48
-  },
-  {
-    "url": "https://meli.la/2vHzH68",
-    "title": "Lavadora Alta Pressao Portatil Potente Recarregável 2bateria",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_708016-MLB89603615327_082025-F.webp",
-    "category": "ferramentas",
-    "price": 146.51
   },
   {
     "url": "https://s.shopee.com.br/1LeILXDkW9",
@@ -317,50 +196,11 @@
     "price": 69.99
   },
   {
-    "url": "https://meli.la/2qZMyTi",
-    "title": "Projetor Portátil 4k Hd Android 11.0 Smart Wifi 5g Bluetooth",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_828936-MLB88748640584_082025-F.webp",
-    "category": "tecnologia",
-    "price": 145.33,
-    "coupon": "CHEGUEI"
-  },
-  {
     "url": "https://link.amazon/B0g2cU2el",
     "title": "Ventilador de Mesa com alimentação USB, silencioso e leve - Bright",
     "image": "https://m.media-amazon.com/images/I/61v0jJmYbHL._AC_SL1200_.jpg",
     "category": "casa",
     "price": 25
-  },
-  {
-    "url": "https://meli.la/1PfdTtn",
-    "title": "Espelho Orgânico 100x50 Corpo Inteiro Com Moldura Caramelo",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_820398-MLA94659879933_102025-F.webp",
-    "category": "casa",
-    "price": 63.74,
-    "coupon": "TENDENCIACASA"
-  },
-  {
-    "url": "https://meli.la/2x1VUGF",
-    "title": "Parafusadeira E Furadeira Impacto The Black Tools Tb-21pw 3/8 Cor Amarelo Frequência 50/60 Hz",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_683617-MLA99862544303_112025-F.webp",
-    "category": "ferramentas",
-    "price": 119.51,
-    "coupon": "CHEGUEI"
-  },
-  {
-    "url": "https://meli.la/2qaBpay",
-    "title": "Conjunto Moletom Blusa Frio Calça Milanoitaly Abrigo Inverno",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_868827-MLB84749638289_052025-F-conjunto-moletom-blusa-frio-calca-milanoitaly-abrigo-inverno.webp",
-    "category": "moda",
-    "price": 67.64,
-    "coupon": "MELIMODA"
-  },
-  {
-    "url": "https://meli.la/1cMMaSy",
-    "title": "Kit Arbo: Desodorante Antitranspirante 75g (3 Unidades) Fragrância Fougère Fresco",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_907123-MLA99386318236_112025-F.webp",
-    "category": "beleza",
-    "price": 53.87
   },
   {
     "url": "https://meli.la/1CKF116",
@@ -378,13 +218,6 @@
     "price": 10
   },
   {
-    "url": "https://link.amazon/B00rVM1Fq",
-    "title": "VINHO CHILENO RESERVADO CABERNET SAUVIGNON COM 750ML",
-    "image": "https://m.media-amazon.com/images/I/512RMZ27OnL._AC_SL1500_.jpg",
-    "category": "alimentos",
-    "price": 22
-  },
-  {
     "url": "https://meli.la/1EQ1mZQ",
     "title": "O Boticário Kit Body Spray Egeo Dolce 100ml (2 Itens)",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_705395-MLA112269229300_062026-F.webp",
@@ -399,26 +232,11 @@
     "price": 170.05
   },
   {
-    "url": "https://link.amazon/B0bcIEDGD",
-    "title": "Jameson - Whiskey Irlandês, 750 ml",
-    "image": "https://m.media-amazon.com/images/I/51syfbaTceL._AC_SL1000_.jpg",
-    "category": "alimentos",
-    "price": 69.08
-  },
-  {
     "url": "https://meli.la/2GTHSKR",
     "title": "Kit 10 Pacotes Canetas Marcador Permanente 36 Cores Multicores",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_709227-MLA112259800143_052026-F.webp",
     "category": "outros",
     "price": 55
-  },
-  {
-    "url": "https://meli.la/1DZS7Fa",
-    "title": "Fone De Ouvido Preto Havit Gamenote Fuxi-h6 - Black",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_601266-MLA91548200027_092025-F.webp",
-    "category": "tecnologia",
-    "price": 150.45,
-    "coupon": "COMPRAHOJE"
   },
   {
     "url": "https://s.shopee.com.br/7fYHXzLobw",
@@ -442,49 +260,12 @@
     "price": 40.99
   },
   {
-    "url": "https://meli.la/2KwtQix",
-    "title": "Fritadeira Elétrica Air Fryer Quad Fry 4,2 L,1400w Preto Elgin",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_813389-MLA99520090726_112025-F.webp",
-    "category": "eletrodomesticos",
-    "price": 189.45
-  },
-  {
-    "url": "https://link.amazon/B0erVCWRM",
-    "title": "GPU NV RTX5050 8GB BLACK GF 1-CLICK OC TECLAB LITE 128BITS GDDR6 GALAX 55NSL8MHDXRE",
-    "image": "https://m.media-amazon.com/images/I/61eOsLaJbxL._AC_SL1500_.jpg",
-    "category": "tecnologia",
-    "price": 1747.99
-  },
-  {
-    "url": "https://meli.la/2NiqMqf",
-    "title": "Furadeira de Impacto Einhell TH-ID 550/1",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_658636-MLA100057046209_122025-F.webp",
-    "category": "ferramentas",
-    "price": 80.54,
-    "coupon": "MELIOFFHOJE"
-  },
-  {
-    "url": "https://meli.la/1sX6ZKZ",
-    "title": "Clash: Creme Pré E Pós- Barba + Sabonete Em Barra 2x80g + Nécessarie",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_865863-MLA82651126484_032025-F.webp",
-    "category": "beleza",
-    "price": 153.59,
-    "coupon": "MELIOFFHOJE"
-  },
-  {
     "url": "https://meli.la/1zNqrYS",
     "title": "Mochila Masculina E Feminina Essential Cor Preto Olympikus",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_816674-MLA99451392320_112025-F.webp",
     "category": "moda",
     "price": 86.06,
     "coupon": "SEMPRENAMODA"
-  },
-  {
-    "url": "https://meli.la/1V5n4Pv",
-    "title": "Kit 5 Camisetas Básicas Masculina Dry Fit Lisa Tradicional",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_949735-MLB111598324139_052026-F.webp",
-    "category": "moda",
-    "price": 39.45
   },
   {
     "url": "https://link.amazon/B01nMBvNY",
@@ -499,35 +280,6 @@
     "image": "https://down-bs-br.img.susercontent.com/br-11134207-820lu-mptow8qv0ideee.webp",
     "category": "tecnologia",
     "price": 39.55
-  },
-  {
-    "url": "https://link.amazon/B0camMrGP",
-    "title": "Ar Condicionado Split Hi Wall Inverter LG Dual Compact +AI 18000 BTU/h Quente e Frio S3-W18KLQAL – 220 Volts",
-    "image": "https://m.media-amazon.com/images/I/41k+8htJqCL._AC_SL1000_.jpg",
-    "category": "casa",
-    "price": 3059.99
-  },
-  {
-    "url": "https://meli.la/26UMEeL",
-    "title": "Puma Challenger Extra Small S",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_709162-MLA105303984752_012026-F.webp",
-    "category": "moda",
-    "price": 151.92,
-    "coupon": "LIQUIDA"
-  },
-  {
-    "url": "https://link.amazon/B01aM8O2l",
-    "title": "Escova Secadora Agile Glossy Elgin 1300W Bivolt",
-    "image": "https://m.media-amazon.com/images/I/51p9GJlPPXL._AC_SL1000_.jpg",
-    "category": "beleza",
-    "price": 68
-  },
-  {
-    "url": "https://link.amazon/B00wFSHUj",
-    "title": "Hemmer Ketchup Tradicional Bisnaga 1kg",
-    "image": "https://m.media-amazon.com/images/I/51dHbhaKABL._AC_SL1200_.jpg",
-    "category": "alimentos",
-    "price": 13.25
   },
   {
     "url": "https://meli.la/18BojjM",
@@ -556,13 +308,6 @@
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_945071-MLB108870872879_032026-F.webp",
     "category": "casa",
     "price": 370.5
-  },
-  {
-    "url": "https://link.amazon/B02xFQQlS",
-    "title": "MODUS Garrafa Térmica Esportiva De Aço Inoxidável Com Isolamento A Vácuo De 950ML (Verde)",
-    "image": "https://m.media-amazon.com/images/I/61XlEtHpMzL._AC_SL1200_.jpg",
-    "category": "esporte",
-    "price": 63.78
   },
   {
     "url": "https://s.shopee.com.br/2g9WLRr6Gk",
@@ -614,25 +359,11 @@
     "price": 114.8
   },
   {
-    "url": "https://link.amazon/B07qke0i9",
-    "title": "Pack Cerveja Spaten, Puro Malte, 269ml, Lata - 8 Unidades",
-    "image": "https://m.media-amazon.com/images/I/512l9934dfL._AC_SL1280_.jpg",
-    "category": "alimentos",
-    "price": 25.5
-  },
-  {
     "url": "https://meli.la/2EzESXS",
     "title": "Loção Hidratante Corporal Sem Perfume, com Ceramidas Essenciais e Ácido Hialurônico, Textura Fluida CeraVe 473ml",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_841667-MLA110746696146_052026-F.webp",
     "category": "beleza",
     "price": 80.65
-  },
-  {
-    "url": "https://meli.la/2X4iASg",
-    "title": "Casal Body Splash Bold Homme E My Sweet Delight Barbour",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_975865-MLA112856649098_072026-F.webp",
-    "category": "beleza",
-    "price": 79.28
   },
   {
     "url": "https://meli.la/1MfRv7w",
@@ -656,32 +387,11 @@
     "price": 58.91
   },
   {
-    "url": "https://meli.la/2B84Pkf",
-    "title": "Impressora multifuncional cor Epson EcoTank L3250",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_812046-MLA80089681433_102024-F.webp",
-    "category": "tecnologia",
-    "price": 1099
-  },
-  {
     "url": "https://meli.la/2Sckc2K",
     "title": "Esmerilhadeira Lixadeira Angular 880w 115mm 11000rpm",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_657866-MLB91505983252_092025-F-esmerilhadeira-lixadeira-angular-880w-115mm-11000rpm.webp",
     "category": "ferramentas",
     "price": 123.49
-  },
-  {
-    "url": "https://link.amazon/B00vFBjz8",
-    "title": "BlidShop Cadeira de Escritório Ergonômica Florença, Tela Mesh Premium, Apoio Lombar Ajustável, Suporta 120kg, Altura Regulável (Preta)",
-    "image": "https://m.media-amazon.com/images/I/61bMbt9BCfL._AC_SL1024_.jpg",
-    "category": "casa",
-    "price": 331.72
-  },
-  {
-    "url": "https://link.amazon/B0eKkNLGU",
-    "title": "La Roche-Posay Cicaplast Baume B5+ Cuidado Multirreparador Calmante",
-    "image": "https://m.media-amazon.com/images/I/41LpbF-1WDL._AC_SL1080_.jpg",
-    "category": "beleza",
-    "price": 58.61
   },
   {
     "url": "https://meli.la/1ES31UP",
@@ -754,25 +464,11 @@
     "price": 46.46
   },
   {
-    "url": "https://www.amazon.com.br/Frisokar-Cadeira-Addit-Ergon%C3%B4mica/dp/B087D6TCZG?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=SAOSYZJY7TNN&dib=eyJ2IjoiMSJ9.LcIJzl9-7qiTpDoBZaE3wHXAkd0qU-uEU9jMBq11JrbknG79czd5_nh1iSEt50qgstbes3CxtGtguECvRltg7xqBDIIoNV2ygiT9ml6RlPRAzReYFP54pjSqrqoeXQ2tf9YAwPqfPcPAxvMo7HenH6ByoCoPKT_n801N0K8bTbswpn0jKjoH-jcCN2VhwVqylP07AqJLlYMNT6z9uIFxpP8HxpJ5L1eAbK6dUGXK6e_qBSgIPxx0NLomg3d8_pSfj7Rv2KzbBr87sr0rFsXMZ1vJesSbkvOlTWmcvj4jb24.9wrMp-Fnii3Crhy-Qse2XBvMQlUd6xo9_bnYHKx_Sbw&dib_tag=se&keywords=cadeira+Frisokar+Addit&qid=1781779010&sprefix=cadeira+frisokar+addit%2Caps%2C214&sr=8-5&ufe=app_do%3Aamzn1.fos.95de73c3-5dda-43a7-bd1f-63af03b14751&linkCode=ll2&tag=promopobre0d-20&linkId=f969ce16862e2742d720de91166643c0&ref_=as_li_ss_tl",
-    "title": "Cadeira para Gordo Frisokar Addit Ergonômica Moderno Encosto em Tela Angular Ajustável BackSystem Preta (Crepe e Estrutura) 110 kg",
-    "image": "https://m.media-amazon.com/images/I/31DnbJXOapL._AC_.jpg",
-    "category": "casa",
-    "price": 809.1
-  },
-  {
     "url": "https://www.amazon.com.br/Gillette-Venus-Sens%C3%ADvel-Aparelho-Recarreg%C3%A1vel/dp/B0DSLLY366?&linkCode=ll2&tag=promopobre0d-20&linkId=961400cb6fc21da86dd72d10d99e12cb&ref_=as_li_ss_tl",
     "title": "Gillette Venus Pele Sensível Aparelho de Depilar Recarregável com Aloe Vera, 1 Unidade",
     "image": "https://m.media-amazon.com/images/I/51vGW66poxL._AC_SL1200_.jpg",
     "category": "beleza",
     "price": 19.54
-  },
-  {
-    "url": "https://meli.la/17yD3aT",
-    "title": "Power Bank Pro 20000mAH ELG PB200BK, Bateria Portátil Universal, Carga Rápida, Display Indicador, Entradas Micro USB e USB-C, 2 Portas USB-A, PD+QC3.0, Preto",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_851163-MLA99453292502_112025-F.webp",
-    "category": "tecnologia",
-    "price": 106
   },
   {
     "url": "https://amzn.to/4gmCc7f",
@@ -794,13 +490,6 @@
     "image": "https://ae01.alicdn.com/kf/Sd39eda7b83f1413d9f662c272494531cP.jpg",
     "category": "tecnologia",
     "price": 277.92
-  },
-  {
-    "url": "https://meli.la/2JFMKDv",
-    "title": "Smart TV AIWA 55” Android 4K Borda Ultrafina Dolby Vision&Atmos AWS-TV-55-BL-01-A",
-    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_639637-MLA99869000423_112025-F.webp",
-    "category": "tecnologia",
-    "price": 2119
   },
   {
     "url": "https://s.shopee.com.br/3LOPg6WoOE",
@@ -850,12 +539,5 @@
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_928129-MLB107836789274_032026-F.webp",
     "category": "tecnologia",
     "price": 62
-  },
-  {
-    "url": "https://amzn.to/4eyFUJF",
-    "title": "WAP Parafusadeira Furadeira de Impacto à Bateria 3/8\" 12V WF 12K4.2 com 18 Níveis de Torque e Kit Acessórios e Maleta",
-    "image": "https://m.media-amazon.com/images/I/71Bnm202WgL._AC_SL1500_.jpg",
-    "category": "ferramentas",
-    "price": 150.44
   }
 ]
