@@ -7,13 +7,13 @@ const LINKS_FILE   = path.join(ROOT, 'links.json');
 const RASCUNHOS_FILE = path.join(ROOT, 'produtos_rascunhos.json');
 const TEMPLATE     = fs.readFileSync(path.join(__dirname, 'product-template.html'), 'utf8');
 
-// Promove produtos agendados que chegaram ao prazo
+// Promove produtos agendados cujo horario de publicacao ja chegou
 {
-  const today = new Date().toISOString().split('T')[0];
+  const now = new Date();
   let rascunhos = [];
   try { rascunhos = JSON.parse(fs.readFileSync(RASCUNHOS_FILE, 'utf8')); } catch {}
 
-  const devemPublicar = rascunhos.filter(r => r.publish_date <= today);
+  const devemPublicar = rascunhos.filter(r => new Date(r.publish_at) <= now);
   if (devemPublicar.length > 0) {
     let linksAtuais = [];
     try { linksAtuais = JSON.parse(fs.readFileSync(LINKS_FILE, 'utf8')); } catch {}
@@ -21,11 +21,11 @@ const TEMPLATE     = fs.readFileSync(path.join(__dirname, 'product-template.html
 
     for (const r of devemPublicar) {
       if (existentes.has(r.url)) continue;
-      const { publish_date, ...entry } = r;
+      const { publish_at, ...entry } = r;
       linksAtuais.unshift(entry);
     }
 
-    const restantes = rascunhos.filter(r => r.publish_date > today);
+    const restantes = rascunhos.filter(r => !(new Date(r.publish_at) <= now));
     fs.writeFileSync(LINKS_FILE, JSON.stringify(linksAtuais, null, 2) + '\n');
     fs.writeFileSync(RASCUNHOS_FILE, JSON.stringify(restantes, null, 2) + '\n');
     console.log(`Publicados automaticamente: ${devemPublicar.map(r => r.url).join(', ')}`);

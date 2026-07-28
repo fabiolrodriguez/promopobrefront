@@ -6,7 +6,7 @@ on:
     paths: ['artigos/*.md', 'links.json']
   workflow_dispatch:
   schedule:
-    - cron: '0 12 * * *'  # meio-dia UTC = 9h BRT
+    - cron: '*/10 * * * *'  # a cada 10min, para o agendador de produtos com horario
 
 concurrency:
   group: build-articles
