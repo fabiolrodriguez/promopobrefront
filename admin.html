@@ -246,6 +246,7 @@
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="produtos" onclick="setTab('produtos')">Produtos</button>
     <button class="tab-btn" data-tab="artigos" onclick="setTab('artigos')">Artigos</button>
+    <button class="tab-btn" data-tab="agendador" onclick="setTab('agendador')">Agendador</button>
   </nav>
 
   <main>
@@ -394,6 +395,23 @@
       </div>
     </div>
   </div><!-- /tab-artigos -->
+
+  <div id="tab-agendador" style="display:none">
+    <div class="card">
+      <h2>Agendar Lote de Produtos</h2>
+      <div class="form-row" style="margin-bottom:16px">
+        <div class="form-group" style="max-width:200px">
+          <label for="sched-date">Data de publicação *</label>
+          <input type="text" id="sched-date" placeholder="2026-08-01">
+        </div>
+      </div>
+      <div id="sched-rows"></div>
+      <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+        <button class="btn-ghost" id="btn-sched-row" style="border:1px dashed #d4d4d8;border-radius:6px;padding:7px 14px;color:#71717a;font-size:0.8rem;font-weight:500">+ Linha</button>
+        <button class="btn-primary" id="btn-sched-save">Agendar lote</button>
+      </div>
+    </div>
+  </div><!-- /tab-agendador -->
 
   </main>
 </div>
@@ -742,6 +760,71 @@
     }
   });
 
+  // --- Agendador ---
+
+  function addSchedRow() {
+    const row = document.createElement('div');
+    row.className = 'bulk-row';
+    row.style.cssText = 'display:flex;gap:8px;align-items:center;margin-bottom:8px';
+    row.innerHTML = `
+      <input type="url"  placeholder="URL do produto" style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <input type="text" placeholder="Titulo"         style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <input type="url"    placeholder="URL da imagem"  style="flex:2;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <input type="text" placeholder="R$ 0,00" oninput="maskPrice(this)" style="width:100px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <input type="text" placeholder="Cupom" style="width:90px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
+      <select style="flex:1;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none;background:#fff;min-width:130px">
+        <option value="">Categoria</option>
+        <option value="tecnologia">Tecnologia</option>
+        <option value="eletrodomesticos">Eletrodomésticos</option>
+        <option value="moda">Moda</option>
+        <option value="livros">Livros</option>
+        <option value="casa">Casa</option>
+        <option value="esporte">Esporte</option>
+        <option value="beleza">Beleza</option>
+        <option value="ferramentas">Ferramentas</option>
+        <option value="saude">Saúde</option>
+        <option value="alimentos">Alimentos</option>
+        <option value="outros">Outros</option>
+      </select>
+      <button class="btn-danger" onclick="this.closest('.bulk-row').remove()" style="flex-shrink:0;padding:6px 10px">×</button>
+    `;
+    $('sched-rows').appendChild(row);
+  }
+
+  for (let i = 0; i < 3; i++) addSchedRow();
+
+  $('btn-sched-row').addEventListener('click', addSchedRow);
+
+  $('btn-sched-save').addEventListener('click', async () => {
+    const publish_date = $('sched-date').value.trim();
+    const today = new Date().toISOString().split('T')[0];
+    if (!publish_date) { showMsg('Preencha a data de publicação.', 'error'); return; }
+    if (publish_date <= today) { showMsg('A data deve ser futura.', 'error'); return; }
+
+    const products = [...document.querySelectorAll('#sched-rows .bulk-row')].map(row => {
+      const [url, title, image, priceStr, couponStr] = [...row.querySelectorAll('input')].map(i => i.value.trim());
+      const category = row.querySelector('select')?.value || '';
+      const price    = parsePrice(priceStr);
+      const coupon   = couponStr || null;
+      return { url, title, image, category, ...(price && { price }), ...(coupon && { coupon }) };
+    }).filter(p => p.url && p.title && p.image);
+
+    if (products.length === 0) { showMsg('Preencha pelo menos uma linha completa.', 'error'); return; }
+
+    $('btn-sched-save').disabled = true;
+    try {
+      const result = await api('/products/agendados', 'POST', { publish_date, products });
+      const msg = `${result.scheduled} produto(s) agendado(s) para ${publish_date}${result.skipped ? `, ${result.skipped} ignorado(s) (ja existe ou ja agendado)` : ''}`;
+      showMsg(msg);
+      document.querySelectorAll('#sched-rows input').forEach(i => i.value = '');
+      document.querySelectorAll('#sched-rows select').forEach(s => s.value = '');
+    } catch (e) {
+      showMsg(e.message, 'error');
+    } finally {
+      $('btn-sched-save').disabled = false;
+    }
+  });
+
   // --- Login ---
 
   $('btn-login').addEventListener('click', async () => {
@@ -795,8 +878,9 @@
 
   function setTab(tab) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-    $('tab-produtos').style.display = tab === 'produtos' ? '' : 'none';
-    $('tab-artigos').style.display  = tab === 'artigos'  ? '' : 'none';
+    $('tab-produtos').style.display  = tab === 'produtos'  ? '' : 'none';
+    $('tab-artigos').style.display   = tab === 'artigos'   ? '' : 'none';
+    $('tab-agendador').style.display = tab === 'agendador' ? '' : 'none';
     if (tab === 'artigos' && !articlesLoaded) {
       loadArticles();
       loadScheduled();

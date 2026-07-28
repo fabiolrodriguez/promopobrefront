@@ -4,7 +4,33 @@ const path = require('path');
 const ROOT         = path.join(__dirname, '..');
 const PRODUTOS_DIR = path.join(ROOT, 'produtos');
 const LINKS_FILE   = path.join(ROOT, 'links.json');
+const RASCUNHOS_FILE = path.join(ROOT, 'produtos_rascunhos.json');
 const TEMPLATE     = fs.readFileSync(path.join(__dirname, 'product-template.html'), 'utf8');
+
+// Promove produtos agendados que chegaram ao prazo
+{
+  const today = new Date().toISOString().split('T')[0];
+  let rascunhos = [];
+  try { rascunhos = JSON.parse(fs.readFileSync(RASCUNHOS_FILE, 'utf8')); } catch {}
+
+  const devemPublicar = rascunhos.filter(r => r.publish_date <= today);
+  if (devemPublicar.length > 0) {
+    let linksAtuais = [];
+    try { linksAtuais = JSON.parse(fs.readFileSync(LINKS_FILE, 'utf8')); } catch {}
+    const existentes = new Set(linksAtuais.map(l => typeof l === 'string' ? l : l.url));
+
+    for (const r of devemPublicar) {
+      if (existentes.has(r.url)) continue;
+      const { publish_date, ...entry } = r;
+      linksAtuais.unshift(entry);
+    }
+
+    const restantes = rascunhos.filter(r => r.publish_date > today);
+    fs.writeFileSync(LINKS_FILE, JSON.stringify(linksAtuais, null, 2) + '\n');
+    fs.writeFileSync(RASCUNHOS_FILE, JSON.stringify(restantes, null, 2) + '\n');
+    console.log(`Publicados automaticamente: ${devemPublicar.map(r => r.url).join(', ')}`);
+  }
+}
 
 let articles = [];
 try { articles = JSON.parse(fs.readFileSync(path.join(ROOT, 'artigos.json'), 'utf8')); } catch {}
