@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'links.json'
+  workflow_dispatch:
 
 jobs:
   notify:
