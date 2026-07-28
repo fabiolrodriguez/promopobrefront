@@ -19,16 +19,22 @@ const TEMPLATE     = fs.readFileSync(path.join(__dirname, 'product-template.html
     try { linksAtuais = JSON.parse(fs.readFileSync(LINKS_FILE, 'utf8')); } catch {}
     const existentes = new Set(linksAtuais.map(l => typeof l === 'string' ? l : l.url));
 
+    let adicionados = 0;
     for (const r of devemPublicar) {
       if (existentes.has(r.url)) continue;
       const { publish_at, ...entry } = r;
       linksAtuais.unshift(entry);
+      adicionados++;
     }
 
     const restantes = rascunhos.filter(r => !(new Date(r.publish_at) <= now));
     fs.writeFileSync(LINKS_FILE, JSON.stringify(linksAtuais, null, 2) + '\n');
     fs.writeFileSync(RASCUNHOS_FILE, JSON.stringify(restantes, null, 2) + '\n');
     console.log(`Publicados automaticamente: ${devemPublicar.map(r => r.url).join(', ')}`);
+
+    if (adicionados > 0 && process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, 'promoted=true\n');
+    }
   }
 }
 

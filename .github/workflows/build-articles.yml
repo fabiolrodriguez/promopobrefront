@@ -37,7 +37,9 @@ jobs:
 
       - run: node scripts/expire-links.js
 
-      - run: node scripts/build-products.js
+      - name: Build products
+        id: build_products
+        run: node scripts/build-products.js
 
       - run: node scripts/build-articles.js
 
@@ -47,3 +49,13 @@ jobs:
           git diff --staged --quiet || git commit -m "build: gera artigos e sitemap [skip ci]"
           git pull --rebase origin main
           git push
+
+      - name: Notifica produtos agendados publicados
+        if: steps.build_products.outputs.promoted == 'true'
+        env:
+          WEBHOOK_URL: ${{ secrets.N8N_WEBHOOK_URL }}
+        run: |
+          CLEAN_URL=$(echo "$WEBHOOK_URL" | tr -d '[:space:]')
+          curl -s -f -X POST "$CLEAN_URL" \
+            -H "Content-Type: application/json" \
+            -d '{"event":"links_updated","author":"github-actions[bot]","commit":"${{ github.sha }}","raw_url":"https://raw.githubusercontent.com/${{ github.repository }}/main/links.json"}'
