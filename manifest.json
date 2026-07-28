@@ -1,0 +1,17 @@
+{
+  "name": "Promopobre - Ofertas e Descontos",
+  "short_name": "Promopobre",
+  "description": "As melhores ofertas e descontos do dia em eletrônicos, smartphones, notebooks e muito mais.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F4F4F0",
+  "theme_color": "#0C0C0E",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
