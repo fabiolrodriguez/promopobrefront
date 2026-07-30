@@ -283,16 +283,18 @@
           <label for="f-cat">Categoria</label>
           <select id="f-cat">
             <option value="">Selecionar...</option>
-            <option value="tecnologia">Tecnologia</option>
-            <option value="eletrodomesticos">Eletrodomésticos</option>
-            <option value="moda">Moda</option>
-            <option value="livros">Livros</option>
-            <option value="casa">Casa</option>
-            <option value="esporte">Esporte</option>
-            <option value="beleza">Beleza</option>
-            <option value="ferramentas">Ferramentas</option>
-            <option value="saude">Saúde</option>
             <option value="alimentos">Alimentos</option>
+            <option value="autos">Autos</option>
+            <option value="beleza">Beleza</option>
+            <option value="brinquedos">Brinquedos</option>
+            <option value="casa">Casa</option>
+            <option value="eletrodomesticos">Eletrodomésticos</option>
+            <option value="esporte">Esporte</option>
+            <option value="ferramentas">Ferramentas</option>
+            <option value="livros">Livros</option>
+            <option value="moda">Moda</option>
+            <option value="saude">Saúde</option>
+            <option value="tecnologia">Tecnologia</option>
             <option value="outros">Outros</option>
           </select>
         </div>
@@ -319,16 +321,18 @@
         <span id="sel-count" style="font-size:0.85rem;color:#52525b;flex:1"></span>
         <select id="bulk-cat-select" style="border:1px solid #d4d4d8;border-radius:6px;padding:5px 10px;font-size:0.8rem;background:#fff;outline:none">
           <option value="">Categoria...</option>
-          <option value="tecnologia">Tecnologia</option>
-          <option value="eletrodomesticos">Eletrodomésticos</option>
-          <option value="moda">Moda</option>
-          <option value="livros">Livros</option>
-          <option value="casa">Casa</option>
-          <option value="esporte">Esporte</option>
-          <option value="beleza">Beleza</option>
-          <option value="ferramentas">Ferramentas</option>
-          <option value="saude">Saúde</option>
           <option value="alimentos">Alimentos</option>
+          <option value="autos">Autos</option>
+          <option value="beleza">Beleza</option>
+          <option value="brinquedos">Brinquedos</option>
+          <option value="casa">Casa</option>
+          <option value="eletrodomesticos">Eletrodomésticos</option>
+          <option value="esporte">Esporte</option>
+          <option value="ferramentas">Ferramentas</option>
+          <option value="livros">Livros</option>
+          <option value="moda">Moda</option>
+          <option value="saude">Saúde</option>
+          <option value="tecnologia">Tecnologia</option>
           <option value="outros">Outros</option>
         </select>
         <button class="btn-primary" id="btn-bulk-cat" onclick="bulkUpdateCategory()" style="padding:5px 12px;font-size:0.8rem">Aplicar categoria</button>
@@ -596,10 +600,10 @@
   }
 
   const CAT_OPTIONS = [
-    ['', 'Selecionar...'], ['tecnologia','Tecnologia'], ['eletrodomesticos','Eletrodomésticos'],
-    ['moda','Moda'], ['livros','Livros'], ['casa','Casa'], ['esporte','Esporte'],
-    ['beleza','Beleza'], ['ferramentas','Ferramentas'], ['saude','Saúde'],
-    ['alimentos','Alimentos'], ['outros','Outros']
+    ['', 'Selecionar...'], ['alimentos','Alimentos'], ['autos','Autos'], ['beleza','Beleza'],
+    ['brinquedos','Brinquedos'], ['casa','Casa'], ['eletrodomesticos','Eletrodomésticos'],
+    ['esporte','Esporte'], ['ferramentas','Ferramentas'], ['livros','Livros'], ['moda','Moda'],
+    ['saude','Saúde'], ['tecnologia','Tecnologia'], ['outros','Outros']
   ];
 
   function editProduct(encodedUrl) {
@@ -718,16 +722,18 @@
       <input type="text" placeholder="Cupom" style="width:90px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
       <select style="flex:1;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none;background:#fff;min-width:130px">
         <option value="">Categoria</option>
-        <option value="tecnologia">Tecnologia</option>
-        <option value="eletrodomesticos">Eletrodomésticos</option>
-        <option value="moda">Moda</option>
-        <option value="livros">Livros</option>
-        <option value="casa">Casa</option>
-        <option value="esporte">Esporte</option>
-        <option value="beleza">Beleza</option>
-        <option value="ferramentas">Ferramentas</option>
-        <option value="saude">Saúde</option>
         <option value="alimentos">Alimentos</option>
+        <option value="autos">Autos</option>
+        <option value="beleza">Beleza</option>
+        <option value="brinquedos">Brinquedos</option>
+        <option value="casa">Casa</option>
+        <option value="eletrodomesticos">Eletrodomésticos</option>
+        <option value="esporte">Esporte</option>
+        <option value="ferramentas">Ferramentas</option>
+        <option value="livros">Livros</option>
+        <option value="moda">Moda</option>
+        <option value="saude">Saúde</option>
+        <option value="tecnologia">Tecnologia</option>
         <option value="outros">Outros</option>
       </select>
       <button class="btn-danger" onclick="this.closest('.bulk-row').remove()" style="flex-shrink:0;padding:6px 10px">×</button>
@@ -778,16 +784,18 @@
       <input type="text" placeholder="Cupom" style="width:90px;flex-shrink:0;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none">
       <select style="flex:1;border:1px solid #d4d4d8;border-radius:6px;padding:8px 10px;font-size:0.85rem;outline:none;background:#fff;min-width:130px">
         <option value="">Categoria</option>
-        <option value="tecnologia">Tecnologia</option>
-        <option value="eletrodomesticos">Eletrodomésticos</option>
-        <option value="moda">Moda</option>
-        <option value="livros">Livros</option>
-        <option value="casa">Casa</option>
-        <option value="esporte">Esporte</option>
-        <option value="beleza">Beleza</option>
-        <option value="ferramentas">Ferramentas</option>
-        <option value="saude">Saúde</option>
         <option value="alimentos">Alimentos</option>
+        <option value="autos">Autos</option>
+        <option value="beleza">Beleza</option>
+        <option value="brinquedos">Brinquedos</option>
+        <option value="casa">Casa</option>
+        <option value="eletrodomesticos">Eletrodomésticos</option>
+        <option value="esporte">Esporte</option>
+        <option value="ferramentas">Ferramentas</option>
+        <option value="livros">Livros</option>
+        <option value="moda">Moda</option>
+        <option value="saude">Saúde</option>
+        <option value="tecnologia">Tecnologia</option>
         <option value="outros">Outros</option>
       </select>
       <button class="btn-danger" onclick="this.closest('.bulk-row').remove()" style="flex-shrink:0;padding:6px 10px">×</button>
