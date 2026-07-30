@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "url": "https://link.amazon/B0bcTQh1t",
+    "title": "Whisky Buchanan's Deluxe 12 Anos 1L",
+    "image": "https://m.media-amazon.com/images/I/518U+8v+f4L._AC_SL1000_.jpg",
+    "publish_at": "2026-07-30T12:15:00-03:00",
+    "category": "alimentos",
+    "price": 134.9
+  },
+  {
+    "url": "https://link.amazon/B07fHwVO8",
+    "title": "Nautica Perfume Voyage Eau de Toilette Masculino 100ml",
+    "image": "https://m.media-amazon.com/images/I/41bYQcKYVzL._AC_SL1000_.jpg",
+    "publish_at": "2026-07-30T12:15:00-03:00",
+    "category": "beleza",
+    "price": 75.82
+  },
+  {
+    "url": "https://s.shopee.com.br/1BL9jD7XHg",
+    "title": "Eudora Siàge Pro Cronology (4 itens)",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-mcb860z8fk682c.webp",
+    "publish_at": "2026-07-30T12:15:00-03:00",
+    "category": "beleza",
+    "price": 69.99
+  }
+]
