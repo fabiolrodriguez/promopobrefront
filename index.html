@@ -42,6 +42,8 @@
       gap: 1.25rem;
     }
 
+    #load-sentinel { grid-column: 1 / -1; height: 1px; }
+
     .card {
       background: var(--card);
       border-radius: 14px;
@@ -316,7 +318,8 @@
 </main>
 
 <script>
-  const CACHE_TTL = 24 * 60 * 60 * 1000;
+  const CACHE_TTL  = 24 * 60 * 60 * 1000;
+  const BATCH_SIZE = 50; // quantos cards renderizar por vez (inicial + a cada scroll)
 
   // ── Utilitários ──────────────────────────────────────────────
 
@@ -450,8 +453,12 @@
 
   function filtrar(q) {
     searchQuery = q.toLowerCase().trim();
+    // Busca/filtro precisa enxergar tudo, entao força o carregamento do restante
+    if (searchQuery || activeCategory !== 'tudo') carregarRestante();
+
     let visiveis = 0;
     Array.from(document.getElementById('grid').children).forEach(el => {
+      if (el.id === 'load-sentinel') return;
       const titulo  = el.querySelector('.card-title')?.textContent?.toLowerCase() || '';
       const loja    = el.querySelector('.card-source')?.textContent?.toLowerCase() || '';
       const cat     = el.dataset.category || '';
@@ -488,6 +495,73 @@
     });
   });
 
+  // ── Resolve um link manual em HTML de card ──────────────────────
+  // So consulta o microlink se title/image nao vieram prontos do admin
+  // (evita 100+ chamadas desnecessarias a uma API com limite baixo)
+
+  async function resolveLinkCard({ url, image, title, description, price, category, coupon, obs }) {
+    let data = null;
+    if (!title || !image) {
+      try { data = await fetchPreview(url); } catch {}
+    }
+
+    if (image)       data = { ...data, image: { url: image } };
+    if (title)       data = { ...data, title };
+    if (description) data = { ...data, description };
+
+    return renderCard({
+      titulo:   data?.title || titleFromSlug(url) || hostname(url),
+      link:     url,
+      imagem:   data?.image?.url || '',
+      loja:     hostname(url),
+      desc:     data?.description || '',
+      preco:    price ?? null,
+      category,
+      coupon:   coupon || null,
+      obs:      obs    || null,
+      slug:     toSlug(title || titleFromSlug(url) || hostname(url)),
+    });
+  }
+
+  // ── Carregamento em lotes (scroll infinito) ─────────────────────
+
+  let queue         = [];
+  let renderedCount = 0;
+  let loadObserver  = null;
+  let carregando    = false;
+
+  async function renderBatch(qtd) {
+    if (carregando) return;
+    const start = renderedCount;
+    const slice = queue.slice(start, start + qtd);
+    if (!slice.length) return;
+
+    carregando = true;
+    renderedCount += slice.length;
+
+    const sentinel = document.getElementById('load-sentinel');
+    sentinel.insertAdjacentHTML('beforebegin', slice.map((item, i) =>
+      `<div id="item-${start + i}" data-category="${item.category}">${skeletonHTML()}</div>`
+    ).join(''));
+
+    await Promise.all(slice.map(async (item, i) => {
+      const el = document.getElementById(`item-${start + i}`);
+      try { el.innerHTML = await item.resolve(); }
+      catch { el.remove(); }
+      if (searchQuery || activeCategory !== 'tudo') filtrar(searchQuery);
+    }));
+
+    if (renderedCount >= queue.length) {
+      if (loadObserver) { loadObserver.disconnect(); loadObserver = null; }
+      sentinel.remove();
+    }
+    carregando = false;
+  }
+
+  function carregarRestante() {
+    if (renderedCount < queue.length) renderBatch(queue.length - renderedCount);
+  }
+
   // ── Init ─────────────────────────────────────────────────────
 
   async function init() {
@@ -508,46 +582,22 @@
       return;
     }
 
-    // Produtos do sync (dados completos): renderiza imediatamente
-    // Links manuais: renderiza skeleton enquanto busca microlink
-    grid.innerHTML =
-      produtos.map(p => renderCard(p)).join('') +
-      links.map((link, i) => `<div id="l${i}" data-category="${link.category || ''}">${skeletonHTML()}</div>`).join('');
+    queue = [
+      ...produtos.map(p => ({ category: p.category || '', resolve: async () => renderCard(p) })),
+      ...links.map(link => ({ category: link.category || '', resolve: () => resolveLinkCard(link) })),
+    ];
 
+    grid.innerHTML = '<div id="load-sentinel"></div>';
     status.textContent = 'Carregando...';
 
-    // Resolve previews dos links manuais
-    let resolvidos = 0;
-    await Promise.all(links.map(async ({ url, image, title, description, price, category, coupon, obs }, i) => {
-      let data = null;
-      try { data = await fetchPreview(url); } catch {}
+    await renderBatch(BATCH_SIZE);
+    status.textContent = `${total} oferta${total !== 1 ? 's' : ''} encontrada${total !== 1 ? 's' : ''}`;
 
-      if (image)       data = { ...data, image: { url: image } };
-      if (title)       data = { ...data, title };
-      if (description) data = { ...data, description };
-
-      document.getElementById(`l${i}`).innerHTML = renderCard({
-        titulo:   data?.title || titleFromSlug(url) || hostname(url),
-        link:     url,
-        imagem:   data?.image?.url || '',
-        loja:     hostname(url),
-        desc:     data?.description || '',
-        preco:    price ?? null,
-        category,
-        coupon:   coupon || null,
-        obs:      obs    || null,
-        slug:     toSlug(title || titleFromSlug(url) || hostname(url)),
-      });
-
-      if (searchQuery) filtrar(searchQuery);
-      resolvidos++;
-      if (resolvidos === links.length) {
-        status.textContent = `${total} oferta${total !== 1 ? 's' : ''} encontrada${total !== 1 ? 's' : ''}`;
-      }
-    }));
-
-    if (!links.length) {
-      status.textContent = `${total} oferta${total !== 1 ? 's' : ''} encontrada${total !== 1 ? 's' : ''}`;
+    if (renderedCount < queue.length) {
+      loadObserver = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) renderBatch(BATCH_SIZE);
+      }, { rootMargin: '600px' });
+      loadObserver.observe(document.getElementById('load-sentinel'));
     }
 
     injectStructuredData(produtos);
