@@ -1,5 +1,33 @@
 [
   {
+    "url": "https://link.amazon/B06tXspuz",
+    "title": "Vodka Smirnoff 1750ml",
+    "image": "https://m.media-amazon.com/images/I/61eKjqsar-L._AC_SX522_.jpg",
+    "category": "alimentos",
+    "price": 39.8
+  },
+  {
+    "url": "https://link.amazon/B02xNbSjl",
+    "title": "I2GO, Fone De Ouvido, TWS, Bluetooth, 20 Horas totais de Bateria, ENC, Air Sound Go 2.0, Branco, i2GO PRO",
+    "image": "https://m.media-amazon.com/images/I/41MLs8bCUFL._AC_SL1200_.jpg",
+    "category": "tecnologia",
+    "price": 83
+  },
+  {
+    "url": "https://link.amazon/B03IS4ohF",
+    "title": "Amazfit Active Max 1.5\" AMOLED Display, GPS, 4GB de armazenamento, 170 Sport, 5 caixadores eletrônicos,Bateria de 25 dias",
+    "image": "https://m.media-amazon.com/images/I/61EO8bGs2DL._AC_SL1500_.jpg",
+    "category": "esporte",
+    "price": 791.2
+  },
+  {
+    "url": "https://meli.la/25WFx4a",
+    "title": "Daily T-shirt Insider",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_797665-MLB110465387511_042026-F-daily-t-shirt-insider.webp",
+    "category": "moda",
+    "price": 69
+  },
+  {
     "url": "https://meli.la/1Fg8ktL",
     "title": "Cadeira Escritório Ergonômica Genebra B500 Luvinco Cor Preto Com Suporte Lombar Estofado Mesh",
     "image": "https://http2.mlstatic.com/D_NQ_NP_2X_764756-MLA96570589252_112025-F.webp",
