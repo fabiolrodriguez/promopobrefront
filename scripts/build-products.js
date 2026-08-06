@@ -22,7 +22,9 @@ const TEMPLATE     = fs.readFileSync(path.join(__dirname, 'product-template.html
     let adicionados = 0;
     for (const r of devemPublicar) {
       if (existentes.has(r.url)) continue;
-      const { publish_at, ...entry } = r;
+      const { publish_at, coupon_ttl_ms, ...entry } = r;
+      // Prazo do cupom conta a partir da publicacao de verdade, nao do agendamento
+      if (coupon_ttl_ms) entry.expires_at = now.getTime() + coupon_ttl_ms;
       linksAtuais.unshift(entry);
       adicionados++;
     }
