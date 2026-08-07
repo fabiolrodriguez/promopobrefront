@@ -22,5 +22,37 @@
     "publish_at": "2026-08-08T10:00:00-03:00",
     "category": "moda",
     "price": 73.71
+  },
+  {
+    "url": "https://s.shopee.com.br/9Kh4iDgU2C",
+    "title": "Inox Torneira Prata/Preto Com Chuveiro Com Rotação De 360° Cozinha Luxo Parede Promoção",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-820l4-mnjsggi53abk16.webp",
+    "publish_at": "2026-08-08T13:30:00-03:00",
+    "category": "casa",
+    "price": 24.99
+  },
+  {
+    "url": "https://s.shopee.com.br/20uTymgn3N",
+    "title": "1,2,3,4,6 Canetas Marcadoras Permanente Ponta Longa 20mm Para Madeira , Cerâmica E Construção",
+    "image": "https://down-bs-br.img.susercontent.com/sg-11134201-8261p-mk3wm5kxc5j852.webp",
+    "publish_at": "2026-08-08T13:30:00-03:00",
+    "category": "brinquedos",
+    "price": 4.99
+  },
+  {
+    "url": "https://s.shopee.com.br/9fJv6wGFZi",
+    "title": "Kit Jogo De Ferramentas 240 Peças Mulituso Soquetes Chave Catraca Reversível Semiprofissional",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-7r98o-m8w6za34a4g291.webp",
+    "publish_at": "2026-08-08T13:30:00-03:00",
+    "category": "ferramentas",
+    "price": 124.99
+  },
+  {
+    "url": "https://s.shopee.com.br/4qEfM5lBBH",
+    "title": "Air31 Sem Fio Bluetooth Fone De Ouvido Binaural Pequeno No Fones Esportes Estéreo Baixo Mais Novos Transparente",
+    "image": "https://down-bs-br.img.susercontent.com/sg-11134301-7rasp-mav9e43mrfp91a.webp",
+    "publish_at": "2026-08-08T13:30:00-03:00",
+    "category": "tecnologia",
+    "price": 16.83
   }
 ]
