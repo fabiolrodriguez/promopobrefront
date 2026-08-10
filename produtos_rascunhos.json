@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "url": "https://s.shopee.com.br/4qEjY4CCH2",
+    "title": "40 Peças / 46 Peças Jogo De Chave Catraca Caixa De Ferramentas para Reparo de Carros / Conjuntos de Chaves",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-820l9-mqt86n8incape7.webp",
+    "publish_at": "2026-08-10T12:00:00-03:00",
+    "category": "ferramentas",
+    "price": 28.99
+  },
+  {
+    "url": "https://s.shopee.com.br/AKZg6H6ZVd",
+    "title": "Carregador Portátil Mini Power Bank 10000mAh Com 02 Saídas Tipo-C / Lightning",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-81z1k-mf41ipxjrwg70d.webp",
+    "publish_at": "2026-08-10T12:00:00-03:00",
+    "category": "tecnologia",
+    "price": 31.99
+  },
+  {
+    "url": "https://s.shopee.com.br/1BLRBTVO87",
+    "title": "Ring Light Iluminador 10 Polegadas Com Tripé De 2.10 Metro MarisaStore",
+    "image": "https://down-bs-br.img.susercontent.com/sg-11134201-824i4-menfo9q4o93926.webp",
+    "publish_at": "2026-08-10T12:00:00-03:00",
+    "category": "tecnologia",
+    "price": 40.99
+  }
+]
