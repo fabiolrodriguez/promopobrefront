@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "url": "https://s.shopee.com.br/2VrB2JjNrE",
+    "title": "Oferta Tênis Shark Unissex Sem bico de pato Envio Rápido Academia",
+    "image": "https://down-bs-br.img.susercontent.com/sg-11134201-8262q-mjiwj000shky87.webp",
+    "publish_at": "2026-08-24T12:00:00-03:00",
+    "category": "moda",
+    "price": 129.74
+  },
+  {
+    "url": "https://s.shopee.com.br/9AO4ycjBuB",
+    "title": "Rede Cadeira de teto suspensa Descanso e Balanço reforçada grande",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-820l9-mq6hiay76m0y13.webp",
+    "publish_at": "2026-08-24T12:00:00-03:00",
+    "category": "casa",
+    "price": 94.99
+  },
+  {
+    "url": "https://s.shopee.com.br/8V8OBTNZb1",
+    "title": "Kit Queijo Provolone Canastra 3 Sabores + Salame Peso total 700 ou 530 gramas Serra da Canastra",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-820mh-mr4rtixh2jgk61.webp",
+    "publish_at": "2026-08-24T12:00:00-03:00",
+    "category": "alimentos",
+    "price": 55
+  }
+]
