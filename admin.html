@@ -449,6 +449,19 @@
     if (num == null) return '';
     return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
+
+  function isValidUrl(str) {
+    if (typeof str !== 'string') return false;
+    const s = str.trim();
+    if (!/^https:\/\//i.test(s)) return false;
+    if (/^https:\/\/\//i.test(s)) return false; // "https:///..." tem host vazio/invalido
+    let u;
+    try { u = new URL(s); } catch { return false; }
+    if (!u.hostname || !u.hostname.includes('.')) return false;
+    if (u.hostname.split('.').some(part => part.length === 0)) return false;
+    return true;
+  }
+
   let allProducts = [];
   let selectedUrls = new Set();
 
@@ -644,6 +657,7 @@
     const price    = parsePrice(priceInput.value);
     const coupon   = couponInput.value.trim() || null;
     const obs      = obsInput.value.trim()    || null;
+    if (!isValidUrl(image)) { showMsg('URL da imagem inválida. Deve começar com https://', 'error'); return; }
     btn.disabled   = true;
     try {
       await api('/products', 'PUT', { url, title, image, category, price, coupon, obs });
@@ -689,6 +703,8 @@
     const title = $('f-title').value.trim();
     const image = $('f-image').value.trim();
     if (!url || !title || !image) { showMsg('Preencha todos os campos.', 'error'); return; }
+    if (!isValidUrl(url))   { showMsg('URL do produto inválida. Deve começar com https://', 'error'); return; }
+    if (!isValidUrl(image)) { showMsg('URL da imagem inválida. Deve começar com https://', 'error'); return; }
 
     $('btn-add').disabled = true;
     try {
@@ -755,6 +771,9 @@
     }).filter(p => p.url && p.title && p.image);
 
     if (products.length === 0) { showMsg('Preencha pelo menos uma linha completa.', 'error'); return; }
+
+    const invalido = products.find(p => !isValidUrl(p.url) || !isValidUrl(p.image));
+    if (invalido) { showMsg(`URL inválida em "${invalido.title}". As URLs devem começar com https://`, 'error'); return; }
 
     $('btn-bulk-save').disabled = true;
     try {
@@ -826,6 +845,9 @@
     }).filter(p => p.url && p.title && p.image);
 
     if (products.length === 0) { showMsg('Preencha pelo menos uma linha completa.', 'error'); return; }
+
+    const invalido = products.find(p => !isValidUrl(p.url) || !isValidUrl(p.image));
+    if (invalido) { showMsg(`URL inválida em "${invalido.title}". As URLs devem começar com https://`, 'error'); return; }
 
     $('btn-sched-save').disabled = true;
     try {
@@ -1015,7 +1037,9 @@
     const slug    = $('a-slug').value.trim();
     const title   = $('a-title').value.trim();
     const content = easyMDE ? easyMDE.value().trim() : '';
+    const image   = $('a-image').value.trim();
     if (!slug || !title || !content) { showMsg('Slug, título e conteúdo são obrigatórios.', 'error'); return; }
+    if (image && !isValidUrl(image)) { showMsg('URL da imagem de capa inválida. Deve começar com https://', 'error'); return; }
 
     $('btn-save-article').disabled = true;
     $('btn-schedule-article').disabled = true;
@@ -1024,7 +1048,7 @@
         slug, title,
         description:  $('a-desc').value.trim(),
         publish_date: publishDate,
-        image:        $('a-image').value.trim(),
+        image,
         content
       });
       showMsg(result.scheduled ? `Agendado para ${publishDate}.` : 'Publicado! O HTML será gerado em instantes.');
