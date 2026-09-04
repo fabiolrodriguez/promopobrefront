@@ -23,6 +23,7 @@ const TEMPLATE     = fs.readFileSync(path.join(__dirname, 'product-template.html
     for (const r of devemPublicar) {
       if (existentes.has(r.url)) continue;
       const { publish_at, coupon_ttl_ms, ...entry } = r;
+      entry.added_at = now.getTime();
       // Prazo do cupom conta a partir da publicacao de verdade, nao do agendamento
       if (coupon_ttl_ms) entry.expires_at = now.getTime() + coupon_ttl_ms;
       linksAtuais.unshift(entry);
