@@ -257,7 +257,11 @@
       <div class="form-row">
         <div class="form-group">
           <label for="f-url">URL do produto *</label>
-          <input type="url" id="f-url" placeholder="https://amzn.to/...">
+          <div style="display:flex;gap:6px">
+            <input type="url" id="f-url" placeholder="https://amzn.to/..." style="flex:1">
+            <button type="button" id="btn-lookup" onclick="lookupProduct()" title="Preencher titulo/imagem/preco automaticamente (Shopee)"
+              style="flex-shrink:0;border:1px dashed #d4d4d8;border-radius:6px;padding:0 12px;color:#71717a;font-size:0.8rem;font-weight:500">Buscar dados</button>
+          </div>
         </div>
         <div class="form-group">
           <label for="f-title">Titulo *</label>
@@ -528,6 +532,24 @@
     } catch (e) {
       showMsg(e.message, 'error');
       $('btn-bulk-delete').disabled = false;
+    }
+  }
+
+  async function lookupProduct() {
+    const url = $('f-url').value.trim();
+    if (!url) { showMsg('Cole a URL do produto primeiro.', 'error'); return; }
+    const btn = $('btn-lookup');
+    btn.disabled = true;
+    try {
+      const data = await api('/products/lookup?url=' + encodeURIComponent(url));
+      if (data.title) $('f-title').value = data.title;
+      if (data.image) $('f-image').value = data.image;
+      if (data.price != null) $('f-price').value = formatPrice(data.price);
+      showMsg('Dados preenchidos, confira antes de salvar.');
+    } catch (e) {
+      showMsg(e.message, 'error');
+    } finally {
+      btn.disabled = false;
     }
   }
 
