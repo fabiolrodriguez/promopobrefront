@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "url": "https://s.shopee.com.br/30oByOtAcm",
+    "title": "Maquina De Barbear e Aparador Pelos Elétrico 3 Em 1",
+    "image": "https://down-bs-br.img.susercontent.com/04527aa2d9d6a2e8d2b68d715f079947.webp",
+    "publish_at": "2026-09-22T12:00:00-03:00",
+    "category": "beleza",
+    "price": 48.47
+  },
+  {
+    "url": "https://s.shopee.com.br/6L4dwZb4hr",
+    "title": "Fone de Ouvido Bluetooth 5.4 Sem Fio TWS Quatro Fones Display LED Redução Ruído Esportivo Pronta Entrega-B3",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-820ma-mokjobm8o5xfc1.webp",
+    "publish_at": "2026-09-22T12:00:00-03:00",
+    "category": "tecnologia",
+    "price": 64.99
+  },
+  {
+    "url": "https://s.shopee.com.br/3qNIy2Vdij",
+    "title": "Cera Carnaúba Automotiva Renove 120g - Brilho Profundo, Toque Liso e Repelência à Água",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-820m6-mptqynqdmsqre1.webp",
+    "publish_at": "2026-09-22T12:00:00-03:00",
+    "category": "autos",
+    "price": 17.99
+  }
+]
