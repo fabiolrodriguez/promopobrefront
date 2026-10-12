@@ -1,5 +1,37 @@
 [
   {
+    "url": "https://link.amazon/B066D4r1p",
+    "title": "Hemmer Ketchup Tradicional Bisnaga 1kg",
+    "image": "https://m.media-amazon.com/images/I/51dHbhaKABL._AC_SL1200_.jpg",
+    "added_at": 1791801701295,
+    "category": "alimentos",
+    "price": 15.43
+  },
+  {
+    "url": "https://meli.la/1pSJvjz",
+    "title": "Carrinho Controle Remoto Recarregável Grande Off Road Cross Preto",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_733838-MLA108481965898_032026-F.webp",
+    "added_at": 1791801701295,
+    "category": "brinquedos",
+    "price": 94.9
+  },
+  {
+    "url": "https://meli.la/1VDxEAR",
+    "title": "Lava Roupas Líquido Omo Lavanderia Profissional Lavagem 7 L",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_685429-MLA116551180045_082026-F.webp",
+    "added_at": 1791801701295,
+    "category": "casa",
+    "price": 69.06
+  },
+  {
+    "url": "https://s.shopee.com.br/4qGLtFJ6TZ",
+    "title": "Panela Pipoqueira Alumínio Color N°20 4 Litros Com Tampa de Vidro (pipoqueira panela)",
+    "image": "https://down-bs-br.img.susercontent.com/br-11134207-820mg-mlm84xzfjsw5b3.webp",
+    "added_at": 1791801701295,
+    "category": "casa",
+    "price": 55.99
+  },
+  {
     "url": "https://link.amazon/B03o2CEeC",
     "title": "WD-40 Fórmula Original - Produto Multiusos Aerossol 300ml, 200g - Desengripa, lubrifica e protege contra ferrugem",
     "image": "https://m.media-amazon.com/images/I/514x2w0chDL._AC_SL1000_.jpg",
