@@ -555,6 +555,40 @@
 
   function getToken() { return sessionStorage.getItem('admin_token'); }
 
+  // Segundos ate o token vencer (le o exp do JWT; quem valida a assinatura e o worker)
+  function tokenSecondsLeft() {
+    const t = getToken();
+    if (!t) return 0;
+    try { return JSON.parse(atob(t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))).exp - Date.now() / 1000; }
+    catch { return 0; }
+  }
+
+  const SESSION_EXPIRED = 'Sessão expirou. Entre de novo: o que você preencheu continua aqui.';
+  let expiryWarned = false;
+
+  // Sessao vencida: mostra o login por cima do admin, sem limpar os formularios preenchidos
+  function sessionExpired() {
+    sessionStorage.removeItem('admin_token');
+    $('admin-view').style.display = 'none';
+    $('login-view').style.display = 'flex';
+    $('password').value = '';
+    showMsg(SESSION_EXPIRED, 'error');
+    $('password').focus();
+  }
+
+  // Confere a sessao a cada minuto e quando a aba volta a ficar visivel; avisa 15 min antes de vencer
+  function checkSession() {
+    if ($('admin-view').style.display !== 'block') return;
+    const left = tokenSecondsLeft();
+    if (left <= 0) return sessionExpired();
+    if (left < 15 * 60 && !expiryWarned) {
+      expiryWarned = true;
+      showMsg(`Sua sessão vence em ${Math.ceil(left / 60)} min. Salve o que estiver fazendo.`, 'error');
+    }
+  }
+  setInterval(checkSession, 60 * 1000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) checkSession(); });
+
   function showMsg(text, type = 'success') {
     const el = $('msg');
     el.textContent = text;
@@ -564,6 +598,7 @@
   }
 
   async function api(path, method = 'GET', body = null) {
+    if (tokenSecondsLeft() <= 0) { sessionExpired(); throw new Error(SESSION_EXPIRED); }
     const opts = {
       method,
       headers: {
@@ -573,6 +608,7 @@
     };
     if (body) opts.body = JSON.stringify(body);
     const res = await fetch(WORKER_URL + path, opts);
+    if (res.status === 401) { sessionExpired(); throw new Error(SESSION_EXPIRED); }
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || `Erro ${res.status}`);
     return data;
@@ -903,6 +939,7 @@
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       sessionStorage.setItem('admin_token', data.token);
+      expiryWarned = false;
       $('login-view').style.display = 'none';
       $('admin-view').style.display = 'block';
       loadProducts();
@@ -927,7 +964,7 @@
   });
 
   // Se ja tem token valido, vai direto para o admin
-  if (getToken()) {
+  if (tokenSecondsLeft() > 0) {
     $('login-view').style.display = 'none';
     $('admin-view').style.display = 'block';
     loadProducts();
