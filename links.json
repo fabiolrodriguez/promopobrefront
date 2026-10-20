@@ -1,5 +1,31 @@
 [
   {
+    "url": "https://link.amazon/B03kVknV9",
+    "title": "Heinz Maionese Tradicional 400G",
+    "image": "https://m.media-amazon.com/images/I/615jsmXLRgL._AC_SL1500_.jpg",
+    "added_at": 1792524568142,
+    "category": "alimentos",
+    "price": 11.99
+  },
+  {
+    "url": "https://meli.la/2C4GocD",
+    "title": "Kit 6 Cuecas Boxer Lupo Sem Costura Box Microfibra Original",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_628190-MLB106929969799_022026-F-kit-6-cuecas-boxer-lupo-sem-costura-box-microfibra-original.webp",
+    "added_at": 1792524568142,
+    "category": "moda",
+    "price": 107.2,
+    "coupon": "MODAEBELEZA",
+    "expires_at": 1792697368142
+  },
+  {
+    "url": "https://link.amazon/B0flEHHLs",
+    "title": "Personal Papel Higiênico Vip Folha Tripla Com 12 Rolos De 20M",
+    "image": "https://m.media-amazon.com/images/I/71CkW6MPsTL._AC_SL1500_.jpg",
+    "added_at": 1792524568142,
+    "category": "casa",
+    "price": 17.99
+  },
+  {
     "url": "https://s.shopee.com.br/8pmhdPBoim",
     "title": "Sérum Elixir Antiporosidade, Protetor Térmico e Brilho, L'Oréal Paris Elseve Glycolic Gloss, 100ml",
     "image": "https://cf.shopee.com.br/file/br-11134207-820m6-mpl8favmckci2d",
