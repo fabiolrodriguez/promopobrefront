@@ -1,0 +1,67 @@
+name: RoboPobre vigia
+
+# Vigia de fora o worker dos bots (promopobreautofeed), que e quem monitora todo o resto.
+# Avisa no Telegram quando o worker para de responder ou quando o monitor dele para de rodar
+# (cron do Cloudflare parado). So avisa quando o estado muda: o ultimo estado fica no cache do Actions.
+# Secrets do repositorio: TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID (os mesmos do worker).
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: robopobre-vigia
+  cancel-in-progress: false
+
+jobs:
+  vigia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Le o ultimo estado
+        uses: actions/cache/restore@v4
+        with:
+          path: .vigia
+          key: vigia-${{ github.run_id }}
+          restore-keys: vigia-
+
+      - name: Confere o worker e avisa se mudou
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          problem=""
+          if body=$(curl -s -f --max-time 20 --retry 2 --retry-delay 15 https://promopobreautofeed.fabio-rodriguez.workers.dev/health); then
+            at=$(echo "$body" | jq -r '.monitor_at // empty')
+            if [ -n "$at" ]; then
+              age=$(( $(date +%s) - at / 1000 ))
+              # monitor roda de hora em hora (:05); 3h sem rodar = cron do Cloudflare parado
+              [ "$age" -gt 10800 ] && problem="o monitor do RoboPobre não roda há $((age / 3600))h (cron do Cloudflare parado? os robôs também param)"
+            fi
+          else
+            problem="o worker dos bots (promopobreautofeed) não responde. Robôs, bot do Telegram e monitoramento fora do ar."
+          fi
+
+          mkdir -p .vigia
+          prev=$(cat .vigia/state 2>/dev/null || echo ok)
+          now=${problem:+fail}; now=${now:-ok}
+          echo "antes: $prev, agora: $now ${problem}"
+
+          msg=""
+          [ "$now" = fail ] && [ "$prev" = ok ] && msg="🔴 RoboPobre vigia: ${problem}"
+          [ "$now" = ok ] && [ "$prev" = fail ] && msg="🟢 RoboPobre vigia: o worker dos bots voltou ao normal"
+          if [ -n "$msg" ] && [ -n "$TG_TOKEN" ] && [ -n "$TG_CHAT" ]; then
+            curl -s -f --max-time 15 -o /dev/null "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+              --data-urlencode "chat_id=${TG_CHAT}" --data-urlencode "text=${msg}"
+          fi
+          echo "$now" > .vigia/state
+
+      - name: Guarda o estado
+        uses: actions/cache/save@v4
+        with:
+          path: .vigia
+          key: vigia-${{ github.run_id }}
