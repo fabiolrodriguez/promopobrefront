@@ -1,5 +1,37 @@
 [
   {
+    "url": "https://link.amazon/B07VYMJPX",
+    "title": "Gillette Mach3, Carga para Aparelho de Barbear com 3 Lâminas 8 Unidades",
+    "image": "https://m.media-amazon.com/images/I/71cPzNeGU4L._AC_SL1200_.jpg",
+    "added_at": 1792753759980,
+    "category": "beleza",
+    "price": 54.99
+  },
+  {
+    "url": "https://link.amazon/B054XgTph",
+    "title": "Brilhante Limpeza Total - Lava Roupas Líquido 3L",
+    "image": "https://m.media-amazon.com/images/I/71jvqKocIgL._AC_SL1500_.jpg",
+    "added_at": 1792753759980,
+    "category": "casa",
+    "price": 23.98
+  },
+  {
+    "url": "https://link.amazon/B0dH3vVHV",
+    "title": "Apple iPhone 16 (512 GB) – Preto",
+    "image": "https://m.media-amazon.com/images/I/41uUYcqfLxL._AC_SL1000_.jpg",
+    "added_at": 1792753759980,
+    "category": "tecnologia",
+    "price": 4949.1
+  },
+  {
+    "url": "https://link.amazon/B06Tsvd0h",
+    "title": "Colgate Total Original Mint Creme Dental Prevenção Ativa com Flúor, 6x90g",
+    "image": "https://m.media-amazon.com/images/I/616pwmwJCAL._AC_SL1500_.jpg",
+    "added_at": 1792753759980,
+    "category": "saude",
+    "price": 41.49
+  },
+  {
     "url": "https://s.shopee.com.br/70L7N9nxx5",
     "title": "Creme Desodorante Antitranspirante Herbíssimo Care Rosa Mosqueta E Niacinamida Bisnaga 55g",
     "image": "https://cf.shopee.com.br/file/br-11134207-820ma-mu0np745ex373e",
