@@ -1,5 +1,33 @@
 [
   {
+    "url": "https://link.amazon/B0daU8dRF",
+    "title": "Colgate Plax Odor Control Enxaguante Bucal Sem Álcool, 750ml",
+    "image": "https://m.media-amazon.com/images/I/61eVoBaR5LL._AC_SL1200_.jpg",
+    "added_at": 1793059526793,
+    "category": "saude",
+    "price": 11.33
+  },
+  {
+    "url": "https://link.amazon/B0fzrC0RW",
+    "title": "Notebook Lenovo IdeaPad Slim 3 15.3\" Luna Grey - Intel Core 3 100U, 8GB RAM, 256GB SSD, Windows 11",
+    "image": "https://m.media-amazon.com/images/I/51ls0CGtwwL._AC_SL1000_.jpg",
+    "added_at": 1793059526793,
+    "category": "tecnologia",
+    "price": 2921,
+    "coupon": "LAPTOP400",
+    "expires_at": 1793232326793
+  },
+  {
+    "url": "https://link.amazon/B02I10o7a",
+    "title": "Philips Walita Multiprocessador PowerChop 750, 4 Acessórios, 750W, 220V",
+    "image": "https://m.media-amazon.com/images/I/51n0vASj4IL._AC_SL1000_.jpg",
+    "added_at": 1793059526793,
+    "category": "casa",
+    "price": 177,
+    "coupon": "ESQUENTA15",
+    "expires_at": 1793232326793
+  },
+  {
     "url": "https://s.shopee.com.br/5LCzEh2zGO",
     "title": "Coleção Primeira Biblioteca Volume 01 - Box com 10 Livrinhos",
     "image": "https://cf.shopee.com.br/file/sg-11134201-7rccq-m68eag264wcg7a",
