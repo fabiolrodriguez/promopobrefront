@@ -1,5 +1,30 @@
 [
   {
+    "url": "https://link.amazon/B07lMoYLg",
+    "title": "Amazon Prime - 15% off em alimentos",
+    "image": "https://i.ibb.co/yBPY1HLZ/Screenshot-2026-10-28-at-16-04-35.png",
+    "added_at": 1793214467580,
+    "category": "outros"
+  },
+  {
+    "url": "https://link.amazon/B01dAydLb",
+    "title": "WAP Furadeira Parafusadeira de Impacto WF 1000FE 1/2\" com Seletor de Velocidade e Limitador de Profundidade 22Nm 1000W 220V",
+    "image": "https://m.media-amazon.com/images/I/71mHDIgPwIL._AC_SL1500_.jpg",
+    "added_at": 1793214467580,
+    "category": "ferramentas",
+    "price": 142.45,
+    "coupon": "WAP15",
+    "expires_at": 1793387267580
+  },
+  {
+    "url": "https://link.amazon/B060TOddv",
+    "title": "Máscara de Tratamento Elseve L'Oréal Paris Colágeno Encorpador 300g",
+    "image": "https://m.media-amazon.com/images/I/71EYznJIxWL._AC_SL1500_.jpg",
+    "added_at": 1793214467580,
+    "category": "beleza",
+    "price": 24.91
+  },
+  {
     "url": "https://s.shopee.com.br/20waFyrwTY",
     "title": "Kit 2 Óleos Extraordinário Elseve 100ml Nutrição Profunda e Anti-Frizz",
     "image": "https://cf.shopee.com.br/file/br-11134207-820lm-mu0z10dr92ir66",
