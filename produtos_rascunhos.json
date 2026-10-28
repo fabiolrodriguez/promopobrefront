@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "url": "https://link.amazon/B0gUPriv9",
+    "title": "NIVEA Sabonete Vegetal Nutrição Da Natureza Manteiga De Karité & Lima Da Pérsia 80g (6 un.), Limpeza Delicada, Banho, Pele Macia e Hidratada, Fórmula Natural",
+    "image": "https://m.media-amazon.com/images/I/716yFV3WR9L._AC_SL1500_.jpg",
+    "publish_at": "2026-10-28T10:15:00-03:00",
+    "category": "beleza",
+    "price": 19.79
+  },
+  {
+    "url": "https://link.amazon/B0aj4Q22A",
+    "title": "Grand Theft Auto VI - PlayStation 5",
+    "image": "https://m.media-amazon.com/images/I/81o4MCqBv5L._AC_SL1500_.jpg",
+    "publish_at": "2026-10-28T10:15:00-03:00",
+    "category": "tecnologia",
+    "price": 376.56,
+    "coupon": "PRIMEGAME10",
+    "coupon_ttl_ms": 172800000
+  },
+  {
+    "url": "https://link.amazon/B0bmEjra9",
+    "title": "Omo Sabão Líquido Puro Cuidado 5L - Tampa pode Variar",
+    "image": "https://m.media-amazon.com/images/I/71Pnch+M4UL._AC_SL1500_.jpg",
+    "publish_at": "2026-10-28T10:15:00-03:00",
+    "category": "casa",
+    "price": 54.99
+  }
+]
