@@ -1,5 +1,31 @@
 [
   {
+    "url": "https://link.amazon/B0bmEjra9",
+    "title": "Omo Sabão Líquido Puro Cuidado 5L - Tampa pode Variar",
+    "image": "https://m.media-amazon.com/images/I/71Pnch+M4UL._AC_SL1500_.jpg",
+    "category": "casa",
+    "price": 54.99,
+    "added_at": 1793195504639
+  },
+  {
+    "url": "https://link.amazon/B0aj4Q22A",
+    "title": "Grand Theft Auto VI - PlayStation 5",
+    "image": "https://m.media-amazon.com/images/I/81o4MCqBv5L._AC_SL1500_.jpg",
+    "category": "tecnologia",
+    "price": 376.56,
+    "coupon": "PRIMEGAME10",
+    "added_at": 1793195504639,
+    "expires_at": 1793368304639
+  },
+  {
+    "url": "https://link.amazon/B0gUPriv9",
+    "title": "NIVEA Sabonete Vegetal Nutrição Da Natureza Manteiga De Karité & Lima Da Pérsia 80g (6 un.), Limpeza Delicada, Banho, Pele Macia e Hidratada, Fórmula Natural",
+    "image": "https://m.media-amazon.com/images/I/716yFV3WR9L._AC_SL1500_.jpg",
+    "category": "beleza",
+    "price": 19.79,
+    "added_at": 1793195504639
+  },
+  {
     "url": "https://www.mercadolivre.com.br/p/MLB18512758?pdp_filters=item_id:MLB2893252605&matt_word=fabiorodriguez2008&matt_tool=12103040",
     "title": "Suplemento Em Pó Nutren Senior 50+ Carboidratos Sem Sabor 740g",
     "image": "https://http2.mlstatic.com/D_NQ_NP_984686-MLA99458609238_112025-F.jpg",
