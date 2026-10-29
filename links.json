@@ -1,5 +1,31 @@
 [
   {
+    "url": "https://link.amazon/B07JZVv9N",
+    "title": "Smart TV LG 65\" 4K UHD NANO AI 65UN85CBPSA.BWZ",
+    "image": "https://m.media-amazon.com/images/I/71JvlwEntGL._AC_SL1200_.jpg",
+    "added_at": 1793301322657,
+    "category": "tecnologia",
+    "price": 2736
+  },
+  {
+    "url": "https://link.amazon/B00OANFQm",
+    "title": "Smart TV TCL 50 Polegadas QLED 4K P7L WiFi Bluetooth Google TV HDR10+ 60 Hz AIPQ 50P7L",
+    "image": "https://m.media-amazon.com/images/I/81K9D+mhhlL._AC_SL1500_.jpg",
+    "added_at": 1793301322657,
+    "category": "tecnologia",
+    "price": 1700
+  },
+  {
+    "url": "https://link.amazon/B04p2kE0r",
+    "title": "Cadeira de escritório Diretor Jadel Preta Healer",
+    "image": "https://m.media-amazon.com/images/I/71SP31N4CqL._AC_SL1500_.jpg",
+    "added_at": 1793301322657,
+    "category": "casa",
+    "price": 111.98,
+    "coupon": "OUTLETPRIME",
+    "expires_at": 1793474122657
+  },
+  {
     "url": "https://s.shopee.com.br/LoNroKiwd",
     "title": "Complexo B AlwaysFit  | Metilfolato + Metilcobalamina + Vitaminas do Complexo B | 60 Cápsulas",
     "image": "https://cf.shopee.com.br/file/br-11134207-820lb-mri0xp3ry4uff6",
