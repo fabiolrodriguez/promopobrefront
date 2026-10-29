@@ -1,5 +1,33 @@
 [
   {
+    "url": "https://link.amazon/B0j5BvOAG",
+    "title": "Tênis Mizuno Enigma 3",
+    "image": "https://m.media-amazon.com/images/I/61yqKRacofL._AC_SY695_.jpg",
+    "category": "moda",
+    "price": 269.9,
+    "added_at": 1793296127418
+  },
+  {
+    "url": "https://link.amazon/B03AF1Wr2",
+    "title": "WAP Serra Sabre Elétrica WF SA01 20mm com Punho Giratório e Ajuste de Velocidade 2800gpm 1200W 127V",
+    "image": "https://m.media-amazon.com/images/I/61qdfA8DBeL._AC_SL1500_.jpg",
+    "category": "ferramentas",
+    "price": 174.27,
+    "coupon": "WAP15",
+    "added_at": 1793296127418,
+    "expires_at": 1793468927418
+  },
+  {
+    "url": "https://link.amazon/B0bPFJCEM",
+    "title": "Monitor Acer Gamer Nitro Kg243y G0bi 23.8” Full Hd 120 Hz 1ms",
+    "image": "https://m.media-amazon.com/images/I/51bqDx+ht2L._AC_SL1000_.jpg",
+    "category": "tecnologia",
+    "price": 486.1,
+    "coupon": "AMAZON15VEM",
+    "added_at": 1793296127418,
+    "expires_at": 1793468927418
+  },
+  {
     "url": "https://link.amazon/B0gacZItU",
     "title": "WAP Panela de Pressão WPPE3 6L, 10 Receitas Pré-Programada 220V",
     "image": "https://m.media-amazon.com/images/I/61B6cLwNybL._AC_SL1500_.jpg",
