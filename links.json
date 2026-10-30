@@ -1,5 +1,13 @@
 [
   {
+    "url": "https://link.amazon/B0hBnafhi",
+    "title": "Philco Grill e Sanduicheira 2 em 1 Inox PGR21PI 220V Moderno",
+    "image": "https://m.media-amazon.com/images/I/61AHr0Nu0lL._AC_SL1000_.jpg",
+    "category": "casa",
+    "price": 119.9,
+    "added_at": 1793368866153
+  },
+  {
     "url": "https://s.shopee.com.br/2BG3e4DuNy",
     "title": "Caneca Misturadora Automática Elétrica USB Bateria Recarregável Mixer Café 380ml",
     "image": "https://cf.shopee.com.br/file/br-11134207-81zts-mktlcixqn18h4e",
@@ -676,16 +684,6 @@
     "category": "casa",
     "price": 54.99,
     "added_at": 1793195504639
-  },
-  {
-    "url": "https://link.amazon/B0aj4Q22A",
-    "title": "Grand Theft Auto VI - PlayStation 5",
-    "image": "https://m.media-amazon.com/images/I/81o4MCqBv5L._AC_SL1500_.jpg",
-    "category": "tecnologia",
-    "price": 376.56,
-    "coupon": "PRIMEGAME10",
-    "added_at": 1793195504639,
-    "expires_at": 1793368304639
   },
   {
     "url": "https://link.amazon/B0gUPriv9",
