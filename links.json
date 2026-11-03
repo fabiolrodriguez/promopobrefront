@@ -1,5 +1,31 @@
 [
   {
+    "url": "https://link.amazon/B08RZ5e7K",
+    "title": "Leite Condensado Moça, 395g",
+    "image": "https://m.media-amazon.com/images/I/51a7GkAXBBL._AC_.jpg",
+    "added_at": 1793715398889,
+    "category": "alimentos",
+    "price": 49.9
+  },
+  {
+    "url": "https://link.amazon/B07nGZA0k",
+    "title": "boAt Fone de Ouvido Sem Fio Bluetooth Rockerz 551 ANC",
+    "image": "https://m.media-amazon.com/images/I/61BrerJ+yML._AC_SL1500_.jpg",
+    "added_at": 1793715398889,
+    "category": "tecnologia",
+    "price": 74.95
+  },
+  {
+    "url": "https://meli.la/2mLVdGc",
+    "title": "Ar Condicionado Inverter 9k Midea Ecomaster + Ia Frio 220v",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_903734-MLB120300344931_102026-F-ar-condicionado-inverter-9k-midea-ecomaster--ia-frio-220v.webp",
+    "added_at": 1793715398889,
+    "category": "casa",
+    "price": 1619.1,
+    "coupon": "VOLTESEMPRE",
+    "expires_at": 1793888198889
+  },
+  {
     "url": "https://s.shopee.com.br/2gCQcYDq4g",
     "title": "Lava Roupas Liquido  Urca Azul - 3l",
     "image": "https://cf.shopee.com.br/file/br-11134207-7r98o-m40puqy992k5b8",
