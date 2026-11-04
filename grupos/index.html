@@ -3,6 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // Teste A/B de /grupos/ (desde 04/11): metade vai pra versao B (/grupos/b/), sempre a mesma por pessoa.
+    // ?v=a ou ?v=b forca a versao. Robos de busca ficam na A. Contadores no worker dos bots, resultado no /painel.
+    (function () {
+      if (/bot|crawl|spider|slurp|facebookexternalhit|whatsapp|telegram/i.test(navigator.userAgent || '')) return;
+      var v = new URLSearchParams(location.search).get('v');
+      try {
+        if (v !== 'a' && v !== 'b') v = localStorage.getItem('grupos_ab2');
+        if (v !== 'a' && v !== 'b') v = Math.random() < 0.5 ? 'a' : 'b';
+        localStorage.setItem('grupos_ab2', v);
+      } catch (_) { if (v !== 'a' && v !== 'b') v = Math.random() < 0.5 ? 'a' : 'b'; }
+      if (v === 'b') location.replace('/grupos/b/' + location.search + location.hash);
+    })();
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18496442246"></script>
   <script>
@@ -276,9 +290,9 @@
   })();
 </script>
 <script>
-  // Teste A/B de /grupos/: esta e a versao A (antiga). Contadores no worker dos bots, resultado no /painel.
+  // Teste A/B de /grupos/ (desde 04/11): esta e a versao A (atual). Contadores no worker dos bots, resultado no /painel.
   (function () {
-    var hit = function (e) { try { navigator.sendBeacon('https://promopobreautofeed.fabio-rodriguez.workers.dev/ab?v=a&e=' + e); } catch (_) {} };
+    var hit = function (e) { try { navigator.sendBeacon('https://promopobreautofeed.fabio-rodriguez.workers.dev/ab?v=a2&e=' + e); } catch (_) {} };
     hit('view');
     document.querySelectorAll('[data-ab]').forEach(function (a) { a.addEventListener('click', function () { hit(a.dataset.ab); }); });
   })();
