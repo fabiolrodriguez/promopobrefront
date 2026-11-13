@@ -1,5 +1,29 @@
 [
   {
+    "url": "https://meli.la/1v4Cyc9",
+    "title": "Chocolate Ao Leite Lindt Lata Lindor Coracao 50g",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_831345-MLA102089474285_122025-F.webp",
+    "added_at": 1794587168642,
+    "category": "alimentos",
+    "price": 39.99
+  },
+  {
+    "url": "https://link.amazon/B0j0ZQAgS",
+    "title": "Pantene Pro-V Miracles Condicionador Colágeno Hidrata e Resgata 1L",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/51-CQkwDudL._AC_SL1200_.jpg",
+    "added_at": 1794587168642,
+    "category": "beleza",
+    "price": 42.66
+  },
+  {
+    "url": "https://link.amazon/B0fRHIEPL",
+    "title": "Vonder, Ducha 3t 4400w/220v Branca",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/41B9k2vozSL._AC_SL1000_.jpg",
+    "added_at": 1794587168642,
+    "category": "casa",
+    "price": 56.79
+  },
+  {
     "url": "https://www.mercadolivre.com.br/p/MLB47519001?pdp_filters=item_id:MLB4937369991&matt_word=fabiorodriguez2008&matt_tool=12103040",
     "title": "Fone de Ouvido Eardbud AIWA AWS-EB-05-B Bluetooth IPX4 24 Horas de bateria",
     "image": "https://http2.mlstatic.com/D_NQ_NP_980288-MLA99966340125_112025-F.jpg",
