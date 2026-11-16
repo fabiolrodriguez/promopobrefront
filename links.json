@@ -1,5 +1,39 @@
 [
   {
+    "url": "https://meli.la/1kV4Aqi",
+    "title": "Camiseta Regular Essence Reserva Masculina",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_779674-MLB112761861234_062026-F-camiseta-regular-essence-reserva-masculina.webp",
+    "added_at": 1794852390564,
+    "category": "moda",
+    "price": 57.99
+  },
+  {
+    "url": "https://meli.la/2o8UNM6",
+    "title": "Tênis De Corrida Masculino Mizuno Goya",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_954968-MLB93845321977_092025-F-tnis-de-corrida-masculino-mizuno-goya.webp",
+    "added_at": 1794852390564,
+    "category": "moda",
+    "price": 188.59,
+    "coupon": "OFICIAIS1611",
+    "expires_at": 1795025190564
+  },
+  {
+    "url": "https://http2.mlstatic.com/D_NQ_NP_2X_954968-MLB93845321977_092025-F-tnis-de-corrida-masculino-mizuno-goya.webp",
+    "title": "soundcore P30i da Anker, ANC Fone de Ouvido Bluetooth 5.4 Sem Fio, TWS",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/51sd+DRfpXL._AC_SL1500_.jpg",
+    "added_at": 1794852390564,
+    "category": "tecnologia",
+    "price": 186.2
+  },
+  {
+    "url": "https://link.amazon/B07UHUukQ",
+    "title": "Pack de Coca-Cola sem Açúcar 350Ml 6 unidades",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61TpbR+3gCL._AC_SL1500_.jpg",
+    "added_at": 1794852390564,
+    "category": "alimentos",
+    "price": 20.99
+  },
+  {
     "url": "https://www.mercadolivre.com.br/p/MLB16016316?pdp_filters=item_id:MLB3602385150&matt_word=fabiorodriguez2008&matt_tool=12103040&rp=20261116",
     "title": "Batedeira Prática Mondial 400W - B-44-B",
     "image": "https://http2.mlstatic.com/D_NQ_NP_877834-MLA99469550350_112025-F.jpg",
