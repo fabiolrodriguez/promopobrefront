@@ -1,5 +1,39 @@
 [
   {
+    "url": "https://link.amazon/B08bVmmbd",
+    "title": "La Roche-Posay Cicaplast Baume B5+ Cuidado Multirreparador Calmante",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/512oV8vTdSL._AC_SL1080_.jpg",
+    "added_at": 1794920513612,
+    "category": "beleza",
+    "price": 53.65
+  },
+  {
+    "url": "https://link.amazon/B07ZmKmyt",
+    "title": "Cesto De Roupas De Bambu 50 Litros Yikasa",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61YtuBSAX0L._AC_SL1000_.jpg",
+    "added_at": 1794920513612,
+    "category": "casa",
+    "price": 39.23
+  },
+  {
+    "url": "https://link.amazon/B03McWihr",
+    "title": "Refrigerante Zero Pepsi, Black, Lata 350ml, Pack com 12 unidades",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61xHGkdDlLL._AC_.jpg",
+    "added_at": 1794920513612,
+    "category": "alimentos",
+    "price": 31.08
+  },
+  {
+    "url": "https://meli.la/1K37jLH",
+    "title": "Roçadeira Aparador Grama A Bateria Recarregável 21v 800w",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_2X_947863-MLB116789007469_082026-F-rocadeira-aparador-grama-a-bateria-recarregavel-21v-800w.webp",
+    "added_at": 1794920513612,
+    "category": "ferramentas",
+    "price": 98.79,
+    "coupon": "MEUDESCONTOOBRA",
+    "expires_at": 1795093313612
+  },
+  {
     "url": "https://www.mercadolivre.com.br/p/MLB66308260?pdp_filters=item_id:MLB4856643479&matt_word=fabiorodriguez2008&matt_tool=12103040",
     "title": "Air Fryer Elgin Facilita Fry 3,5L 1400W",
     "image": "https://http2.mlstatic.com/D_NQ_NP_975660-MLA108296246717_032026-F.jpg",
