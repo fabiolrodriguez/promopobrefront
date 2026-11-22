@@ -1,5 +1,45 @@
 [
   {
+    "url": "https://link.amazon/B08ywbLp5",
+    "title": "Lava-Roupas em Pó Omo Todo Ciclo, Tamanho Família, 4kg",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71bbg9wO3BL._AC_SL1200_.jpg",
+    "added_at": 1795350112993,
+    "category": "casa",
+    "price": 42.52
+  },
+  {
+    "url": "https://link.amazon/B02h6DRVE",
+    "title": "Apple iPhone 15 (128 GB) — Azul",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/41+jLq6yJKL._AC_SL1000_.jpg",
+    "added_at": 1795350112993,
+    "category": "tecnologia",
+    "price": 3499
+  },
+  {
+    "url": "https://link.amazon/B05E1CQA6",
+    "title": "Ovomaltine Creme Crocante Pote 530g",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61n3LUeWGoL._AC_SL1200_.jpg",
+    "added_at": 1795350112993,
+    "category": "alimentos",
+    "price": 33.64
+  },
+  {
+    "url": "https://link.amazon/B09TQ1725",
+    "title": "Extensão Tomada, Régua Tomada, Régua de Energia, 5 Tomadas, 4 Interfaces USB, 1 Porta USB Tipo-C, Cabo de Alimentação de 1,9 metros, Suporte a Tensão de 110-220V, Potência de 2500W (Preto)",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61cqHsWOW7L._AC_SL1500_.jpg",
+    "added_at": 1795350112993,
+    "category": "tecnologia",
+    "price": 39.97
+  },
+  {
+    "url": "https://link.amazon/B07jv1rsp",
+    "title": "Freezer Horizontal Philco 246L PFH260B Branco 127V",
+    "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/51lhKecYiyL._AC_SL1200_.jpg",
+    "added_at": 1795350112993,
+    "category": "casa",
+    "price": 1486.2
+  },
+  {
     "url": "https://www.mercadolivre.com.br/p/MLB62997555?pdp_filters=item_id:MLB4083251613&matt_word=fabiorodriguez2008&matt_tool=12103040",
     "title": "Balança Digital Davely Cook 10 kg para Cozinha Branca",
     "image": "https://http2.mlstatic.com/D_NQ_NP_903976-MLA109751277529_032026-F.jpg",
