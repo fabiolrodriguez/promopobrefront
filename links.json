@@ -1,5 +1,14 @@
 [
   {
+    "url": "https://meli.la/27MWuZz?rp=202611240912",
+    "title": "CUPOM Mercado Livre",
+    "image": "https://promopobreautofeed.fabio-rodriguez.workers.dev/img/mlcupom.jpg",
+    "category": "outros",
+    "added_at": 1795522328090,
+    "obs": "Cupons:\n▪️ R$ 70 OFF · Acima de R$ 499 · Exclusivo Meli+ - Cupom: 1124MAISME\n▪️ R$ 200 OFF · Acima de R$ 1.599 - Cupom: TECH2411\n▪️ 10% OFF · Acima de R$ 89 · até R$ 40 de desconto - Cupom: OFICIAIS2411",
+    "expires_at": 1795695128090
+  },
+  {
     "url": "https://link.amazon/B0c4q5ciJ",
     "title": "Bundle GTA VI + PlayStation 5 Slim Disk Pacote Astro Bot e Gran Turismo 7",
     "image": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71li1BNVOxL._AC_SL1500_.jpg",
@@ -345,15 +354,6 @@
     "price": 266,
     "added_at": 1795461301266,
     "obs": "Preço sujeito a alteração."
-  },
-  {
-    "url": "https://meli.la/27MWuZz?rp=202611231614",
-    "title": "Novo Cupom Mercado Livre!",
-    "image": "https://promopobreautofeed.fabio-rodriguez.workers.dev/img/mlcupom.jpg",
-    "category": "outros",
-    "added_at": 1795461257534,
-    "coupon": "OFERTASEMPREML",
-    "expires_at": 1795634057534
   },
   {
     "url": "https://s.shopee.com.br/3g5U2ntn5e",
