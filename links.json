@@ -1,5 +1,14 @@
 [
   {
+    "url": "https://meli.la/27MWuZz?rp=202611270909",
+    "title": "Cupons Mercado Livre",
+    "image": "https://promopobreautofeed.fabio-rodriguez.workers.dev/img/mlcupom.jpg",
+    "category": "outros",
+    "added_at": 1795781398441,
+    "obs": "Cupons:\n▪️ 12% OFF acima de R$ 599, limite R$ 350: PROMOHOJEPRACASA\n▪️ 12% OFF acima de R$ 599, limite R$ 350: CONECTAML\n▪️ 25% OFF acima de R$ 79, limite R$ 80: TUDOPARAOBRA\n▪️ 25% OFF acima de R$ 79, limite R$ 80: GARAGEMML\n▪️ 20% OFF acima de R$ 79, limite R$ 50: CUIDADOML",
+    "expires_at": 1795954198441
+  },
+  {
     "url": "https://s.shopee.com.br/4LLGl2LEDG",
     "title": "Cupom Shopee",
     "image": "https://promopobreautofeed.fabio-rodriguez.workers.dev/img/dusce5th.jpg",
@@ -46,15 +55,6 @@
     "price": 79,
     "coupon": "SOHOJEBF",
     "expires_at": 1795953570513
-  },
-  {
-    "url": "https://meli.la/27MWuZz?rp=202611270848",
-    "title": "CUPOM Mercado Livre",
-    "image": "https://promopobreautofeed.fabio-rodriguez.workers.dev/img/mlcupom.jpg",
-    "category": "outros",
-    "added_at": 1795780087019,
-    "coupon": "BLACKDELUXO",
-    "expires_at": 1795952887019
   },
   {
     "url": "https://s.click.aliexpress.com/e/_c3kmif0l",
